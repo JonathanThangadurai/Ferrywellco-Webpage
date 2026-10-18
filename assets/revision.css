@@ -1,0 +1,90 @@
+/* GOTime-led site story. Typography stays within the IBM Plex Sans family. */
+.gotime-hero-grid { min-height: 0; grid-template-columns: minmax(0,1fr) minmax(0,1.02fr); gap: clamp(34px,5vw,70px); padding-block: clamp(62px,7vw,104px); }
+.gotime-hero h1 { max-width: 700px; font-size: clamp(3.1rem,4.65vw,4.65rem); }
+.gotime-hero .lead { max-width: 610px; }
+.hero-photo img { height: clamp(360px,35vw,490px); object-fit: cover; object-position: 50% 52%; }
+.hero-photo figcaption { font-size: 13px; }
+
+.decision-section { background: #fff; }
+.decision-story { display: grid; grid-template-columns: minmax(0,.92fr) minmax(0,1.08fr); gap: clamp(38px,7vw,100px); align-items: center; }
+.decision-copy h2 { max-width: 560px; margin: 14px 0 22px; font-size: clamp(2.5rem,3.75vw,3.65rem); }
+.decision-copy .lead { max-width: 550px; }
+.decision-photo { margin: 0; }
+.decision-photo img { display: block; width: 100%; height: clamp(330px,33vw,430px); object-fit: cover; object-position: 48% 54%; }
+.decision-photo figcaption { margin-top: 11px; color: var(--muted); font-size: 13px; line-height: 1.4; }
+
+.gotime-story { display: grid; grid-template-columns: minmax(0,.84fr) minmax(0,1.16fr); gap: clamp(38px,6vw,82px); align-items: center; }
+.gotime-copy h2 { max-width: 540px; margin: 15px 0 22px; font-size: clamp(2.55rem,3.7vw,3.6rem); }
+.gotime-copy p:not(.eyebrow) { max-width: 570px; color: #d4e7e5; line-height: 1.6; }
+.gotime-copy .text-link { display: inline-block; margin-top: 28px; color: #fff; }
+.gotime-figure { margin: 0; padding: 18px 18px 14px; background: #fff; }
+.gotime-figure img { display: block; width: 100%; height: auto; }
+.gotime-figure figcaption { margin-top: 8px; color: #526b6e; font-size: 12px; line-height: 1.45; }
+
+.approach { background: #f8faf8; }
+.approach-story { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,.9fr); gap: clamp(34px,7vw,100px); align-items: start; }
+.approach-story h2 { max-width: 650px; margin: 16px 0 0; font-size: clamp(2.5rem,3.7vw,3.6rem); }
+.approach-copy { padding-top: 36px; }
+.approach-copy p { max-width: 560px; color: #496368; font-size: 19px; line-height: 1.65; }
+.approach-copy .text-link { display: inline-block; margin-top: 28px; }
+
+.science-band { background: #e7f0ec; color: var(--ink); }
+.science-story { max-width: 1180px; }
+.science-story .eyebrow { color: var(--teal); }
+.science-story h2 { max-width: 880px; margin: 17px 0 21px; color: var(--ink); font-size: clamp(2.3rem,3.3vw,3.2rem); }
+.science-story p:not(.eyebrow) { max-width: 800px; color: #405b60; font-size: 19px; line-height: 1.62; }
+.science-story .text-link { color: var(--teal); margin-top: 25px; }
+
+.applications-preview { background: #fff; }
+.applications-story .section-head { max-width: 750px; margin-bottom: 43px; }
+.applications-story .section-head h2 { max-width: 690px; }
+.other-uses { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+.other-uses p { min-width: 0; padding: 22px 28px 25px 0; }
+.other-uses p + p { padding-left: 28px; border-left: 1px solid var(--rule); }
+.other-uses strong { display: block; margin-bottom: 9px; color: var(--ink); font-size: 19px; font-weight: 600; }
+.other-uses span { display: block; max-width: 300px; color: var(--muted); font-size: 15px; line-height: 1.5; }
+.applications-story > .text-link { display: inline-block; margin-top: 27px; }
+
+.team-story { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,.88fr); gap: clamp(40px,7vw,94px); align-items: start; }
+.team-story h2 { max-width: 630px; margin: 16px 0 18px; }
+.team-story .lead { max-width: 630px; margin-bottom: 28px; }
+.team-story .team-names { grid-template-columns: repeat(2,minmax(0,1fr)); }
+.team-story .team-names span { font-size: 21px; }
+.team-photo { margin: 0; }
+.team-photo img { display: block; width: 100%; height: 470px; object-fit: cover; object-position: 47% center; }
+.team-photo figcaption { margin-top: 11px; color: var(--muted); font-size: 13px; }
+
+/* Other applications sit behind the main GOTime story. */
+.application-summary { border-top: 1px solid var(--rule); }
+.application-summary article { display: grid; grid-template-columns: minmax(210px,.42fr) minmax(0,1fr); gap: 7%; padding: 35px 0; border-bottom: 1px solid var(--rule); }
+.application-summary h2 { margin: 0; font-size: clamp(1.6rem,2.6vw,2.2rem); }
+.application-summary p { color: var(--muted); max-width: 680px; }
+.application-summary .eyebrow { grid-column: 1 / -1; margin-bottom: -20px; }
+.application-sport-photo { margin: 0 0 35px; }
+.application-sport-photo img { display: block; width: 100%; max-height: 420px; object-fit: cover; object-position: center 48%; }
+.application-sport-photo figcaption { margin-top: 10px; color: var(--muted); font-size: 13px; }
+
+@media (max-width: 900px) {
+  .gotime-hero-grid, .decision-story, .gotime-story, .approach-story, .team-story { grid-template-columns: 1fr; }
+  .gotime-hero-grid { gap: 36px; }
+  .hero-photo img { height: 430px; }
+  .decision-story, .gotime-story, .approach-story, .team-story { gap: 35px; }
+  .approach-copy { padding-top: 0; }
+  .team-photo img { max-height: 520px; }
+}
+@media (max-width: 650px) {
+  .gotime-hero h1 { font-size: clamp(2.7rem,10.7vw,3.6rem); }
+  .gotime-hero-grid { padding-block: 53px 58px; }
+  .hero-photo img { height: 290px; object-position: center; }
+  .decision-photo img { height: 265px; }
+  .gotime-copy h2, .decision-copy h2, .approach-story h2 { font-size: clamp(2.15rem,9vw,3.1rem); }
+  .gotime-figure { padding: 9px 9px 13px; }
+  .gotime-figure figcaption { padding-inline: 4px; }
+  .other-uses { grid-template-columns: 1fr; }
+  .other-uses p, .other-uses p + p { padding: 17px 0; border-left: 0; }
+  .other-uses p + p { border-top: 1px solid var(--rule); }
+  .team-story .team-names span { font-size: 18px; }
+  .team-photo img { height: 310px; }
+  .application-summary article { grid-template-columns: 1fr; gap: 12px; }
+  .application-summary .eyebrow { margin-bottom: 0; }
+}

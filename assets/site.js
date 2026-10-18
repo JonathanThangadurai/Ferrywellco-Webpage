@@ -79,34 +79,14 @@ if (demo) {
     questions: Array.from(demo.querySelectorAll("[data-demo-questions] li")),
   };
   const settings = {
-    operations: {
-      label: "Site operations",
-      activity: "outdoor task",
-      heading: "What should the site team review before this task?",
-      questions: [
-        "Which part of the task is most exposed?",
-        "What timing or site controls are realistic within existing guidance?",
-        "How will the team record and revisit its decision?",
-      ],
-    },
     activity: {
       label: "Outdoor sport",
       activity: "outdoor session",
-      heading: "What should this activity plan take into account?",
+      heading: "What should this session plan take into account?",
       questions: [
         "Which time or place fits the activity?",
         "What context would participants want to understand?",
         "How can the plan remain flexible?",
-      ],
-    },
-    platform: {
-      label: "Digital service",
-      activity: "planned outing",
-      heading: "What information belongs in the planning screen?",
-      questions: [
-        "At what point would a user make this decision?",
-        "Which conditions can the service explain clearly?",
-        "How would the team test whether this feature helps?",
       ],
     },
   };
