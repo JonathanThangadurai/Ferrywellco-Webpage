@@ -113,32 +113,30 @@ h3 { font-weight: 600; letter-spacing: -.025em; }
 .gotime-panel { min-height: 295px; }
 .gotime-section .demo-invite { margin-top: 42px; }
 
-/* Product-like visual language: local map analysis and a GOTime route view. */
-.map-panel, .plan-panel { margin: 0; overflow: hidden; background: #fff; box-shadow: 0 18px 42px rgba(19, 57, 55, .12); }
-.map-panel-top, .plan-panel-top { display: flex; justify-content: space-between; align-items: center; gap: 15px; padding: 15px 18px; border-bottom: 1px solid #d9e4df; color: #24494e; font-size: 13px; }
-.map-panel-top strong, .plan-panel-top strong { font-size: 14px; font-weight: 700; }
-.map-panel-top span, .plan-panel-top span { color: #627b7b; }
-.map-canvas, .plan-map { position: relative; overflow: hidden; }
-.map-canvas svg, .plan-map svg { display: block; width: 100%; height: auto; }
-.map-pin { position: absolute; display: flex; align-items: baseline; gap: 5px; padding: 7px 10px; background: #fff; color: #315b61; box-shadow: 0 3px 16px rgba(24, 61, 59, .13); font-size: 11px; line-height: 1.2; white-space: nowrap; }
-.map-pin strong { color: #173b40; font-size: 16px; }
-.map-pin small { color: #597277; font-size: 10px; }
-.map-pin-one { left: 12%; top: 26%; }
-.map-pin-two { right: 11%; top: 55%; }
-.map-legend { position: absolute; left: 14px; bottom: 14px; display: flex; align-items: center; gap: 8px; padding: 6px 9px; background: rgba(255,255,255,.94); color: #45656a; font-size: 10px; }
-.map-legend i { display: block; width: 28px; height: 7px; background: linear-gradient(90deg,#d4e4d5,#e7bb90); }
-.map-panel-bottom { display: flex; justify-content: space-between; gap: 15px; padding: 14px 18px; border-top: 1px solid #d9e4df; color: #5b7376; font-size: 12px; }
-.map-panel-bottom strong { color: #235b62; font-weight: 600; }
+/* Each visual answers one question rather than decorating an arbitrary map. */
+.brief-panel, .plan-panel { margin: 0; overflow: hidden; background: #fff; color: #173b40; box-shadow: 0 18px 42px rgba(19, 57, 55, .1); }
+.brief-panel-head, .plan-panel-top { display: flex; justify-content: space-between; align-items: center; gap: 14px; padding: 17px 21px; border-bottom: 1px solid #d9e4df; font-size: 13px; }
+.brief-panel-head strong, .plan-panel-top strong { font-size: 15px; font-weight: 700; }
+.brief-panel-head span, .plan-panel-top span { color: #60777a; text-align: right; }
+.brief-question, .plan-question { padding: 22px 21px 18px; font-size: clamp(19px, 2vw, 25px); font-weight: 600; letter-spacing: -.03em; line-height: 1.2; }
+.brief-row { display: grid; grid-template-columns: 28px minmax(0,1fr); gap: 14px; margin-inline: 21px; padding: 17px 0; border-top: 1px solid #d9e4df; }
+.brief-index { color: #a85f45; font-size: 12px; font-weight: 700; }
+.brief-row strong { display: block; margin-bottom: 4px; font-size: 14px; font-weight: 600; }
+.brief-row p { color: #4f696c; font-size: 14px; line-height: 1.4; }
+.brief-result { color: #195c63; }
+.brief-panel figcaption { padding: 13px 21px; background: #ecf3f0; color: #4a6567; font-size: 12px; }
 
-.plan-panel { background: #fff; color: #173b40; }
-.plan-panel-top { background: #f8faf8; }
-.plan-map-label { position: absolute; left: 16px; top: 16px; padding: 7px 10px; background: #fff; color: #305d60; box-shadow: 0 2px 12px rgba(17,55,54,.1); font-size: 11px; font-weight: 600; }
-.plan-options { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid #dce5e1; }
-.plan-options > div { padding: 16px 18px 18px; }
-.plan-options > div + div { border-left: 1px solid #dce5e1; }
-.plan-options span { display: block; margin-bottom: 6px; color: #537073; font-size: 11px; }
-.plan-options strong { display: block; font-size: clamp(13px, 1.4vw, 17px); font-weight: 600; white-space: nowrap; }
-.plan-options i { color: #8aa09a; font-style: normal; }
+.plan-panel { align-self: center; }
+.plan-panel-top { background: #f7faf8; }
+.plan-question { padding-bottom: 24px; }
+.plan-comparison { margin: 0 21px; border-top: 1px solid #cddbd6; }
+.comparison-row { display: grid; grid-template-columns: 1fr 1fr 1fr; align-items: baseline; gap: 10px; padding: 15px 0; border-bottom: 1px solid #d9e4df; }
+.comparison-row span { color: #4d6c70; font-size: 13px; }
+.comparison-row strong { font-size: clamp(13px, 1.4vw, 17px); font-weight: 600; white-space: nowrap; }
+.comparison-heading { padding-top: 11px; padding-bottom: 11px; }
+.comparison-heading span, .comparison-heading strong { color: #527477; font-size: 12px; font-weight: 600; }
+.plan-panel figcaption { margin-top: 19px; padding: 18px 21px 20px; background: #eaf2ef; color: #335d60; font-size: 13px; line-height: 1.4; }
+.plan-panel figcaption strong { font-weight: 700; }
 
 .direct-contact { display: grid; gap: 8px; margin-top: 36px; }
 .direct-contact strong { color: #b5d4d1; font-size: 13px; font-weight: 600; }
@@ -161,7 +159,7 @@ h3 { font-weight: 600; letter-spacing: -.025em; }
 @media (max-width: 900px) {
   .approach-detail, .gotime-heading { grid-template-columns: 1fr; }
   .approach-detail { gap: 29px; }
-  .approach-illustration { max-width: 700px; }
+  .brief-panel { max-width: 700px; }
   .gotime-heading { gap: 28px; }
   .gotime-illustration { max-width: 640px; }
   .plan-panel { max-width: 700px; }
@@ -179,9 +177,9 @@ h3 { font-weight: 600; letter-spacing: -.025em; }
   .gotime-illustration img { max-height: none; }
   .enquiry-form { grid-template-columns: 1fr; }
   .form-row { grid-column: 1 / -1; }
-  .map-pin { padding: 5px 7px; font-size: 10px; }
-  .map-pin strong { font-size: 13px; }
-  .map-legend { font-size: 8px; }
-  .plan-options > div { padding: 10px; }
-  .plan-options strong { font-size: 11px; white-space: normal; }
+  .brief-question, .plan-question { font-size: 19px; }
+  .brief-panel-head, .plan-panel-top { align-items: start; flex-direction: column; gap: 2px; }
+  .brief-panel-head span, .plan-panel-top span { text-align: left; }
+  .comparison-row { gap: 6px; }
+  .comparison-row strong { font-size: 12px; white-space: normal; }
 }
