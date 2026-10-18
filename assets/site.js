@@ -23,6 +23,26 @@ document.querySelectorAll("[data-menu-button]").forEach((button) => {
   });
 });
 
+const enquiryForm = document.querySelector("[data-enquiry-form]");
+if (enquiryForm) {
+  enquiryForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    if (!enquiryForm.reportValidity()) return;
+    const data = new FormData(enquiryForm);
+    const subject = `FerryWellCo enquiry: ${data.get("scope")}`;
+    const body = [
+      `Name: ${data.get("name")}`,
+      `Company or app: ${data.get("company")}`,
+      `Work email: ${data.get("email")}`,
+      `Area: ${data.get("scope")}`,
+      "",
+      String(data.get("message") || ""),
+    ].join("\n");
+    enquiryForm.querySelector("[data-form-status]").textContent = "Your email app will open with the enquiry ready to send.";
+    window.location.href = `mailto:research@ferrywellco.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  });
+}
+
 const tabs = Array.from(document.querySelectorAll('[role="tab"]'));
 const activateTab = (tab, focus = false) => {
   tabs.forEach((item) => {

@@ -1,20 +1,27 @@
-/* A calmer type scale and simpler page rhythm for the review site. */
+/* One type family across copy, diagrams and controls. */
+@font-face {
+  font-family: "IBM Plex Sans";
+  src: url("fonts/ibm-plex-sans-latin.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+}
+html, body, button, input, select, textarea, svg text { font-family: "IBM Plex Sans", sans-serif; }
 body {
-  font-family: "Avenir Next", Avenir, "Segoe UI", sans-serif;
   font-size: 17px;
   line-height: 1.55;
 }
 
 h1, h2 {
-  font-family: Georgia, Cambria, "Times New Roman", serif;
-  font-weight: 400;
-  letter-spacing: -.035em;
-  line-height: 1.12;
+  font-family: "IBM Plex Sans", sans-serif;
+  font-weight: 600;
+  letter-spacing: -.055em;
+  line-height: 1.08;
 }
-h3 { font-weight: 650; letter-spacing: -.02em; }
+h3 { font-weight: 600; letter-spacing: -.025em; }
 .eyebrow {
   font-size: 14px;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: 0;
   line-height: 1.3;
   text-transform: none;
@@ -25,6 +32,8 @@ h3 { font-weight: 650; letter-spacing: -.02em; }
 .section-head h2 { margin-bottom: 18px; }
 .section-head .eyebrow { margin-bottom: 15px; }
 .text-link { font-weight: 700; }
+.brand { font-weight: 700; letter-spacing: -.055em; }
+.button, .nav-cta { border-radius: 3px; }
 
 .gotime-hero-grid { min-height: 0; padding-block: clamp(65px, 6.5vw, 94px); }
 .gotime-hero h1 { font-size: clamp(3.2rem, 4.7vw, 4.5rem); line-height: 1.08; }
@@ -104,12 +113,58 @@ h3 { font-weight: 650; letter-spacing: -.02em; }
 .gotime-panel { min-height: 295px; }
 .gotime-section .demo-invite { margin-top: 42px; }
 
+/* Product-like visual language: local map analysis and a GOTime route view. */
+.map-panel, .plan-panel { margin: 0; overflow: hidden; background: #fff; box-shadow: 0 18px 42px rgba(19, 57, 55, .12); }
+.map-panel-top, .plan-panel-top { display: flex; justify-content: space-between; align-items: center; gap: 15px; padding: 15px 18px; border-bottom: 1px solid #d9e4df; color: #24494e; font-size: 13px; }
+.map-panel-top strong, .plan-panel-top strong { font-size: 14px; font-weight: 700; }
+.map-panel-top span, .plan-panel-top span { color: #627b7b; }
+.map-canvas, .plan-map { position: relative; overflow: hidden; }
+.map-canvas svg, .plan-map svg { display: block; width: 100%; height: auto; }
+.map-pin { position: absolute; display: flex; align-items: baseline; gap: 5px; padding: 7px 10px; background: #fff; color: #315b61; box-shadow: 0 3px 16px rgba(24, 61, 59, .13); font-size: 11px; line-height: 1.2; white-space: nowrap; }
+.map-pin strong { color: #173b40; font-size: 16px; }
+.map-pin small { color: #597277; font-size: 10px; }
+.map-pin-one { left: 12%; top: 26%; }
+.map-pin-two { right: 11%; top: 55%; }
+.map-legend { position: absolute; left: 14px; bottom: 14px; display: flex; align-items: center; gap: 8px; padding: 6px 9px; background: rgba(255,255,255,.94); color: #45656a; font-size: 10px; }
+.map-legend i { display: block; width: 28px; height: 7px; background: linear-gradient(90deg,#d4e4d5,#e7bb90); }
+.map-panel-bottom { display: flex; justify-content: space-between; gap: 15px; padding: 14px 18px; border-top: 1px solid #d9e4df; color: #5b7376; font-size: 12px; }
+.map-panel-bottom strong { color: #235b62; font-weight: 600; }
+
+.plan-panel { background: #fff; color: #173b40; }
+.plan-panel-top { background: #f8faf8; }
+.plan-map-label { position: absolute; left: 16px; top: 16px; padding: 7px 10px; background: #fff; color: #305d60; box-shadow: 0 2px 12px rgba(17,55,54,.1); font-size: 11px; font-weight: 600; }
+.plan-options { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid #dce5e1; }
+.plan-options > div { padding: 16px 18px 18px; }
+.plan-options > div + div { border-left: 1px solid #dce5e1; }
+.plan-options span { display: block; margin-bottom: 6px; color: #537073; font-size: 11px; }
+.plan-options strong { display: block; font-size: clamp(13px, 1.4vw, 17px); font-weight: 600; white-space: nowrap; }
+.plan-options i { color: #8aa09a; font-style: normal; }
+
+.direct-contact { display: grid; gap: 8px; margin-top: 36px; }
+.direct-contact strong { color: #b5d4d1; font-size: 13px; font-weight: 600; }
+.direct-contact a { width: fit-content; color: #fff; font-size: 17px; text-underline-offset: 4px; }
+.enquiry-form { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; padding: clamp(22px, 3vw, 38px); background: #f5f8f7; color: #183f43; }
+.form-row { display: grid; gap: 6px; min-width: 0; }
+.form-row:nth-child(3), .form-row:nth-child(4), .form-row:nth-child(5) { grid-column: 1 / -1; }
+.form-row label { font-size: 12px; font-weight: 600; }
+.form-row input, .form-row select, .form-row textarea { width: 100%; padding: 11px 12px; border: 1px solid #bfcfcc; border-radius: 2px; background: #fff; color: #183f43; font-size: 15px; line-height: 1.35; }
+.form-row textarea { resize: vertical; min-height: 78px; }
+.enquiry-form .button { justify-self: start; background: #225e66; color: #fff; border-color: #225e66; cursor: pointer; }
+.enquiry-form .button:hover { background: #15494f; color: #fff; }
+.form-status { align-self: center; color: #3b5c5e; font-size: 12px; }
+
+.gotime-hero h1 { font-size: clamp(3rem, 4.45vw, 4.2rem); }
+.gotime-hero .lead { font-size: clamp(1.04rem, 1.4vw, 1.16rem); }
+.gotime-heading h2 { font-size: clamp(2.4rem, 3.4vw, 3.3rem); }
+.contact-grid { align-items: start; }
+
 @media (max-width: 900px) {
   .approach-detail, .gotime-heading { grid-template-columns: 1fr; }
   .approach-detail { gap: 29px; }
   .approach-illustration { max-width: 700px; }
   .gotime-heading { gap: 28px; }
   .gotime-illustration { max-width: 640px; }
+  .plan-panel { max-width: 700px; }
 }
 @media (max-width: 650px) {
   .gotime-hero h1 { font-size: clamp(2.75rem, 10vw, 3.7rem); }
@@ -122,4 +177,11 @@ h3 { font-weight: 650; letter-spacing: -.02em; }
   .approach .step p { max-width: 100%; }
   .gotime-heading h2 { font-size: clamp(2.45rem, 10vw, 3.25rem); }
   .gotime-illustration img { max-height: none; }
+  .enquiry-form { grid-template-columns: 1fr; }
+  .form-row { grid-column: 1 / -1; }
+  .map-pin { padding: 5px 7px; font-size: 10px; }
+  .map-pin strong { font-size: 13px; }
+  .map-legend { font-size: 8px; }
+  .plan-options > div { padding: 10px; }
+  .plan-options strong { font-size: 11px; white-space: normal; }
 }
