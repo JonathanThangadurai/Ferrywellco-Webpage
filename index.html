@@ -93,22 +93,11 @@
 
     <section class="section approach" id="approach" aria-labelledby="approach-title">
       <div class="container">
-        <div class="section-head"><p class="eyebrow">What we bring together</p><h2 id="approach-title">Local conditions, turned into decisions.</h2><p class="lead">Our spatial analysis connects nowcasts and forecasts with the details that matter on the ground. Partners can bring that context into an existing app or wearable; operations teams can use it in a site-level analysis and debrief.</p></div>
-        <div class="approach-detail">
-          <figure class="brief-panel" aria-label="Example showing how a site-level brief connects planned work, local conditions and an operational debrief">
-            <div class="brief-panel-head"><strong>Example site brief</strong><span>Outdoor ground operations</span></div>
-            <div class="brief-question">What should the team review before the afternoon shift?</div>
-            <div class="brief-row"><span class="brief-index">01</span><div><strong>Planned work</strong><p>Ground handling on an airport apron, 14:00–18:00.</p></div></div>
-            <div class="brief-row"><span class="brief-index">02</span><div><strong>Conditions for that place and time</strong><p>Heat increases during the shift; PM2.5 stays broadly steady in the local outlook.</p></div></div>
-            <div class="brief-row brief-result"><span class="brief-index">03</span><div><strong>Site debrief</strong><p>Review the timing of heavy tasks, planned breaks and any measurements taken on site.</p></div></div>
-            <figcaption>One activity and one shift, interpreted using the local outlook.</figcaption>
-          </figure>
-          <div class="steps">
-          <div class="step"><span class="step-number">01</span><h3>Timing</h3><p>Compare outdoor time windows as heat, particle levels and pollen conditions change through the day.</p></div>
-          <div class="step"><span class="step-number">02</span><h3>Place</h3><p>See how streets, parks and exposed site areas differ within the same city or facility.</p></div>
-          <div class="step"><span class="step-number">03</span><h3>Routes and wind</h3><p>Bring wind direction and exposure along a route into planning, alongside distance and travel time.</p></div>
-          <div class="step"><span class="step-number">04</span><h3>Relevant context</h3><p>Adapt to the planned activity, site task, user feedback and reported sensitivities such as pollen triggers.</p></div>
-          </div>
+        <div class="section-head"><p class="eyebrow">How it works</p><h2 id="approach-title">Conditions are only useful in context.</h2><p class="lead">We combine an environmental outlook with the place and activity being planned, then show the choices that matter there.</p></div>
+        <div class="approach-sequence" aria-label="Conditions, context and choices">
+          <div class="sequence-item"><span class="sequence-number">01</span><h3>Conditions</h3><p>Heat · PM2.5 · pollen · wind</p></div>
+          <div class="sequence-item"><span class="sequence-number">02</span><h3>Context</h3><p>Place · time · activity</p></div>
+          <div class="sequence-item"><span class="sequence-number">03</span><h3>Choices</h3><p>A route, time window or site plan</p></div>
         </div>
       </div>
     </section>
@@ -117,44 +106,15 @@
       <span id="concept" class="anchor-alias" aria-hidden="true"></span>
       <div class="container">
         <div class="gotime-heading">
-          <div><p class="eyebrow">GOTime · outdoor movement</p><h2 id="gotime-title">A better view before the run begins.</h2><p>GOTime is our product concept for runners, walkers and outdoor clubs. It brings heat, fine particles, pollen and wind alongside the planned activity, with clear ways to compare a time or route. The same view can fit a sports or wellness platform without asking people to leave the service they use.</p><a class="text-link" href="demo/index.html">See how it works <span aria-hidden="true">↗</span></a></div>
-          <figure class="plan-panel" aria-label="GOTime example comparing two times for the same five kilometre running route">
-            <div class="plan-panel-top"><strong>GOTime</strong><span>Example day · 5 km run</span></div>
-            <div class="plan-question">When should I run this route?</div>
-            <div class="plan-comparison" role="table" aria-label="Conditions for the same route at two times">
-              <div class="comparison-row comparison-heading" role="row"><span role="columnheader">Same route</span><strong role="columnheader">07:30</strong><strong role="columnheader">17:30</strong></div>
-              <div class="comparison-row" role="row"><span role="rowheader">Heat</span><strong role="cell">25°C</strong><strong role="cell">29°C</strong></div>
-              <div class="comparison-row" role="row"><span role="rowheader">PM2.5</span><strong role="cell">12 µg/m³</strong><strong role="cell">19 µg/m³</strong></div>
+          <div><p class="eyebrow">GOTime · outdoor movement</p><h2 id="gotime-title">A clearer moment to head out.</h2><p>GOTime helps runners, walkers and clubs compare the conditions for an activity. Here, the route stays the same; the time changes.</p><a class="text-link" href="demo/index.html">Explore the demo <span aria-hidden="true">↗</span></a></div>
+          <figure class="time-view" aria-label="Example conditions for the same run at two times">
+            <figcaption>Same 5 km run <span>Example day</span></figcaption>
+            <div class="time-view-columns">
+              <div class="time-option time-option-first"><span class="time-label">Morning</span><strong class="time-hour">07:30</strong><div class="time-values"><span><small>Heat</small><strong>25°C</strong></span><span><small>PM2.5</small><strong>12 <em>µg/m³</em></strong></span></div></div>
+              <div class="time-option"><span class="time-label">Afternoon</span><strong class="time-hour">17:30</strong><div class="time-values"><span><small>Heat</small><strong>29°C</strong></span><span><small>PM2.5</small><strong>19 <em>µg/m³</em></strong></span></div></div>
             </div>
-            <figcaption><strong>What changes?</strong> The morning option is cooler and has a lower PM2.5 estimate for this example run.</figcaption>
           </figure>
         </div>
-        <div class="gotime-widget" aria-label="GOTime sport and activity views">
-          <div class="preview-head"><strong>GOTime</strong><span>Activity views</span></div>
-          <div class="preview-tabs" role="tablist" aria-label="GOTime audience examples">
-            <button type="button" role="tab" id="tab-runner" aria-controls="panel-runner" aria-selected="true" tabindex="0">For a runner</button>
-            <button type="button" role="tab" id="tab-club" aria-controls="panel-club" aria-selected="false" tabindex="-1">For a walking group</button>
-            <button type="button" role="tab" id="tab-platform" aria-controls="panel-platform" aria-selected="false" tabindex="-1">For a sports club</button>
-          </div>
-          <div class="gotime-panel" id="panel-runner" role="tabpanel" aria-labelledby="tab-runner">
-            <p class="sample-head">Outdoor run · example day</p>
-            <div class="sample-columns">
-              <div><h3>The plan</h3><p>A runner wants to train outdoors and has two possible time windows.</p></div>
-              <div><h3>The context</h3><p>Heat and PM2.5 forecasts change across the day. GOTime puts both beside the planned activity.</p></div>
-              <div><h3>The choice</h3><p>Compare the windows, understand the conditions and choose the option that fits.</p></div>
-            </div>
-          </div>
-          <div class="gotime-panel compact-panel" id="panel-club" role="tabpanel" aria-labelledby="tab-club" hidden>
-            <p class="sample-head">Walking group · route choice</p>
-            <p class="sample-statement">Compare possible walking times and routes, then explain the conditions to everyone joining the group.</p>
-          </div>
-          <div class="gotime-panel compact-panel" id="panel-platform" role="tabpanel" aria-labelledby="tab-platform" hidden>
-            <p class="sample-head">Sports club · session planning</p>
-            <p class="sample-statement">Give organisers a clear view of the heat and PM2.5 outlook before they set a group session.</p>
-          </div>
-          <div class="sample-foot">Compare conditions before setting an activity plan.</div>
-        </div>
-        <div class="demo-invite"><div><span class="demo-invite-kicker">Interactive example</span><p>Choose an activity and conditions to see the type of information we want to provide.</p></div><a class="button button-light" href="demo/index.html">Open the example <span aria-hidden="true">↗</span></a></div>
       </div>
     </section>
 
