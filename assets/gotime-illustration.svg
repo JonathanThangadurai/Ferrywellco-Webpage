@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 740 510" role="img" aria-labelledby="title desc">
+  <title id="title">People walking and running in a park</title>
+  <desc id="desc">A warm illustrated park scene with a runner, a walker, trees and a curving path.</desc>
+  <rect width="740" height="510" fill="#dce9df"/>
+  <path d="M0 0h740v260c-81-20-154-21-232 0-84 23-153 17-231-8C181 223 91 233 0 258Z" fill="#eaf2ec"/>
+  <circle cx="568" cy="98" r="61" fill="#f0be7d"/>
+  <path d="M0 309c112-42 214-39 303 4 87 43 157 41 249 6 73-28 127-30 188-10v201H0Z" fill="#94b7a1"/>
+  <path d="M0 397c124-32 214-28 311 6 127 44 245 35 429-20v127H0Z" fill="#6f9c8c"/>
+  <path d="M0 465c153-59 250-51 345 1 102 56 217 51 395-21v65H0Z" fill="#315e59"/>
+  <path d="M-35 490c184-91 281-84 393-20 112 63 214 58 415-17" fill="none" stroke="#f3e6ce" stroke-width="66"/>
+  <path d="M-35 490c184-91 281-84 393-20 112 63 214 58 415-17" fill="none" stroke="#d8b99c" stroke-width="2" stroke-dasharray="8 16"/>
+  <g fill="#315e59">
+    <rect x="89" y="191" width="13" height="169"/><circle cx="96" cy="183" r="62"/><circle cx="55" cy="214" r="39"/><circle cx="130" cy="219" r="40"/>
+    <rect x="633" y="198" width="14" height="160"/><circle cx="640" cy="193" r="59"/><circle cx="603" cy="223" r="38"/><circle cx="677" cy="224" r="38"/>
+  </g>
+  <g fill="none" stroke="#173a3d" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M305 377l-37 57m37-57 57 30m-51-23 49-52m-49 52-45-29" stroke-width="13"/>
+    <path d="M484 373l-21 58m21-58 29 59m-30-51-26-29m26 29 30-27" stroke-width="12"/>
+  </g>
+  <circle cx="308" cy="306" r="20" fill="#e7ad83"/><circle cx="480" cy="319" r="18" fill="#dca785"/>
+  <path d="M283 330q27-13 48 6l-7 53-53-9Z" fill="#dc775a"/>
+  <path d="M459 341q22-12 43 4l2 46-40-3Z" fill="#f3dfae"/>
+  <path d="M289 298q18-24 39-5l-3 9-38 4Z" fill="#173a3d"/>
+  <path d="M465 314q13-22 32-8" fill="none" stroke="#173a3d" stroke-width="10" stroke-linecap="round"/>
+  <path d="M252 432l31 12m68-34 34 4m66 20 30 6m25-6 28-5" stroke="#173a3d" stroke-width="9" stroke-linecap="round"/>
+  <path d="M193 346q16-14 28 0m309-82q14-11 29 0" fill="none" stroke="#f6eee0" stroke-width="4" stroke-linecap="round"/>
+  <g fill="#f9f4e9" opacity=".78"><circle cx="227" cy="84" r="3"/><circle cx="247" cy="102" r="2"/><circle cx="405" cy="71" r="3"/><circle cx="421" cy="93" r="2"/><circle cx="678" cy="112" r="3"/></g>
+</svg>

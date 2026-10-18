@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 520" role="img" aria-labelledby="title desc">
+  <title id="title">A neighbourhood with a walking route and an outdoor work site</title>
+  <desc id="desc">A simple illustrated street scene shows people moving and working outdoors under a warm sky.</desc>
+  <rect width="760" height="520" fill="#e8eee7"/>
+  <path d="M0 0h760v302c-93-14-161-15-250 6-84 20-157 15-242-10C172 270 92 278 0 304Z" fill="#f5f1e8"/>
+  <circle cx="569" cy="102" r="62" fill="#e9ac70"/>
+  <path d="M47 144c48-24 96-24 144 0m-98-31c35-15 72-13 109 5" fill="none" stroke="#bed2c9" stroke-width="5" stroke-linecap="round"/>
+  <path d="M0 342c106-42 183-45 295-16 91 24 168 22 250-4 80-25 147-23 215-7v205H0Z" fill="#aec5b4"/>
+  <path d="M0 402c151-44 260-40 365 0 109 41 216 42 395-10v128H0Z" fill="#789b8c"/>
+  <path d="M0 451c162-74 274-65 387-5 99 52 197 44 373-18v92H0Z" fill="#d1c4aa"/>
+  <path d="M0 475c164-73 266-69 374-16 117 59 214 51 386-15" fill="none" stroke="#f7f1e3" stroke-width="52"/>
+  <path d="M0 475c164-73 266-69 374-16 117 59 214 51 386-15" fill="none" stroke="#c9a886" stroke-width="2" stroke-dasharray="9 13"/>
+  <g fill="#466e65">
+    <rect x="56" y="234" width="16" height="111"/>
+    <circle cx="64" cy="224" r="49"/>
+    <circle cx="34" cy="252" r="34"/><circle cx="94" cy="256" r="37"/>
+    <rect x="646" y="213" width="15" height="119"/>
+    <circle cx="653" cy="208" r="48"/><circle cx="624" cy="235" r="31"/><circle cx="682" cy="238" r="33"/>
+  </g>
+  <g fill="#d8d0bb" stroke="#31585a" stroke-width="3">
+    <path d="M181 279v-97h107v105Z"/>
+    <path d="M288 287V207h74v86Z"/>
+  </g>
+  <path d="M178 183h114m-58 0v104m54-81h76" stroke="#31585a" stroke-width="3"/>
+  <path d="M186 221h35m13 0h35m33 21h28m-144 7h35m13 0h35" stroke="#fffaf0" stroke-width="12"/>
+  <path d="M449 319h86l-16-67h-58Z" fill="#d97859"/>
+  <path d="M462 252h57m-66 67h79" stroke="#31585a" stroke-width="4"/>
+  <circle cx="471" cy="332" r="10" fill="#244c50"/><circle cx="519" cy="332" r="10" fill="#244c50"/>
+  <g stroke="#244c50" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <path d="M387 350l-10 40 25 25m-20-25-21 20"/>
+    <path d="M386 352l16 29 28 8"/>
+    <path d="M548 350l7 42-19 24m19-24 27 15"/>
+    <path d="M550 352l-24 28"/>
+  </g>
+  <circle cx="386" cy="333" r="13" fill="#e3b38b"/><circle cx="548" cy="333" r="13" fill="#e3b38b"/>
+  <path d="M371 348q16-10 31 2l-6 36-26-6Z" fill="#d97859"/>
+  <path d="M537 346q12-10 25 0l9 37-31 5Z" fill="#f1d89c"/>
+  <path d="M534 327q14-18 28 0" fill="none" stroke="#31585a" stroke-width="7" stroke-linecap="round"/>
+  <g fill="#fffaf0" opacity=".88"><circle cx="120" cy="106" r="3"/><circle cx="139" cy="91" r="2"/><circle cx="317" cy="112" r="3"/><circle cx="338" cy="131" r="2"/><circle cx="682" cy="112" r="3"/><circle cx="704" cy="130" r="2"/></g>
+</svg>
