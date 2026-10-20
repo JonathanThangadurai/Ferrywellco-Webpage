@@ -32,7 +32,7 @@ if (enquiryForm) {
     const subject = `FerryWellCo enquiry: ${data.get("scope")}`;
     const body = [
       `Name: ${data.get("name")}`,
-      `Company or app: ${data.get("company")}`,
+      `Company or app: ${data.get("company") || "Not supplied"}`,
       `Work email: ${data.get("email")}`,
       `Area: ${data.get("scope")}`,
       "",
@@ -117,3 +117,36 @@ if (demo) {
   form.addEventListener("change", update);
   update();
 }
+
+// Prefill the contact topic when a visitor follows a topic-specific invitation.
+const scopeSelect = document.querySelector("#enquiry-scope");
+if (scopeSelect) {
+  const selectScope = (value) => {
+    const option = Array.from(scopeSelect.options).find((item) => item.value === value);
+    if (option) scopeSelect.value = option.value;
+  };
+  const requested = new URLSearchParams(window.location.search).get("scope");
+  if (requested === "organisations") selectScope("Organisations (outdoor work, facilities, insurance)");
+  if (requested === "gotime-pilot") selectScope("GOTime pilot (individuals and clubs)");
+  document.querySelectorAll("[data-select-scope]").forEach((link) => {
+    link.addEventListener("click", () => selectScope(link.dataset.selectScope));
+  });
+}
+
+document.querySelectorAll("[data-linkedin-url]").forEach((person) => {
+  const url = person.dataset.linkedinUrl;
+  if (!url) return;
+  try {
+    const parsed = new URL(url);
+    if (parsed.protocol !== "https:" || parsed.hostname !== "www.linkedin.com") return;
+    const link = document.createElement("a");
+    link.href = parsed.href;
+    link.textContent = "LinkedIn";
+    link.rel = "noopener noreferrer";
+    link.target = "_blank";
+    link.className = "team-linkedin";
+    person.append(link);
+  } catch (_) {
+    // A missing or malformed optional profile URL stays hidden.
+  }
+});

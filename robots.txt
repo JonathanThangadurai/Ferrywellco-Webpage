@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://jonathanthangadurai.github.io/Ferrywellco-Webpage/sitemap.xml
