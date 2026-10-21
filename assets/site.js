@@ -126,8 +126,9 @@ if (scopeSelect) {
     if (option) scopeSelect.value = option.value;
   };
   const requested = new URLSearchParams(window.location.search).get("scope");
-  if (requested === "organisations") selectScope("Organisations (outdoor work, facilities, insurance)");
-  if (requested === "gotime-pilot") selectScope("GOTime pilot (individuals and clubs)");
+  if (requested === "platform") selectScope("Platform integration");
+  if (requested === "organisations") selectScope("Other enquiry");
+  if (requested === "gotime-pilot") selectScope("GOTime user feedback");
   document.querySelectorAll("[data-select-scope]").forEach((link) => {
     link.addEventListener("click", () => selectScope(link.dataset.selectScope));
   });
