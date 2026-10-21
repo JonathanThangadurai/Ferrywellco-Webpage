@@ -176,7 +176,7 @@
 .gotime-hero .lead, .gotime-subhero .lead { color: #475f61; }
 h1, h2 { font-weight: 700; letter-spacing: -.035em; }
 
-.science-story { max-width: 900px; }
+.science-story-copy { max-width: 900px; }
 .science-story h2 { max-width: 780px; }
 .science-story p:not(.eyebrow) { max-width: 740px; }
 .science-page-photo { margin: 36px 0 0; }
