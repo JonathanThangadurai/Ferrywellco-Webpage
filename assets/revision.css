@@ -170,6 +170,8 @@
 .site-footer { background: #f2e8d9; }
 .nav-cta, .button { background: #b75a3c; border-color: #b75a3c; color: #fff; }
 .nav-cta:hover, .button:hover { background: #94442c; border-color: #94442c; color: #fff; }
+.contact-section .enquiry-form .button { background: #b75a3c; border-color: #b75a3c; color: #fff; }
+.contact-section .enquiry-form .button:hover { background: #94442c; border-color: #94442c; color: #fff; }
 .gotime-hero .eyebrow, .gotime-subhero .eyebrow { color: #a24a32; }
 .comparison-ui { background: #fffdf8; border-color: #d4d9d0; }
 .comparison-option:first-child { background: #f5eadb; }
