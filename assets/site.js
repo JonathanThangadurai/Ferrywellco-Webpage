@@ -128,7 +128,7 @@ if (scopeSelect) {
   const requested = new URLSearchParams(window.location.search).get("scope");
   if (requested === "platform") selectScope("Platform integration");
   if (requested === "organisations") selectScope("Other enquiry");
-  if (requested === "gotime-pilot") selectScope("GOTime user feedback");
+  if (requested === "gotime-pilot") selectScope("Suggest GOTime for an app");
   document.querySelectorAll("[data-select-scope]").forEach((link) => {
     link.addEventListener("click", () => selectScope(link.dataset.selectScope));
   });
