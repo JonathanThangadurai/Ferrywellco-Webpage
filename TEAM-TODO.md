@@ -9,7 +9,12 @@ This file records details that were not confirmed in the brief. It is for team r
 - **Homepage, Team, optional LinkedIn links:** collect and approve each team member's public profile URL. Empty link slots stay hidden.
 - **Homepage, Contact, partner enquiry:** agree who responds to platform enquiries and how to record the outcome of each conversation. The current contact route prepares an email; it does not register an enquiry on a server.
 - **For platforms:** choose one type of outdoor app for the first commercial test and agree which user action a partner would want to improve.
+- **For platforms, buyer interviews:** ask how the team currently handles outdoor conditions, who owns the planning feature, what it would cost to integrate, and which business measure would justify a pilot. Repeat use or premium uptake are possible measures to discuss, not established results.
+- **For platforms, offer:** decide whether the first partner receives a hosted view, an API, a software component, or a manual pilot output. Define the scope, duration, cost and what FerryWellCo actually supplies before publishing terms.
+- **For platforms, differentiation:** test whether activity-specific comparisons solve a problem beyond the data, routing and widgets partners can already buy. Compare against suppliers such as Ambee and Tomorrow.io without claiming a unique capability before validation.
+- **For platforms, data and privacy:** document source, license, pollutants, geographic coverage, spatial resolution, refresh rate and forecast horizon. Map what location or activity information a partner would share, and whether a coarse or partner-side location lookup can avoid sending individual location histories to FerryWellCo.
 - **Science and copy:** confirm with Tilman which signals can be supported beyond the heat and PM2.5 example before describing them as GOTime features.
+- **Science and copy:** decide with Tilman whether a general air-quality index belongs in the product. The European Air Quality Index reports the worst pollutant category; it is not a combined heat, pollen and health score. Keep pollutant readings visible and avoid a street-level claim unless the chosen data can support it.
 
 ## Forecast demo
 

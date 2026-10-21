@@ -124,6 +124,7 @@
 .comparison-option dl { display: grid; gap: 10px; margin: 22px 0 0; }
 .comparison-option dl div { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; padding-top: 9px; border-top: 1px solid #cfddd7; }
 .comparison-option dt { color: #5a7275; font-size: 12px; }
+.comparison-option dt small { display: block; margin-top: 2px; font-size: 10px; }
 .comparison-option dd { margin: 0; font-size: 17px; font-weight: 600; white-space: nowrap; }
 .comparison-option dd small { font-size: 10px; font-weight: 400; }
 .comparison-foot { padding: 15px 24px; border-top: 1px solid #d6e1dc; color: #416167; font-size: 12px; }
