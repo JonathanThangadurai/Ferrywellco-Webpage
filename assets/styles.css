@@ -5,9 +5,9 @@
   --muted: #586b6b;
   --aqua: #72cbbd;
   --amber: #c96e4b;
-  --paper: #f6f3eb;
-  --pale: #eeebe3;
-  --rule: #d4dad4;
+  --paper: #fbf8f2;
+  --pale: #f2e9dc;
+  --rule: #d9d4ca;
 }
 
 * { box-sizing: border-box; }
@@ -275,7 +275,7 @@ p { margin-bottom: 0; }
 }
 
 /* Web-first visual system: contextual scenes, varied pacing, and a useful demo. */
-:root { --cream: #f6f3eb; --deep: #18343b; --coral: #c96e4b; --sage: #e2e9e1; }
+:root { --cream: #f1e4d4; --deep: #18343b; --coral: #b75a3c; --sage: #e5eadf; }
 body { font-family: "Instrument Sans", Arial, sans-serif; }
 .site-header { background: rgba(251,252,252,.94); }
 .main-nav a[aria-current="page"] { color: var(--teal); }

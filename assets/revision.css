@@ -161,18 +161,21 @@
 }
 
 /* Warm editorial palette and a photograph beside the science story. */
-.site-header { background: rgba(246,243,235,.96); }
+.site-header { background: rgba(251,248,242,.97); }
 .gotime-hero, .gotime-subhero { background: var(--cream); }
 .decision-section, .applications-preview, .team-section, .science-prose, .application-sport { background: #fffdf8; }
-.approach, .application-separate { background: #f1ede4; }
-.science-band, .science-sources { background: #e5e9df; }
+.approach, .application-separate { background: #f7efe4; }
+.science-band, .science-sources { background: #eee0cd; }
 .gotime-section, .contact-section { background: var(--deep); }
-.site-footer { background: #e9e5db; }
+.site-footer { background: #f2e8d9; }
+.nav-cta, .button { background: #b75a3c; border-color: #b75a3c; color: #fff; }
+.nav-cta:hover, .button:hover { background: #94442c; border-color: #94442c; color: #fff; }
+.gotime-hero .eyebrow, .gotime-subhero .eyebrow { color: #a24a32; }
 .comparison-ui { background: #fffdf8; border-color: #d4d9d0; }
-.comparison-option:first-child { background: #f0f2ea; }
+.comparison-option:first-child { background: #f5eadb; }
 .enquiry-form { background: #f8f4ec; }
 .gotime-hero .lead, .gotime-subhero .lead { color: #475f61; }
-h1, h2 { letter-spacing: -.035em; }
+h1, h2 { font-weight: 700; letter-spacing: -.035em; }
 
 .science-story { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,.78fr); gap: clamp(36px,6vw,82px); align-items: center; }
 .science-story h2 { max-width: 650px; }
