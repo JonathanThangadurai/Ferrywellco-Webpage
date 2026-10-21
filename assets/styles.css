@@ -1,13 +1,13 @@
 :root {
   color-scheme: light;
-  --ink: #10262e;
-  --teal: #2a636e;
-  --muted: #5e737a;
-  --aqua: #2ec4b6;
-  --amber: #ebaf74;
-  --paper: #fbfcfc;
-  --pale: #f3f7f8;
-  --rule: #ccdadd;
+  --ink: #18343b;
+  --teal: #176a70;
+  --muted: #586b6b;
+  --aqua: #72cbbd;
+  --amber: #c96e4b;
+  --paper: #f6f3eb;
+  --pale: #eeebe3;
+  --rule: #d4dad4;
 }
 
 * { box-sizing: border-box; }
@@ -16,7 +16,7 @@ body {
   margin: 0;
   background: var(--paper);
   color: var(--ink);
-  font-family: Carlito, "Aptos", "Segoe UI", Arial, sans-serif;
+  font-family: "Instrument Sans", Arial, sans-serif;
   font-size: 18px;
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
@@ -275,8 +275,8 @@ p { margin-bottom: 0; }
 }
 
 /* Web-first visual system: contextual scenes, varied pacing, and a useful demo. */
-:root { --cream: #f7f5ef; --deep: #173a3d; --coral: #d67858; --sage: #dce9df; }
-body { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; }
+:root { --cream: #f6f3eb; --deep: #18343b; --coral: #c96e4b; --sage: #e2e9e1; }
+body { font-family: "Instrument Sans", Arial, sans-serif; }
 .site-header { background: rgba(251,252,252,.94); }
 .main-nav a[aria-current="page"] { color: var(--teal); }
 .eyebrow::before { width: 25px; height: 3px; margin-bottom: 12px; }
