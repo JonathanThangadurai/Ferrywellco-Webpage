@@ -30,7 +30,9 @@
   <link rel="stylesheet" href="assets/gotime.css?v=warm2">
   <link rel="stylesheet" href="assets/polish.css?v=warm2">
   <link rel="stylesheet" href="assets/revision.css?v=warm2">
+  <link rel="stylesheet" href="assets/advisory.css">
   <script src="assets/site.js" defer></script>
+  <script src="assets/advisory.js" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -73,32 +75,26 @@
       </div>
     </section>
 
-    <section class="section gotime-section" id="gotime" aria-labelledby="gotime-title">
-      <div class="container gotime-story">
-        <div class="gotime-copy"><p class="eyebrow">GOTime</p><h2 id="gotime-title">Compare the options beside a planned activity.</h2>
-          <p>A runner has chosen 18:00. GOTime places the heat and PM2.5 outlook for that time beside an earlier option, so they can see what changes before deciding.</p>
-          <p>The comparison is designed to fit the planning step your users already take in an outdoor activity app.</p>
-          <a class="text-link" href="applications/index.html">See how it fits your app <span aria-hidden="true">↗</span></a>
+    <section class="section gotime-section advisory-section" id="gotime" aria-labelledby="gotime-title" data-advisory>
+      <div class="container advisory-layout">
+        <div class="advisory-intro"><p class="eyebrow">GOTime</p><h2 id="gotime-title">See how GOTime responds to a planned run.</h2>
+          <p>Sometimes an earlier start helps. Sometimes it is the route or the session that makes the difference. Try four examples of GOTime inside an outdoor activity app.</p>
+          <div class="advisory-scenarios" role="group" aria-label="Choose an example"><button type="button" data-scenario="hot" aria-pressed="true" aria-controls="advisory-card"><img src="assets/advisory/hot.svg" width="44" height="44" alt=""><span>A hot evening</span></button><button type="button" data-scenario="route" aria-pressed="false" aria-controls="advisory-card"><img src="assets/advisory/route.svg" width="44" height="44" alt=""><span>A busy-road route</span></button><button type="button" data-scenario="intensity" aria-pressed="false" aria-controls="advisory-card"><img src="assets/advisory/intensity.svg" width="44" height="44" alt=""><span>An interval session</span></button><button type="button" data-scenario="fine" aria-pressed="false" aria-controls="advisory-card"><img src="assets/advisory/fine.svg" width="44" height="44" alt=""><span>A milder day</span></button></div>
+          <a class="text-link" href="applications/index.html">See how it fits your app ↗</a>
         </div>
-        <figure class="gotime-figure comparison-figure">
-          <div class="comparison-ui" aria-label="Illustrative GOTime comparison for a Saturday run in Amsterdam">
-            <div class="comparison-head"><span>GOTime / Activity plan</span><span>Sample values</span></div>
-            <div class="comparison-title"><small>Saturday · Amsterdam</small><strong>When would you go for a run?</strong></div>
-            <div class="comparison-options">
-              <div class="comparison-option"><span class="comparison-time">08:00</span><span class="comparison-period">Morning</span><dl><div><dt>Heat</dt><dd>21°C</dd></div><div><dt>Air quality <small>(PM2.5 example)</small></dt><dd>12 <small>µg/m³</small></dd></div></dl></div>
-              <div class="comparison-option"><span class="comparison-time">18:00</span><span class="comparison-period">Evening</span><dl><div><dt>Heat</dt><dd>27°C</dd></div><div><dt>Air quality <small>(PM2.5 example)</small></dt><dd>17 <small>µg/m³</small></dd></div></dl></div>
-            </div>
-            <div class="comparison-foot">Compare the conditions, then choose what fits your plan.</div>
-          </div>
-          <figcaption>Example values show the comparison; this is not a live forecast.</figcaption>
-        </figure>
+        <div class="advisory-app"><div class="advisory-app-top"><span>Activity plan</span><span>Sample scenario</span></div>
+          <p class="advisory-plan" data-plan>Saturday · 18:00 · Riverside run</p>
+          <article class="advisory-card" id="advisory-card" data-advisory-card aria-label="GOTime advisory"><p>Choose a scenario to explore the GOTime advisory.</p><noscript>Enable JavaScript to try the sample scenarios.</noscript></article>
+          <div class="advisory-status" data-advisory-status role="status" aria-live="polite"></div>
+          <p class="advisory-caption">GOTime · Interactive concept with sample values</p>
+        </div>
       </div>
     </section>
 
     <section class="section approach" id="approach" aria-labelledby="approach-title">
       <div class="container approach-story">
         <div><p class="eyebrow">How it works</p><h2 id="approach-title">Start with the activity. Show the relevant conditions.</h2></div>
-        <div class="approach-copy"><p>A place, time and activity give environmental information a purpose. GOTime sets those details beside heat and air-quality estimates, then shows what changes across the options.</p><p>Air pollution includes particles such as PM2.5 and gases such as NO₂ and ground-level ozone. Pollen levels are another condition people may consider when planning time outdoors. The GOTime example shown here uses heat and PM2.5.</p><a class="text-link" href="science/index.html">Read about the science <span aria-hidden="true">↗</span></a></div>
+        <div class="approach-copy"><p>A place, time and activity give environmental information a purpose. GOTime sets those details beside heat and air-quality estimates, then shows what changes across the options.</p><p>Air pollution includes particles such as PM2.5 and gases such as NO₂ and ground-level ozone. Pollen levels are another condition people may consider when planning time outdoors. The scenarios above illustrate how those conditions can inform an activity plan.</p><a class="text-link" href="science/index.html">Read about the science <span aria-hidden="true">↗</span></a></div>
       </div>
     </section>
 
@@ -117,7 +113,7 @@
 
     <section class="section science-band" aria-labelledby="science-title">
       <div class="container science-story">
-        <div class="science-story-copy"><p class="eyebrow">Scientific foundation</p><h2 id="science-title">Research guides which outdoor conditions belong in the plan.</h2><p>Our work draws on evidence about air pollution, heat and health. Pollen is another condition people weigh when planning time outdoors. We keep the underlying signals visible, beginning with heat and PM2.5 in the GOTime example.</p><a class="text-link" href="science/index.html">See the research behind the approach <span aria-hidden="true">↗</span></a></div>
+        <div class="science-story-copy"><p class="eyebrow">Scientific foundation</p><h2 id="science-title">Research guides which outdoor conditions belong in the plan.</h2><p>Our work draws on evidence about air pollution, heat and health. Pollen is another condition people weigh when planning time outdoors. The GOTime examples connect those signals with choices about the time, route and activity.</p><a class="text-link" href="science/index.html">See the research behind the approach <span aria-hidden="true">↗</span></a></div>
       </div>
     </section>
 
