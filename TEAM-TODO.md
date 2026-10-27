@@ -18,7 +18,7 @@ This file records details that were not confirmed in the brief. It is for team r
 
 ## Forecast demo
 
-- **Demo page, ownership:** pause demo implementation and review the next version with Tilman before changing its copy, data source or interaction.
+- **Demo page, ownership:** review the embedded adaptation of Tilman's first phone demo with him. Confirm the comparison wording, example conditions and interaction before treating them as an approved product design. His original `fw_demo.html` remains untouched.
 
 - **Demo page, live outlook:** obtain an Open-Meteo commercial subscription or another source licensed for FerryWellCo's promotional website before making live API calls. Free Open-Meteo access is restricted to non-commercial use, and the terms classify promotional activity as commercial. The underlying data is CC BY 4.0 and needs attribution even with a paid API subscription. See https://open-meteo.com/en/terms and https://open-meteo.com/en/pricing.
 - **Demo page, live outlook:** confirm which licensed source, endpoint, attribution, coverage, resolution and update schedule the team approves. Do not promise street-level or route-level differences on a city-scale air-quality grid.
