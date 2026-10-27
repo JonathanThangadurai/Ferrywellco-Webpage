@@ -51,8 +51,8 @@
 .product-demo-copy { align-self: start; padding-top: 35px; }
 .product-demo-copy h2 { max-width: 530px; }
 .product-demo-copy .lead { max-width: 500px; }
-.demo-frame { width: 100%; max-width: 420px; height: 742px; display: block; margin-inline: auto; border: 0; background: transparent; }
-.demo-caption { max-width: 420px; margin: 9px auto 0; color: var(--muted); font-size: 12px; line-height: 1.45; }
+.demo-frame { width: 100%; max-width: 420px; height: 764px; display: block; margin-inline: auto; border: 0; background: transparent; }
+.demo-caption { max-width: 344px; margin: 12px auto 0; color: var(--muted); font-size: 12px; line-height: 1.45; text-align: center; }
 .product-flow { background: #f7efe4; }
 .product-flow-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 40px; border-top: 1px solid #cbbfb0; }
 .product-flow-list article { padding-top: 20px; }
@@ -100,5 +100,5 @@
   .story-comparison strong { font-size: 1.6rem; }
   .story-contact .enquiry-form { grid-template-columns: 1fr; }
   .story-contact .form-row { grid-column: 1 / -1; }
-  .demo-frame { height: 700px; }
+  .demo-frame { height: clamp(600px, 182vw, 764px); }
 }
