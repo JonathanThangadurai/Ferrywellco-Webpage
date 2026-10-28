@@ -1,10 +1,16 @@
 /* FerryWellCo's platform story and GOTime product pages. */
 .story-hero { background: var(--cream); }
-.story-hero-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .95fr); gap: clamp(36px, 6vw, 86px); align-items: center; padding-block: clamp(58px, 7vw, 98px); }
+.story-hero-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .95fr); column-gap: clamp(36px, 6vw, 86px); row-gap: 28px; align-items: center; padding-block: clamp(58px, 7vw, 98px); }
+.hero-intro { grid-column: 1; grid-row: 1; align-self: end; }
+.hero-intro h1 { margin-bottom: 0; }
+.hero-support { grid-column: 1; grid-row: 2; align-self: start; }
+.hero-support .action-row { margin-top: 26px; }
+.story-hero-photo { grid-column: 2; grid-row: 1 / span 2; }
 .story-hero h1 { max-width: 700px; font-size: clamp(3rem, 4.8vw, 4.65rem); }
 .story-hero .lead { max-width: 620px; }
 .story-photo { margin: 0; }
 .story-photo img { display: block; width: 100%; height: clamp(365px, 39vw, 540px); object-fit: cover; }
+.story-hero-photo img { height: auto; }
 .story-photo figcaption { margin-top: 9px; color: var(--muted); font-size: 13px; }
 .story-section { padding-block: clamp(76px, 8vw, 112px); }
 .story-section h2 { max-width: 820px; font-size: clamp(2.35rem, 3.6vw, 3.7rem); }
@@ -13,6 +19,9 @@
 .story-split p + p { margin-top: 18px; }
 .story-problem { background: #fffdf8; }
 .story-problem .story-photo img { height: clamp(310px, 30vw, 410px); }
+.story-nudge { margin-top: 28px !important; padding: 16px 0 16px 20px; border-left: 3px solid var(--coral); color: var(--ink); font-size: 17px; line-height: 1.55; }
+.story-nudge strong { font-weight: 700; }
+.story-problem .text-link { display: inline-block; margin-top: 5px; }
 .story-approach { background: #f7efe4; }
 .story-approach .story-split { align-items: start; }
 .story-approach .story-split > div:last-child { max-width: 600px; padding-top: 36px; color: #476267; font-size: 19px; line-height: 1.62; }
@@ -35,6 +44,8 @@
 .story-science .text-link { display: inline-block; margin-top: 25px; }
 .story-about { background: #fffdf8; }
 .story-about .story-photo img { height: clamp(330px, 35vw, 490px); object-position: center 40%; }
+.story-work { background: #f7efe4; }
+.story-work .text-link { display: inline-block; margin-top: 20px; }
 .story-contact { background: var(--deep); color: #fff; }
 .story-contact .eyebrow, .story-contact .body-copy { color: #d7e6e2; }
 .story-contact h2 { max-width: 660px; }
@@ -83,7 +94,9 @@
 .about-note .text-link { display: inline-block; margin-top: 24px; }
 @media (max-width: 900px) {
   .story-hero-grid, .story-split, .story-contact-grid, .product-demo-grid { grid-template-columns: 1fr; }
+  .hero-intro, .story-hero-photo, .hero-support { grid-column: 1; grid-row: auto; }
   .story-photo img { height: 380px; }
+  .story-hero-photo img { height: auto; }
   .product-demo-copy { padding-top: 0; }
   .product-flow-list { grid-template-columns: 1fr; gap: 0; }
   .product-flow-list article { padding-bottom: 20px; border-bottom: 1px solid #cbbfb0; }
@@ -93,6 +106,7 @@
   .story-hero h1, .product-hero h1 { font-size: clamp(2.7rem, 10vw, 3.5rem); }
   .story-section h2 { font-size: clamp(2.25rem, 8.3vw, 3rem); }
   .story-photo img, .story-problem .story-photo img { height: 280px; }
+  .story-hero-photo img { height: auto; }
   .story-approach .story-split > div:last-child { padding-top: 0; font-size: 17px; }
   .story-list p, .product-fit-list p { grid-template-columns: 1fr; gap: 6px; }
   .story-comparison > div { padding: 19px 10px 21px 0; }

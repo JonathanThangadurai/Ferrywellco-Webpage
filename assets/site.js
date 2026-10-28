@@ -32,7 +32,7 @@ if (enquiryForm) {
     const subject = `FerryWellCo enquiry: ${data.get("scope")}`;
     const body = [
       `Name: ${data.get("name")}`,
-      `Company or app: ${data.get("company") || "Not supplied"}`,
+      `Organisation or app: ${data.get("company") || "Not supplied"}`,
       `Work email: ${data.get("email")}`,
       `Area: ${data.get("scope")}`,
       "",
@@ -126,9 +126,9 @@ if (scopeSelect) {
     if (option) scopeSelect.value = option.value;
   };
   const requested = new URLSearchParams(window.location.search).get("scope");
-  if (requested === "platform") selectScope("Platform integration");
-  if (requested === "organisations") selectScope("Other enquiry");
-  if (requested === "gotime-pilot") selectScope("Platform integration");
+  if (requested === "platform") selectScope("Wellness platform pilot");
+  if (requested === "organisations" || requested === "outdoor-work") selectScope("Outdoor work planning");
+  if (requested === "gotime-pilot") selectScope("Wellness platform pilot");
   document.querySelectorAll("[data-select-scope]").forEach((link) => {
     link.addEventListener("click", () => selectScope(link.dataset.selectScope));
   });
