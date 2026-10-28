@@ -16,7 +16,7 @@ body {
   margin: 0;
   background: var(--paper);
   color: var(--ink);
-  font-family: "Instrument Sans", Arial, sans-serif;
+  font-family: "Mozilla Headline", Arial, sans-serif;
   font-size: 18px;
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
@@ -276,7 +276,7 @@ p { margin-bottom: 0; }
 
 /* Web-first visual system: contextual scenes, varied pacing, and a useful demo. */
 :root { --cream: #f1e4d4; --deep: #18343b; --coral: #b75a3c; --sage: #e5eadf; }
-body { font-family: "Instrument Sans", Arial, sans-serif; }
+body { font-family: "Mozilla Headline", Arial, sans-serif; }
 .site-header { background: rgba(251,252,252,.94); }
 .main-nav a[aria-current="page"] { color: var(--teal); }
 .eyebrow::before { width: 25px; height: 3px; margin-bottom: 12px; }
