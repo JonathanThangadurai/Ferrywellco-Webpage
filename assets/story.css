@@ -1,11 +1,9 @@
 /* FerryWellCo's platform story and GOTime product pages. */
 .story-hero { background: var(--cream); }
-.story-hero-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .95fr); column-gap: clamp(36px, 6vw, 86px); row-gap: 28px; align-items: center; padding-block: clamp(58px, 7vw, 98px); }
-.hero-intro { grid-column: 1; grid-row: 1; align-self: end; }
+.story-hero-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .95fr); gap: clamp(36px, 6vw, 86px); align-items: center; padding-block: clamp(58px, 7vw, 98px); }
 .hero-intro h1 { margin-bottom: 0; }
-.hero-support { grid-column: 1; grid-row: 2; align-self: start; }
+.hero-support { margin-top: 32px; }
 .hero-support .action-row { margin-top: 26px; }
-.story-hero-photo { grid-column: 2; grid-row: 1 / span 2; }
 .story-hero h1 { max-width: 700px; font-size: clamp(3rem, 4.8vw, 4.65rem); }
 .story-hero .lead { max-width: 620px; }
 .story-photo { margin: 0; }
@@ -94,7 +92,10 @@
 .about-note .text-link { display: inline-block; margin-top: 24px; }
 @media (max-width: 900px) {
   .story-hero-grid, .story-split, .story-contact-grid, .product-demo-grid { grid-template-columns: 1fr; }
-  .hero-intro, .story-hero-photo, .hero-support { grid-column: 1; grid-row: auto; }
+  .story-hero .hero-copy { display: contents; }
+  .hero-intro { grid-column: 1; grid-row: 1; }
+  .story-hero-photo { grid-column: 1; grid-row: 2; }
+  .hero-support { grid-column: 1; grid-row: 3; margin-top: 0; }
   .story-photo img { height: 380px; }
   .story-hero-photo img { height: auto; }
   .product-demo-copy { padding-top: 0; }
