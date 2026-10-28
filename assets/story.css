@@ -1,6 +1,6 @@
 /* FerryWellCo's platform story and GOTime product pages. */
 .story-hero { background: var(--cream); }
-.story-hero-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .95fr); gap: clamp(36px, 6vw, 86px); align-items: center; padding-block: clamp(58px, 7vw, 98px); }
+.story-hero-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .95fr); gap: clamp(36px, 6vw, 86px); align-items: center; padding-block: clamp(50px, 5vw, 74px); }
 .hero-intro h1 { margin-bottom: 0; }
 .hero-support { margin-top: 32px; }
 .hero-support .action-row { margin-top: 26px; }
@@ -10,6 +10,22 @@
 .story-photo img { display: block; width: 100%; height: clamp(365px, 39vw, 540px); object-fit: cover; }
 .story-hero-photo img { height: auto; }
 .story-photo figcaption { margin-top: 9px; color: var(--muted); font-size: 13px; }
+.hero-scene { position: relative; display: flex; align-items: flex-end; min-height: 520px; overflow: hidden; background: #d5e2df; }
+.hero-scene > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 52% center; }
+.hero-scene::after { content: ""; position: absolute; inset: 45% 0 0; background: linear-gradient(transparent, rgba(9, 29, 31, .27)); pointer-events: none; }
+.hero-phone { position: relative; z-index: 1; width: min(50%, 260px); min-width: 222px; min-height: 385px; margin: 0 0 -2px 22px; padding: 13px 10px 12px; border: 7px solid #19343a; border-radius: 38px 38px 34px 34px; background: #19343a; box-shadow: 18px 17px 42px rgba(8, 30, 34, .29); }
+.hero-phone-camera { width: 38%; height: 15px; margin: 0 auto -4px; border-radius: 0 0 12px 12px; background: #19343a; position: relative; z-index: 2; }
+.hero-phone-screen { min-height: 329px; padding: 22px 14px 15px; border-radius: 25px 25px 19px 19px; background: #fffdfa; color: var(--ink); }
+.hero-phone-brand { display: block; color: var(--teal); font-size: 13px; font-weight: 700; }
+.hero-phone-brand small { display: block; margin-top: 2px; color: #6f8586; font-size: 9px; font-weight: 400; }
+.hero-phone-screen > strong { display: block; margin-top: 35px; font-size: 20px; line-height: 1.17; letter-spacing: -.025em; }
+.hero-phone-times { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 17px; }
+.hero-phone-times span { min-width: 0; padding: 8px 6px; background: #eff3ef; color: #536c6e; font-size: 9px; }
+.hero-phone-times span + span { background: #e1f2ed; color: #17675f; }
+.hero-phone-times strong { display: block; margin-top: 4px; color: var(--ink); font-size: 15px; letter-spacing: -.04em; white-space: nowrap; }
+.hero-phone-times span + span strong { color: #17675f; font-size: 12px; }
+.hero-phone-screen p { margin-top: 14px; color: #5f7778; font-size: 10px; line-height: 1.35; }
+.hero-phone-home { display: block; width: 35%; height: 4px; margin: 8px auto 0; border-radius: 8px; background: #cadbd7; }
 .story-section { padding-block: clamp(76px, 8vw, 112px); }
 .story-section h2 { max-width: 820px; font-size: clamp(2.35rem, 3.6vw, 3.7rem); }
 .story-section .lead { max-width: 760px; }
@@ -23,6 +39,8 @@
 .story-approach { background: #f7efe4; }
 .story-approach .story-split { align-items: start; }
 .story-approach .story-split > div:last-child { max-width: 600px; padding-top: 36px; color: #476267; font-size: 19px; line-height: 1.62; }
+.story-approach { padding-block: clamp(56px, 6vw, 78px); }
+.story-approach .story-split > div:last-child { padding-top: 10px; }
 .story-list { margin-top: 38px; border-top: 1px solid var(--rule); }
 .story-list p { display: grid; grid-template-columns: minmax(130px, .34fr) 1fr; gap: 28px; padding: 18px 0; border-bottom: 1px solid var(--rule); font-size: 16px; }
 .story-list strong { color: var(--ink); font-weight: 600; }
@@ -43,6 +61,8 @@
 .story-about { background: #fffdf8; }
 .story-about .story-photo img { height: clamp(330px, 35vw, 490px); object-position: center 40%; }
 .story-work { background: #f7efe4; }
+.story-work { padding-block: clamp(45px, 5vw, 64px); }
+.story-work h2 { font-size: clamp(1.8rem, 2.5vw, 2.5rem); }
 .story-work .text-link { display: inline-block; margin-top: 20px; }
 .story-contact { background: var(--deep); color: #fff; }
 .story-contact .eyebrow, .story-contact .body-copy { color: #d7e6e2; }
@@ -50,11 +70,23 @@
 .story-contact .direct-contact { margin-top: 26px; }
 .story-contact-grid { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: clamp(38px, 6vw, 80px); align-items: start; }
 .story-contact .enquiry-form { margin: 0; }
+.form-hint { grid-column: 1 / -1; margin: -5px 0 0; color: #d7e6e2; font-size: 12px; }
 .product-hero { background: var(--cream); }
 .product-hero .container { padding-block: clamp(72px, 8vw, 116px); }
-.product-hero h1 { max-width: 890px; font-size: clamp(3rem, 5vw, 5rem); }
+.product-hero-grid { display: grid; grid-template-columns: minmax(0, 1.18fr) minmax(310px, .82fr); gap: clamp(35px, 6vw, 88px); align-items: center; }
+.product-hero h1 { max-width: 800px; font-size: clamp(3rem, 4.2vw, 4.3rem); }
 .product-hero .lead { max-width: 760px; }
 .product-hero .action-row { margin-top: 30px; }
+.product-preview { padding: clamp(22px, 3vw, 34px); background: #fffdfa; border: 1px solid #d6d8cf; box-shadow: 0 25px 60px rgba(34, 55, 54, .1); }
+.product-preview-kicker { display: block; color: var(--teal); font-size: 12px; font-weight: 700; }
+.product-preview > strong { display: block; margin-top: 35px; max-width: 360px; font-size: clamp(1.55rem, 2.4vw, 2.25rem); line-height: 1.14; letter-spacing: -.025em; }
+.product-preview-times { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 25px; }
+.product-preview-times span { padding: 14px 10px; border-top: 3px solid #9ab2ad; background: #f0f3f0; color: #526a6b; font-size: 12px; }
+.product-preview-times span + span { border-color: var(--teal); background: #e5f1ec; }
+.product-preview-times b { display: block; margin-top: 7px; color: var(--ink); font-size: clamp(1.1rem, 1.8vw, 1.55rem); white-space: nowrap; }
+.product-preview-times span + span b { color: var(--teal); }
+.product-preview p { margin-top: 22px; color: #4c6668; font-size: 14px; line-height: 1.45; }
+.product-preview small { display: block; margin-top: 24px; color: #6e8584; font-size: 11px; }
 .product-demo { background: #fffdf8; }
 .product-demo-grid { display: grid; grid-template-columns: minmax(0, .82fr) minmax(360px, 1.18fr); gap: clamp(38px, 7vw, 100px); align-items: center; }
 .product-demo-copy { align-self: start; padding-top: 35px; }
@@ -90,14 +122,16 @@
 .about-team .support-line { margin-top: 28px; color: var(--teal); font-size: 16px; font-weight: 600; }
 .about-note { background: #eee0cd; }
 .about-note .text-link { display: inline-block; margin-top: 24px; }
+.article-source { display: inline-block; margin-top: 16px; color: var(--teal); font-size: 15px; font-weight: 700; text-underline-offset: 4px; }
 @media (max-width: 900px) {
-  .story-hero-grid, .story-split, .story-contact-grid, .product-demo-grid { grid-template-columns: 1fr; }
+  .story-hero-grid, .story-split, .story-contact-grid, .product-demo-grid, .product-hero-grid { grid-template-columns: 1fr; }
   .story-hero .hero-copy { display: contents; }
   .hero-intro { grid-column: 1; grid-row: 1; }
   .story-hero-photo { grid-column: 1; grid-row: 2; }
   .hero-support { grid-column: 1; grid-row: 3; margin-top: 0; }
   .story-photo img { height: 380px; }
   .story-hero-photo img { height: auto; }
+  .hero-scene > img { height: 100%; }
   .product-demo-copy { padding-top: 0; }
   .product-flow-list { grid-template-columns: 1fr; gap: 0; }
   .product-flow-list article { padding-bottom: 20px; border-bottom: 1px solid #cbbfb0; }
@@ -108,6 +142,14 @@
   .story-section h2 { font-size: clamp(2.25rem, 8.3vw, 3rem); }
   .story-photo img, .story-problem .story-photo img { height: 280px; }
   .story-hero-photo img { height: auto; }
+  .hero-scene > img { height: 100%; }
+  .hero-scene { min-height: 405px; }
+  .hero-phone { min-width: 195px; min-height: 345px; margin-left: 14px; }
+  .hero-phone-screen { min-height: 292px; padding-inline: 11px; }
+  .hero-phone-screen > strong { margin-top: 25px; font-size: 17px; }
+  .hero-phone-times strong { font-size: 13px; }
+  .hero-phone-times span + span strong { font-size: 11px; }
+  .product-preview { max-width: 500px; }
   .story-approach .story-split > div:last-child { padding-top: 0; font-size: 17px; }
   .story-list p, .product-fit-list p { grid-template-columns: 1fr; gap: 6px; }
   .story-comparison > div { padding: 19px 10px 21px 0; }

@@ -746,7 +746,7 @@ function buildAnswer(slot){
     slot: slot,
     currentTime: fmtTime(SCENARIO.nowMinutes),
     suggestedTime: fmtTime(targetStart) + '–' + fmtTime(targetEnd),
-    headline: improved ? 'Another time looks better for this run.' : 'The times we compared look similar.',
+    headline: improved ? 'Another time looks better for this run' : 'The times we compared look similar',
     explanation: 'The comparison reflects the heat and air-quality estimates for this planned run. The individual conditions below show what changed.',
     current: [heatFactor(current), airFactor(current), windFactor(current)],
     suggested: [heatFactor(targetSample), airFactor(targetSample), windFactor(targetSample)]
@@ -995,7 +995,7 @@ function runThinking(slot, ans){
   // the arrow crosses the three pane centres at 25 / 50 / 75 % of the run
   var f = ans.factors;
   var caps = [
-    'Scanning 3 data layers…',
+    'Preparing sample comparison…',
     'Reading heat stress…',
     'Reading air quality…',
     'Reading wind…'
