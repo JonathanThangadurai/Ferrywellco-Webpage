@@ -7,16 +7,16 @@
 .hero-support .action-row { margin-top: 26px; }
 .story-hero h1 { max-width: 650px; font-size: clamp(2.75rem, 3.5vw, 3.65rem); line-height: 1.07; }
 .story-hero .lead { max-width: 620px; }
-.hero-mosaic { display: grid; grid-column: 2; grid-row: 1; grid-template-columns: minmax(0, 1.18fr) minmax(0, .82fr); grid-template-rows: repeat(3, minmax(0, 1fr)); gap: 10px; height: clamp(450px, 44vw, 590px); }
+.hero-mosaic { display: grid; grid-column: 2; grid-row: 1; grid-template-columns: minmax(0, 1.18fr) minmax(0, .82fr) 12px; grid-template-rows: repeat(3, minmax(0, 1fr)); gap: 10px; height: clamp(450px, 44vw, 590px); }
 .hero-mosaic img { display: block; width: 100%; height: 100%; min-width: 0; object-fit: cover; }
 .hero-mosaic-weather { grid-column: 2; grid-row: 1; }
 .hero-mosaic-watch { grid-column: 1; grid-row: 1 / 4; object-position: 55% center; }
 .hero-mosaic-traffic { grid-column: 2; grid-row: 2; object-position: center 59%; }
 .hero-mosaic-heat { grid-column: 2; grid-row: 3; object-position: center 55%; }
-.hero-mosaic-after { display: flex; grid-column: 2; grid-row: 2; justify-content: space-between; align-items: baseline; gap: 16px; margin-top: 14px; }
+.hero-mosaic-label { grid-column: 3; grid-row: 1 / 4; align-self: start; color: var(--muted); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; white-space: nowrap; writing-mode: vertical-rl; }
+.hero-mosaic-after { grid-column: 2; grid-row: 2; margin-top: 14px; }
 .hero-mosaic-after p { margin: 0; color: var(--ink); font-size: clamp(1.05rem, 1.35vw, 1.3rem); line-height: 1.4; }
 .hero-mosaic-after strong { color: var(--teal); font-weight: 700; }
-.hero-mosaic-after span { flex: none; color: var(--muted); font-size: 11px; }
 .story-photo { margin: 0; }
 .story-photo img { display: block; width: 100%; height: clamp(365px, 39vw, 540px); object-fit: cover; }
 .story-photo figcaption { margin-top: 9px; color: var(--muted); font-size: 13px; }
@@ -174,9 +174,8 @@
   .product-hero h1 { font-size: clamp(2.7rem, 10vw, 3.5rem); }
   .story-section h2 { font-size: clamp(2.25rem, 8.3vw, 3rem); }
   .story-photo img, .story-problem .story-photo img { height: 280px; }
-  .hero-mosaic { grid-template-columns: minmax(0, 1.18fr) minmax(0, .82fr); grid-template-rows: repeat(3, minmax(0, 1fr)); grid-row: 2; height: clamp(345px, 96vw, 450px); gap: 7px; margin-top: 24px; }
-  .hero-mosaic-after { display: block; grid-row: 3; margin-top: 17px; }
-  .hero-mosaic-after span { display: block; margin-top: 8px; }
+  .hero-mosaic { grid-template-columns: minmax(0, 1.18fr) minmax(0, .82fr) 10px; grid-template-rows: repeat(3, minmax(0, 1fr)); grid-row: 2; height: clamp(345px, 96vw, 450px); gap: 7px; margin-top: 24px; }
+  .hero-mosaic-after { grid-row: 3; margin-top: 17px; }
   .condition-photos { grid-template-columns: 1fr; gap: 28px; }
   .condition-photos img { height: 250px; }
   .science-photo-grid { grid-template-columns: 1fr; gap: 24px; }
