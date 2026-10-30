@@ -406,12 +406,14 @@ body{
 @font-face{font-family:"Mozilla Headline";src:url("../assets/fonts/mozilla-headline-variable.ttf") format("truetype");font-weight:200 700;font-display:swap}
 html,body{height:100%;background:transparent;overflow:hidden;font-family:"Mozilla Headline",Arial,sans-serif}
 button{font-family:inherit}
-.demo-embed{min-height:100%;display:flex;align-items:flex-start;justify-content:center;padding:40px 9px 24px}
+.demo-embed{min-height:100%;display:flex;align-items:flex-start;justify-content:center;padding:40px 4px 24px}
 .device{margin:0;align-self:center;justify-self:center}
 .phone-wrap{--s:1;width:calc(344px * var(--s));height:calc(700px * var(--s))}
 button.tile{font:inherit;text-align:left;color:inherit;border:1px solid rgba(12,36,42,.08);cursor:pointer}
 button.tile:focus-visible{outline:3px solid #176a70;outline-offset:2px}
 @media(max-width:520px){.phone{width:344px;height:700px;border-radius:50px}.screen{border-radius:42px}.view{padding:52px 20px 22px}.res{padding:46px 18px 16px}.tile{height:106px}.gauge{width:150px;height:150px}}
+@media(max-width:340px){.phone-wrap{--s:.86}}
+@media(max-width:300px){.phone-wrap{--s:.78}}
 .res-body{justify-content:flex-start;padding:14px 0 4px;gap:0}
 .result-answer{font-size:22px;line-height:1.14;letter-spacing:-.035em;margin:11px 0 17px;color:var(--text)}
 .compare-pair{display:grid;grid-template-columns:1fr 1.2fr;gap:8px}
