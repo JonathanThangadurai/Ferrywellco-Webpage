@@ -1,0 +1,1974 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>GOTime · FerryWellCo</title>
+<script>document.documentElement.dataset.mode = new URLSearchParams(location.search).get('mode') || 'full';</script>
+<style>
+@font-face{font-family:"Mozilla Headline";src:url("../assets/fonts/mozilla-headline-variable.ttf") format("truetype");font-style:normal;font-weight:200 700;font-display:swap}
+:root{
+  --bg:#E9F0F0;
+  --ink:#0C242A;
+  --ink-2:rgba(12,36,42,.66);
+  --ink-3:rgba(12,36,42,.44);
+  --page-line:rgba(12,36,42,.10);
+  --surf:#14363D;
+  --brand:#386D74;
+  --accent:#2EC4B6;
+  --caution:#E8B84A;
+  --warn:#E8943A;
+  --danger:#E87068;
+  /* on-screen (phone) tokens — light app theme */
+  --text:#0C242A;
+  --muted:rgba(12,36,42,.62);
+  --dim:rgba(12,36,42,.44);
+  --line:rgba(12,36,42,.09);
+  --ease:cubic-bezier(.22,.8,.24,1);
+}
+*{box-sizing:border-box}
+html,body{min-height:100%}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:"Mozilla Headline",Arial,sans-serif;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+.bg{position:fixed;inset:0;pointer-events:none;z-index:0}
+.bg::before,.bg::after{content:"";position:absolute;border-radius:50%;filter:blur(90px)}
+.bg::before{width:760px;height:760px;left:-240px;top:-280px;background:radial-gradient(circle,rgba(56,109,116,.16),transparent 68%)}
+.bg::after{width:680px;height:680px;right:-180px;bottom:-260px;background:radial-gradient(circle,rgba(46,196,182,.14),transparent 68%)}
+
+/* ---------- chrome ---------- */
+.topbar{
+  position:relative;z-index:2;display:flex;align-items:center;justify-content:space-between;
+  padding:20px 40px;max-width:1500px;margin:0 auto;
+}
+.logo{
+  height:52px;width:auto;display:block;border-radius:10px;
+  box-shadow:0 6px 18px -10px rgba(12,36,42,.45);
+  -webkit-user-select:none;user-select:none;
+}
+.tag{
+  font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);
+  border:1px solid var(--page-line);border-radius:999px;padding:6px 12px;background:rgba(255,255,255,.65);
+}
+
+/* ---------- layout ---------- */
+.layout{
+  position:relative;z-index:2;
+  display:grid;grid-template-columns:minmax(260px,380px) 1fr auto;
+  align-items:end;gap:40px;
+  padding:0 64px;
+  height:calc(100vh - 92px);
+  overflow:hidden;
+}
+.intro{grid-area:1/1;max-width:380px;padding-bottom:56px}
+.device{grid-area:1/3;justify-self:end;align-self:end;margin:0 0 -9px 0}
+
+.intro h1{
+  margin:0 0 18px;font-size:36px;line-height:1.08;letter-spacing:-.03em;font-weight:700;
+}
+.intro h1 em{font-style:normal;white-space:nowrap}
+.intro h1 em span:nth-child(1){color:#2EC4B6}
+.intro h1 em span:nth-child(2){color:#E8B84A}
+.lede{margin:0 0 0;font-size:15.5px;line-height:1.6;color:var(--ink-2)}
+.lede strong{color:var(--ink);font-weight:700}
+
+/* the integration, shown as it would actually be called */
+.api{
+  margin:24px 0 0;padding:1px 0 1px 15px;border-left:2px solid rgba(56,109,116,.30);
+  font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
+  font-size:10.5px;line-height:1.95;color:var(--ink-2);text-align:left;white-space:nowrap;
+}
+.api .v{color:#0F7D74;font-weight:700}
+.api .d{color:var(--ink-3)}
+.api b{font-weight:700}
+.api-label{margin:22px 0 -16px;color:var(--ink-2);font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+
+.note{font-size:11.5px;line-height:1.6;color:var(--ink-3);margin:22px 0 0;max-width:320px}
+
+.chip{
+  display:inline-flex;align-items:center;gap:6px;font-size:9.5px;font-weight:700;
+  letter-spacing:.10em;text-transform:uppercase;padding:5px 9px;border-radius:999px;
+  border:1px solid currentColor;line-height:1;white-space:nowrap;
+}
+.chip::before{content:"";width:5px;height:5px;border-radius:50%;background:currentColor}
+.chip.good{color:#0F7D74;background:rgba(46,196,182,.14)}
+.chip.mid{color:#96690B;background:rgba(232,184,74,.20)}
+.chip.bad{color:#B8453E;background:rgba(232,112,104,.16)}
+
+.gauge{width:150px;height:150px;display:block;margin:0 auto}
+.g-track{fill:none;stroke:rgba(12,36,42,.09);stroke-width:9}
+.g-arc{fill:none;stroke-width:9;stroke-linecap:round;transform:rotate(-90deg);transform-origin:80px 80px;
+  transition:stroke-dashoffset 1.05s var(--ease)}
+.g-num{fill:var(--text);font-size:42px;font-weight:700;text-anchor:middle;letter-spacing:-.03em}
+.g-sub{fill:var(--dim);font-size:8.5px;letter-spacing:.18em;text-transform:uppercase;text-anchor:middle}
+
+.hero-delta{display:flex;align-items:flex-end;gap:12px;padding:4px 2px 2px}
+.hd-num{font-size:48px;font-weight:700;letter-spacing:-.045em;line-height:.9}
+.hd-tail{font-size:11px;color:var(--muted);line-height:1.35;padding-bottom:4px}
+.hd-from{font-size:11.5px;color:var(--dim);display:flex;align-items:center;gap:6px;margin-top:10px}
+.arrow-r{color:#0F7D74;font-weight:700}
+
+.hero-window{padding:6px 2px 2px}
+.hw-time{font-size:34px;font-weight:700;letter-spacing:-.04em;line-height:1;color:#0F7D74}
+.hw-meta{font-size:11px;color:var(--muted);margin-top:7px}
+
+.verdict{
+  margin:14px 0 0;font-size:12px;line-height:1.6;color:var(--muted);flex:0 0 auto;
+}
+.verdict strong{color:var(--text);font-weight:700}
+
+.qlist{margin-top:16px;border-top:1px solid var(--line);flex:0 0 auto}
+.qrow{
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  padding:11px 0;border-bottom:1px solid var(--line);
+}
+.qname{font-size:12px;color:var(--muted)}
+.qband{font-size:12px;font-weight:700;letter-spacing:-.01em;text-align:right;white-space:nowrap}
+.qfrom{color:var(--dim);font-weight:600}
+.qarr{margin:0 5px;font-size:11px;font-weight:700;color:var(--dim)}
+.qto{font-weight:700}
+
+.rp-chart{width:100%;height:auto;display:block;margin-top:16px;opacity:.88;flex:0 0 auto}
+
+
+/* ---------- phone ---------- */
+.device{display:flex;flex-direction:column;align-items:center;gap:16px}
+.phone-wrap{
+  --s:1;
+  position:relative;
+  width:calc(344px * var(--s));
+  height:calc(700px * var(--s));
+}
+.phone{transform:scale(var(--s));transform-origin:top left}
+.phone{
+  position:relative;width:344px;height:700px;border-radius:50px;padding:9px;
+  background:linear-gradient(158deg,#FFFFFF 0%,#DCE8E8 38%,#C4D6D6 76%,#E8F1F1 100%);
+  box-shadow:
+    0 34px 54px -30px rgba(12,36,42,.42),
+    0 0 0 1px rgba(12,36,42,.16),
+    0 0 0 7px rgba(255,255,255,.55);
+}
+.screen{
+  position:relative;width:100%;height:100%;border-radius:42px;overflow:hidden;
+  background:linear-gradient(180deg,#FFFFFF 0%,#FAFCFC 52%,#F1F7F7 100%);
+  color:var(--text);
+  box-shadow:inset 0 0 0 1px rgba(12,36,42,.05);
+  isolation:isolate;
+}
+.island{
+  position:absolute;top:11px;left:50%;transform:translateX(-50%);
+  width:96px;height:25px;border-radius:14px;background:#0C242A;z-index:20;
+}
+.statusbar{
+  position:relative;z-index:19;display:flex;align-items:center;justify-content:space-between;
+  padding:14px 24px 0;font-size:11.5px;font-weight:700;letter-spacing:.02em;
+  font-variant-numeric:tabular-nums;
+}
+.sb-right{display:flex;align-items:center;gap:5px}
+.sb-bar{width:14px;height:8px;border-radius:2px;border:1px solid rgba(12,36,42,.42);position:relative}
+.sb-bar::after{content:"";position:absolute;inset:1.5px;right:4px;background:var(--brand);border-radius:1px}
+.sb-dots{display:flex;gap:2px;align-items:flex-end;height:8px}
+.sb-dots i{width:2px;background:rgba(12,36,42,.45);border-radius:1px;display:block}
+.sb-dots i:nth-child(1){height:3px}.sb-dots i:nth-child(2){height:5px}.sb-dots i:nth-child(3){height:7px}
+
+.view{
+  position:absolute;inset:0;padding:52px 20px 22px;
+  display:flex;flex-direction:column;
+  opacity:0;visibility:hidden;transform:translateY(12px);
+  transition:opacity .3s var(--ease),transform .3s var(--ease),visibility .3s;
+}
+.view.is-active{opacity:1;visibility:visible;transform:none}
+
+/* home */
+.hi{margin-bottom:18px}
+.hi-top{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);margin-bottom:6px}
+.hi-big{font-size:22px;font-weight:650;letter-spacing:-.025em;line-height:1.2}
+.hi-sub{font-size:11.5px;color:var(--dim);margin-top:6px}
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+.tile{
+  position:relative;height:124px;border-radius:20px;padding:14px;
+  background:#FFFFFF;border:1px solid rgba(12,36,42,.08);
+  box-shadow:0 6px 16px -12px rgba(12,36,42,.35);
+  display:flex;flex-direction:column;justify-content:flex-end;gap:3px;
+  cursor:default;transition:transform .2s var(--ease),background .2s;
+}
+.tile:active{transform:scale(.985)}
+.tile-ico{width:30px;height:30px;border-radius:10px;display:grid;place-items:center;margin-bottom:auto;
+  background:rgba(56,109,116,.10);color:var(--brand)}
+.tile-ico svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.6;
+  stroke-linecap:round;stroke-linejoin:round}
+.tile-lbl{font-size:12px;font-weight:700;letter-spacing:-.01em;color:rgba(12,36,42,.72)}
+.tile-sub{font-size:9.5px;color:rgba(12,36,42,.42)}
+.tile.gotime{
+  background:linear-gradient(152deg,rgba(46,196,182,.20),rgba(46,196,182,.07) 62%,rgba(56,109,116,.05));
+  border-color:rgba(46,196,182,.55);cursor:pointer;
+  box-shadow:0 12px 26px -14px rgba(46,196,182,.85),inset 0 1px 0 #FFFFFF;
+}
+.tile.gotime .tile-ico{background:rgba(46,196,182,.24);color:#10857B}
+.tile.gotime .tile-lbl{color:var(--ink)}
+.tile.gotime .tile-sub{color:#12857B}
+.tile.gotime::after{
+  content:"";position:absolute;inset:-1px;border-radius:21px;border:1px solid rgba(46,196,182,.6);
+  opacity:0;animation:ping 2.6s var(--ease) infinite;
+}
+@keyframes ping{0%{opacity:.55;transform:scale(1)}70%,100%{opacity:0;transform:scale(1.045)}}
+.phone.attract .tile.gotime{animation:breathe 1.8s ease-in-out infinite}
+@keyframes breathe{0%,100%{box-shadow:0 12px 26px -16px rgba(46,196,182,.7)}50%{box-shadow:0 16px 34px -10px rgba(46,196,182,1)}}
+
+.tap-hint{
+  position:absolute;left:50%;bottom:96px;transform:translate(-50%,8px);
+  background:#0C242A;border:1px solid #0C242A;color:var(--accent);
+  font-size:11px;font-weight:700;padding:7px 13px;border-radius:999px;white-space:nowrap;
+  box-shadow:0 10px 22px -12px rgba(12,36,42,.85);
+  opacity:0;transition:opacity .3s,transform .3s;pointer-events:none;z-index:15;
+}
+.phone.attract .tap-hint{opacity:1;transform:translate(-50%,0)}
+.homenav{position:absolute;left:0;right:0;bottom:14px;display:flex;justify-content:center;gap:26px;opacity:.28}
+.homenav i{width:5px;height:5px;border-radius:50%;background:var(--ink);display:block}
+.homenav i:first-child{background:var(--brand);opacity:1;width:16px;border-radius:99px;}
+
+/* prompt */
+.vhead{display:flex;align-items:center;gap:12px;margin-bottom:26px}
+.back{
+  width:32px;height:32px;border-radius:50%;border:1px solid var(--line);background:#FFFFFF;
+  color:var(--muted);display:grid;place-items:center;cursor:pointer;font-size:15px;line-height:1;
+  transition:background .2s,color .2s;padding:0;box-shadow:0 2px 8px -6px rgba(12,36,42,.4);
+}
+.back:hover{background:rgba(56,109,116,.08);color:var(--ink)}
+.vtitle{font-size:15px;font-weight:700;letter-spacing:-.01em}
+.prompt-q{font-size:21px;font-weight:700;letter-spacing:-.022em;line-height:1.28;margin:0 0 10px}
+.prompt-sub{font-size:11.5px;color:var(--dim);margin:0 0 22px;line-height:1.5}
+.opts{display:flex;flex-direction:column;gap:10px}
+.opt{
+  display:flex;align-items:center;gap:13px;width:100%;text-align:left;cursor:pointer;
+  padding:15px 16px;border-radius:17px;border:1px solid rgba(12,36,42,.09);
+  background:#FFFFFF;color:var(--text);font:inherit;
+  box-shadow:0 4px 14px -12px rgba(12,36,42,.5);
+  transition:border-color .2s,background .2s,transform .15s var(--ease);
+}
+.opt:hover{border-color:rgba(46,196,182,.55);background:rgba(46,196,182,.05)}
+.opt:active{transform:scale(.985)}
+.opt-k{
+  width:24px;height:24px;border-radius:8px;display:grid;place-items:center;flex:0 0 auto;
+  font-size:10px;font-weight:700;color:#12857B;background:rgba(46,196,182,.16);
+}
+.opt-body{display:flex;flex-direction:column;gap:2px;flex:1}
+.opt-main{font-size:13.5px;font-weight:700;letter-spacing:-.01em}
+.opt-sub{font-size:10.5px;color:var(--dim);font-variant-numeric:tabular-nums}
+.opt-go{color:var(--dim);font-size:14px}
+
+/* profile — the only screen that changes the model */
+.pf-label{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);margin:0 0 8px}
+.seg{display:flex;gap:6px;padding:4px;border-radius:14px;background:rgba(12,36,42,.05);margin:0 0 22px}
+.seg-b{
+  flex:1;padding:10px 0;border-radius:11px;border:1px solid transparent;background:transparent;
+  font:inherit;font-size:12.5px;font-weight:700;color:var(--muted);cursor:pointer;
+  transition:background .2s,color .2s,border-color .2s,box-shadow .2s;
+}
+.seg-b.is-on{
+  background:#FFFFFF;color:var(--ink);border-color:rgba(46,196,182,.55);
+  box-shadow:0 6px 16px -12px rgba(12,36,42,.6);
+}
+.pf-row{display:flex;align-items:baseline;gap:8px;margin-bottom:10px}
+.pf-row .pf-label{margin:0}
+.pf-val{font-size:26px;font-weight:700;letter-spacing:-.035em;margin-left:auto;font-variant-numeric:tabular-nums}
+.pf-band{
+  font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#0F7D74;
+  background:rgba(46,196,182,.14);border:1px solid rgba(46,196,182,.35);
+  border-radius:999px;padding:4px 8px;
+}
+.pf-bmi{display:flex;align-items:center;gap:10px;margin-bottom:20px}
+.pf-step{
+  width:30px;height:30px;flex:0 0 auto;border-radius:10px;border:1px solid rgba(12,36,42,.12);
+  background:#FFFFFF;color:var(--ink);font:inherit;font-size:15px;line-height:1;cursor:pointer;
+  display:grid;place-items:center;transition:background .2s,transform .12s;
+}
+.pf-step:hover{background:rgba(56,109,116,.07)}
+.pf-step:active{transform:scale(.94)}
+.pf-range{
+  -webkit-appearance:none;appearance:none;flex:1;height:4px;border-radius:99px;cursor:pointer;
+  background:linear-gradient(90deg,rgba(46,196,182,.5),rgba(232,184,74,.55) 55%,rgba(232,112,104,.55));
+}
+.pf-range::-webkit-slider-thumb{
+  -webkit-appearance:none;width:20px;height:20px;border-radius:50%;background:#FFFFFF;
+  border:2px solid #2EC4B6;box-shadow:0 4px 10px -4px rgba(12,36,42,.6);cursor:pointer;
+}
+.pf-range::-moz-range-thumb{
+  width:16px;height:16px;border-radius:50%;background:#FFFFFF;border:2px solid #2EC4B6;cursor:pointer;
+}
+.pf-preview{margin:3px 0 15px;padding:13px 14px;border:1px solid rgba(46,196,182,.34);border-radius:14px;background:rgba(46,196,182,.08)}
+.pf-preview-line{display:flex;justify-content:space-between;gap:10px;align-items:baseline;font-size:11px;color:var(--muted)}
+.pf-preview-line + .pf-preview-line{margin-top:6px}
+.pf-preview-line strong{font-size:17px;color:var(--ink);font-variant-numeric:tabular-nums}
+.pf-preview small{display:block;margin-top:7px;color:var(--dim);font-size:9px;line-height:1.35}
+
+/* the Profile tile is the only other door out of the home grid — colour it so it reads as a control */
+.tile.profile{
+  cursor:pointer;
+  background:linear-gradient(152deg,rgba(232,184,74,.22),rgba(232,184,74,.07) 62%,rgba(56,109,116,.05));
+  border-color:rgba(232,184,74,.55);
+  box-shadow:0 10px 22px -15px rgba(232,184,74,.95),inset 0 1px 0 #FFFFFF;
+}
+.tile.profile .tile-ico{background:rgba(232,184,74,.26);color:#8A6208}
+.tile.profile .tile-lbl{color:var(--ink)}
+.tile.profile .tile-sub{color:#8A6208}
+.tile.profile::before{
+  content:"›";position:absolute;top:9px;right:12px;
+  font-size:14px;font-weight:700;line-height:1;color:rgba(138,98,8,.55);
+}
+.tile.profile:hover{border-color:rgba(232,184,74,.9)}
+.pf-actions{margin-top:auto}
+
+/* thinking — an arrow piercing three data layers */
+.think{align-items:center;justify-content:center;gap:0}
+.pierce-head{width:284px;margin-bottom:18px;text-align:center}
+.ph-place{
+  display:inline-block;font-size:18px;font-weight:700;letter-spacing:-.02em;line-height:1.15;color:var(--ink);white-space:nowrap;
+}
+.pierce{
+  position:relative;width:284px;height:172px;margin-bottom:28px;
+  display:flex;justify-content:space-between;
+}
+.pane{
+  position:relative;width:72px;height:172px;border-radius:13px;
+  border:1px solid rgba(46,196,182,.26);
+  background:
+    repeating-linear-gradient(180deg,rgba(46,196,182,.12) 0 1px,rgba(46,196,182,0) 1px 13px),
+    linear-gradient(180deg,rgba(46,196,182,.06),rgba(46,196,182,.015));
+  display:flex;flex-direction:column;align-items:center;justify-content:space-between;
+  padding:11px 4px;overflow:hidden;
+  transition:background .35s var(--ease),border-color .35s var(--ease),transform .35s var(--ease),box-shadow .35s var(--ease);
+}
+.pane-name{
+  position:relative;z-index:1;
+  font-size:9px;letter-spacing:.10em;text-transform:uppercase;font-weight:700;
+  color:rgba(12,36,42,.40);transition:color .35s;
+}
+.pane-val{
+  position:relative;z-index:1;
+  font-size:12px;font-weight:700;letter-spacing:-.01em;line-height:1.2;text-align:center;
+  color:rgba(12,36,42,.20);transition:color .35s;
+}
+/* the band colour spreads from the centre of the whole row outwards */
+.pane .wash{
+  position:absolute;inset:-12px;background:var(--bandc,#E8B84A);filter:blur(6px);
+  clip-path:circle(0px at var(--gx) 98px);opacity:0;z-index:0;pointer-events:none;
+  transition:opacity .28s linear;
+}
+.pane:nth-child(1) .wash{--gx:154px}
+.pane:nth-child(2) .wash{--gx:48px}
+.pane:nth-child(3) .wash{--gx:-58px}
+.pane.wash{border-color:var(--bandb,#A87A10);box-shadow:0 12px 28px -14px var(--bandb,#A87A10)}
+.pane.wash .wash{opacity:1;animation:washSpread var(--washms,900ms) cubic-bezier(.28,.34,.38,1) forwards}
+@keyframes washSpread{
+  from{clip-path:circle(0px at var(--gx) 98px)}
+  to{clip-path:circle(168px at var(--gx) 98px)}
+}
+.pane.wash .pane-name{color:rgba(12,36,42,.60)}
+.pane.wash .pane-val{color:var(--ink)}
+.pane.hit{
+  border-color:#2EC4B6;border-width:1.5px;
+  background:
+    repeating-linear-gradient(180deg,rgba(46,196,182,.30) 0 1px,rgba(46,196,182,0) 1px 13px),
+    linear-gradient(180deg,rgba(46,196,182,.34),rgba(46,196,182,.10));
+  box-shadow:0 12px 28px -14px rgba(46,196,182,1);
+  transform:translateY(-3px);
+}
+.pane.hit .pane-name{color:#0B6E66}
+.pane.hit .pane-val{color:var(--ink)}
+.pane.hit::after{
+  content:"";position:absolute;left:50%;top:50%;width:14px;height:14px;border-radius:50%;
+  border:2px solid rgba(15,125,116,.75);transform:translate(-50%,-50%);
+  animation:ripple .75s var(--ease) forwards;
+}
+@keyframes ripple{to{width:150px;height:150px;opacity:0;border-width:0}}
+
+.arrow{
+  position:absolute;top:50%;left:-134px;width:64px;height:4px;margin-top:-2px;z-index:4;
+  background:linear-gradient(90deg,rgba(46,196,182,0),rgba(46,196,182,.9) 55%,#0F7D74);
+  border-radius:4px;
+  filter:drop-shadow(0 0 9px rgba(46,196,182,1));
+}
+.arrow::after{
+  content:"";position:absolute;right:-13px;top:-6px;width:0;height:0;
+  border-left:15px solid #0F7D74;
+  border-top:8px solid transparent;border-bottom:8px solid transparent;
+}
+.think-cap{font-size:13px;font-weight:700;letter-spacing:-.01em;min-height:20px;text-align:center;
+  transition:opacity .18s}
+.progress{position:absolute;left:20px;right:20px;bottom:52px;height:2px;border-radius:99px;background:rgba(12,36,42,.10);overflow:hidden}
+.progress i{display:block;height:100%;width:0;border-radius:99px;
+  background:linear-gradient(90deg,var(--brand),var(--accent));transition:width 2s linear}
+.thinking .progress i{width:100%}
+
+/* result (phone only) */
+.res{padding:46px 18px 16px;overflow-y:auto;scrollbar-width:none}
+.res::-webkit-scrollbar{display:none}
+.res-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:6px;flex:0 0 auto}
+.res-head{text-align:center;flex:0 0 auto}
+.res-place{display:inline-block;font-size:19px;font-weight:700;letter-spacing:-.025em;line-height:1.1;color:var(--ink);white-space:nowrap}
+.res-meta{
+  display:flex;align-items:center;justify-content:center;gap:6px;margin-top:5px;
+  font-size:9px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;
+  color:rgba(12,36,42,.50);
+}
+.res-meta i{width:6px;height:6px;border-radius:50%;display:block;flex:0 0 auto}
+.res-body{flex:1;display:flex;flex-direction:column;justify-content:center;min-height:0;padding:8px 0}
+.rp-note{
+  margin-top:4px;padding-top:0;font-size:9px;letter-spacing:.02em;text-align:center;
+  color:rgba(12,36,42,.40);
+}
+.rp-actions{margin-top:14px;padding-top:0;display:flex;flex-direction:column;gap:7px;flex:0 0 auto}
+.btn{
+  width:100%;padding:11px;border-radius:14px;font:inherit;font-size:12px;font-weight:700;
+  cursor:pointer;transition:background .2s,border-color .2s,transform .15s var(--ease);
+  background:#FFFFFF;border:1px solid rgba(12,36,42,.14);color:var(--text);
+  box-shadow:0 4px 14px -12px rgba(12,36,42,.5);
+}
+.btn:hover{background:rgba(56,109,116,.06)}
+.btn:active{transform:scale(.985)}
+.btn.primary{background:rgba(46,196,182,.14);border-color:rgba(46,196,182,.55);color:#0F7D74}
+.btn.primary:hover{background:rgba(46,196,182,.22)}
+
+/* toast */
+.toast{
+  position:absolute;left:50%;bottom:78px;transform:translate(-50%,10px);
+  background:#0C242A;border-radius:12px;padding:9px 14px;
+  font-size:10.5px;color:#F5F8F8;white-space:nowrap;z-index:30;
+  box-shadow:0 12px 24px -14px rgba(12,36,42,.9);
+  opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;
+}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+
+/* tune overlay */
+.tune{
+  position:fixed;left:8px;bottom:8px;z-index:999;max-height:64vh;overflow:auto;
+  background:rgba(4,16,18,.88);border:1px solid var(--line);border-radius:10px;
+  padding:9px 12px;font:10px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;color:#9fe6dd;
+}
+.tune h4{margin:0 0 6px;font-size:10px;color:var(--dim);letter-spacing:.1em;text-transform:uppercase;font-weight:600}
+
+/* ---------- smartwatch (companion device, decorative) ---------- */
+.watch-stage{grid-area:1/2;justify-self:center;align-self:end;margin:0 0 24px}
+.watch-wrap{--w:1;position:relative;width:calc(212px * var(--w));height:calc(352px * var(--w))}
+.watch{position:absolute;left:0;top:0;width:212px;height:352px;transform:scale(var(--w));transform-origin:top left}
+
+.strap{
+  position:absolute;left:58px;width:96px;height:112px;border-radius:26px;
+  background:linear-gradient(90deg,#183238 0%,#2A525B 26%,#1F454E 58%,#153036 84%,#112A2F 100%);
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.07),0 16px 26px -20px rgba(12,36,42,.9);
+}
+.strap-t{top:2px}
+.strap-b{bottom:2px}
+.strap-b::after{
+  content:"";position:absolute;left:50%;bottom:18px;transform:translateX(-50%);
+  width:34px;height:9px;border-radius:5px;background:rgba(8,26,30,.55);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.08);
+}
+
+.case{
+  position:absolute;left:18px;top:71px;width:176px;height:210px;border-radius:54px;padding:7px;
+  background:linear-gradient(152deg,#FFFFFF 0%,#DCE8E8 34%,#C2D4D4 74%,#EEF6F6 100%);
+  box-shadow:
+    0 32px 46px -28px rgba(12,36,42,.52),
+    0 0 0 1px rgba(12,36,42,.16),
+    0 0 0 6px rgba(255,255,255,.5);
+}
+.crown{
+  position:absolute;right:-7px;top:56px;width:8px;height:30px;border-radius:4px;
+  background:linear-gradient(90deg,#C9D9D9,#A9C0C0 55%,#E1EDED);
+  box-shadow:0 1px 2px rgba(12,36,42,.35);
+}
+.crown::after{
+  content:"";position:absolute;inset:5px 2px;border-radius:2px;
+  background:repeating-linear-gradient(180deg,rgba(12,36,42,.16) 0 1px,rgba(12,36,42,0) 1px 3px);
+}
+.crown-btn{
+  position:absolute;right:-4px;top:102px;width:5px;height:46px;border-radius:3px;
+  background:linear-gradient(90deg,#CBDADA,#AEC4C4);
+  box-shadow:0 1px 2px rgba(12,36,42,.3);
+}
+
+.w-screen{
+  position:relative;width:100%;height:100%;border-radius:47px;overflow:hidden;
+  background:radial-gradient(125% 95% at 50% 6%,#FFFFFF 0%,#FBFEFE 48%,#E9F3F3 100%);
+  box-shadow:inset 0 0 0 1px rgba(12,36,42,.07),inset 0 2px 10px rgba(12,36,42,.05);
+  isolation:isolate;
+}
+
+/* the app grid: overlapping circle "bubbles", as on a watch home screen */
+.bubbles{position:absolute;inset:0}
+.bub{
+  position:absolute;border-radius:50%;display:grid;place-items:center;
+  background:#FFFFFF;border:1px solid rgba(12,36,42,.09);color:var(--brand);
+  box-shadow:0 5px 12px -7px rgba(12,36,42,.55),inset 0 1px 0 #FFFFFF;
+}
+.bub svg{width:46%;height:46%;fill:none;stroke:currentColor;stroke-width:1.8;
+  stroke-linecap:round;stroke-linejoin:round}
+.bub.tint{background:rgba(46,196,182,.16);border-color:rgba(46,196,182,.34);color:#0F7D74}
+.bub.gold{background:rgba(232,184,74,.22);border-color:rgba(232,184,74,.46);color:#9A6E0C}
+.bub.warm{background:rgba(232,112,104,.16);border-color:rgba(232,112,104,.36);color:#B8453E}
+.bub.gotime{
+  background:linear-gradient(152deg,#3FD6C6 0%,#2EC4B6 42%,#1E9086 100%);
+  border-color:rgba(15,125,116,.5);color:#FFFFFF;
+  box-shadow:0 12px 24px -12px rgba(46,196,182,.95),inset 0 1px 0 rgba(255,255,255,.5);
+}
+.bub.gotime svg{width:40%;height:40%;stroke-width:2}
+.bub.gotime::after{
+  content:"";position:absolute;inset:-2px;border-radius:50%;
+  border:1.5px solid rgba(46,196,182,.65);animation:ping 2.8s var(--ease) infinite;
+}
+.bub-label{
+  position:absolute;left:0;right:0;top:129px;text-align:center;
+  font-size:8px;font-weight:700;letter-spacing:.03em;color:#0B6E66;
+}
+
+/* ---------- watch app views (mirror the phone state) ---------- */
+.bubbles{transition:opacity .28s var(--ease),transform .28s var(--ease)}
+.w-screen.away .bubbles{opacity:0;transform:scale(.94);pointer-events:none}
+.bub.gotime{cursor:pointer;transition:transform .18s var(--ease)}
+.bub.gotime:active{transform:scale(.93)}
+
+.w-view{
+  position:absolute;inset:0;padding:20px 12px 18px;
+  display:flex;flex-direction:column;
+  opacity:0;visibility:hidden;transform:translateY(5px);
+  transition:opacity .26s var(--ease),transform .26s var(--ease),visibility .26s;
+}
+.w-view.is-active{opacity:1;visibility:visible;transform:none}
+.w-view[data-wview="prompt"],.w-view[data-wview="thinking"]{justify-content:center}
+
+/* options — no header, just three big rows */
+.w-q{margin:0 0 10px;font-size:12px;font-weight:700;letter-spacing:-.025em;line-height:1.2;text-align:center}
+.w-opts{display:flex;flex-direction:column;gap:6px}
+.w-opt{
+  display:flex;align-items:center;gap:9px;width:100%;padding:9px 10px;border-radius:11px;cursor:pointer;
+  border:1px solid rgba(12,36,42,.10);background:#FFFFFF;color:var(--text);font:inherit;text-align:left;
+  box-shadow:0 2px 6px -5px rgba(12,36,42,.5);
+  transition:background .2s,border-color .2s,transform .15s var(--ease);
+}
+.w-opt:active{transform:scale(.97)}
+.w-opt:hover{border-color:rgba(46,196,182,.55);background:rgba(46,196,182,.05)}
+.w-ok{
+  width:16px;height:16px;border-radius:5px;display:grid;place-items:center;flex:0 0 auto;
+  font-size:7px;font-weight:700;color:#0F7D74;background:rgba(46,196,182,.18);
+}
+.w-ol{font-size:9.5px;font-weight:700;letter-spacing:-.015em;white-space:nowrap}
+
+/* thinking — the phone's pierce, rotated: a scan line falls through three stacked bands */
+.w-place{
+  font-size:11px;font-weight:700;letter-spacing:-.01em;text-align:center;
+  color:var(--ink);margin-bottom:9px;white-space:nowrap;overflow:hidden;
+}
+.w-bands{position:relative;display:flex;flex-direction:column;gap:5px}
+.w-band{
+  position:relative;display:flex;align-items:center;justify-content:space-between;
+  height:28px;padding:0 8px;border-radius:8px;overflow:hidden;
+  border:1px solid rgba(46,196,182,.26);
+  background:
+    repeating-linear-gradient(180deg,rgba(46,196,182,.12) 0 1px,rgba(46,196,182,0) 1px 9px),
+    linear-gradient(180deg,rgba(46,196,182,.05),rgba(46,196,182,.01));
+  transition:background .35s var(--ease),border-color .35s var(--ease),box-shadow .35s var(--ease);
+}
+.w-bname{
+  position:relative;z-index:1;font-size:9px;letter-spacing:.08em;text-transform:uppercase;
+  font-weight:700;color:rgba(12,36,42,.42);transition:color .3s;
+}
+.w-bval{
+  position:relative;z-index:1;font-size:9px;font-weight:700;letter-spacing:-.01em;
+  color:rgba(12,36,42,.22);transition:color .3s;
+}
+.w-band .wash{position:absolute;inset:0;background:var(--bandc,#E8B84A);opacity:0;
+  transition:opacity .5s linear var(--wd,0ms);pointer-events:none}
+.w-band.wash{border-color:var(--bandb,#A87A10);box-shadow:0 4px 10px -6px var(--bandb,#A87A10)}
+.w-band.wash .wash{opacity:1}
+.w-band.wash .w-bname{color:rgba(12,36,42,.62)}
+.w-band.wash .w-bval{color:var(--ink)}
+.w-band.hit{border-color:#2EC4B6;border-width:1.5px;box-shadow:0 4px 10px -6px rgba(46,196,182,.9)}
+.w-band.hit .w-bname{color:#0B6E66}
+.w-band.hit .w-bval{color:var(--ink)}
+.w-band.hit::after{
+  content:"";position:absolute;right:9px;top:50%;width:8px;height:8px;border-radius:50%;
+  border:2px solid rgba(15,125,116,.75);transform:translateY(-50%);
+  animation:wRipple .6s var(--ease) forwards;
+}
+@keyframes wRipple{to{width:58px;height:58px;opacity:0;border-width:0}}
+.w-arrow{
+  position:absolute;left:-5px;right:-5px;top:-8px;height:3px;z-index:3;border-radius:4px;
+  background:linear-gradient(90deg,rgba(46,196,182,0),#2EC4B6 25%,#0F7D74 65%,rgba(46,196,182,0));
+  box-shadow:0 0 10px 1px rgba(46,196,182,.75);
+  filter:drop-shadow(0 0 5px rgba(46,196,182,.95));pointer-events:none;
+}
+.w-arrow::after{
+  content:"";position:absolute;left:50%;top:2px;margin-left:-5px;width:0;height:0;
+  border-left:5px solid transparent;border-right:5px solid transparent;border-top:6px solid #0F7D74;
+}
+.w-cap{
+  font-size:10px;font-weight:700;letter-spacing:-.01em;text-align:center;
+  color:var(--muted);margin-top:10px;min-height:13px;transition:opacity .16s;
+}
+
+/* result — one number, one verdict, one time */
+.w-view[data-wview="result"]{align-items:center}
+.w-res-head{
+  width:100%;display:flex;align-items:center;justify-content:space-between;gap:6px;
+}
+.w-res-place{font-size:10px;font-weight:700;letter-spacing:-.01em;color:var(--ink);white-space:nowrap;overflow:hidden}
+.w-res-body{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:0}
+.w-gauge{width:88px;height:88px}
+.w-word{
+  display:inline-flex;align-items:center;gap:4px;font-size:8.5px;font-weight:700;
+  letter-spacing:.12em;text-transform:uppercase;line-height:1;
+  padding:4px 8px;border-radius:999px;border:1px solid currentColor;white-space:nowrap;
+}
+.w-word::before{content:"";width:4px;height:4px;border-radius:50%;background:currentColor}
+.w-word.good{color:#0F7D74;background:rgba(46,196,182,.14)}
+.w-word.mid{color:#96690B;background:rgba(232,184,74,.20)}
+.w-word.bad{color:#B8453E;background:rgba(232,112,104,.16)}
+.w-when{margin-top:5px;font-size:13.5px;font-weight:700;letter-spacing:-.025em;white-space:nowrap}
+.w-acts{width:100%;display:flex;gap:5px;margin-top:auto;padding-top:5px}
+.w-btn{
+  flex:1;padding:7px 0;border-radius:8px;font:inherit;font-size:9px;font-weight:700;cursor:pointer;
+  border:1px solid rgba(12,36,42,.14);background:#FFFFFF;color:var(--text);
+  transition:background .2s,border-color .2s,transform .15s var(--ease);
+}
+.w-btn:active{transform:scale(.96)}
+.w-btn.primary{background:rgba(46,196,182,.14);border-color:rgba(46,196,182,.5);color:#0F7D74}
+
+/* ---------- watch · result rings (same 160-unit box as the phone gauge) ---------- */
+.w-view[data-wview="home"]{padding:0}
+.watch.attract #gotimeBub{animation:breathe 1.9s ease-in-out infinite}
+.w-when .w-delta{
+  display:inline-block;margin-left:6px;vertical-align:2px;
+  font-size:8px;font-weight:700;line-height:1;letter-spacing:-.01em;white-space:nowrap;
+  padding:4px 7px;border-radius:999px;color:#0F7D74;background:rgba(46,196,182,.16);
+  border:1px solid rgba(46,196,182,.42);font-variant-numeric:tabular-nums;
+}
+.w-gauge .arc{fill:none;stroke-linecap:round;transform:rotate(-90deg);transform-origin:80px 80px;
+  transition:stroke-dashoffset .95s var(--ease)}
+.w-gauge .num{fill:var(--text);font-weight:700;font-size:46px;text-anchor:middle;letter-spacing:-.03em}
+.w-gauge .num.dual{font-size:38px}
+.w-gauge .sub{fill:var(--dim);font-size:9px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;text-anchor:middle}
+
+@media (max-width:1250px) and (min-width:1001px){
+  .layout{padding:0 36px;gap:26px}
+  .intro{max-width:320px}
+}
+
+@media (max-width:1000px){
+  .layout{grid-template-columns:1fr;justify-items:center;align-items:center;gap:26px;
+    height:auto;overflow:visible;padding:8px 20px 30px}
+  .intro{grid-area:auto;max-width:520px;padding-bottom:0;text-align:center}
+  .device{grid-area:auto;justify-self:center;margin:0}
+  .watch-stage{grid-area:auto;margin:6px 0 0}
+  .phone-wrap{--s:1}
+  .intro h1{font-size:32px}
+  .api{display:inline-block;margin-top:20px}
+  .note{margin:18px auto 0}
+}
+@media (max-width:520px){
+  .topbar{padding:16px 20px}
+  .logo{height:44px}
+  .layout{padding:8px 16px 28px}
+  .phone-wrap{--s:1;width:306px;height:624px}
+  .phone{width:306px;height:624px;border-radius:44px}
+  .screen{border-radius:36px}
+  .view{padding:46px 15px 16px}
+  .res{padding:42px 15px 14px}
+  .tile{height:92px;padding:11px;border-radius:17px}
+  .gauge{width:112px;height:112px}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.12s !important}
+  .pane.hit::after{animation:none;opacity:0}
+}
+html[data-mode="phone"] .topbar,html[data-mode="phone"] .intro,html[data-mode="phone"] .watch-stage,
+html[data-mode="devices"] .topbar,html[data-mode="devices"] .intro{display:none}
+html[data-mode="phone"] .layout{display:grid;grid-template-columns:1fr;justify-items:center;align-items:start;gap:0;height:auto;min-height:100vh;overflow:visible;padding:0}
+html[data-mode="phone"] .device{grid-area:auto;justify-self:center;align-self:start;margin:0}
+html[data-mode="devices"] .layout{grid-template-columns:minmax(250px,.8fr) minmax(320px,1fr);gap:32px;justify-content:center;align-items:center;max-width:930px;height:100vh;margin:0 auto;padding:0 36px}
+html[data-mode="devices"] .watch-stage{grid-area:1/1;justify-self:center;margin:0}
+html[data-mode="devices"] .device{grid-area:1/2;justify-self:center;margin:0}
+@media(max-width:650px){
+  html[data-mode="devices"] .layout{grid-template-columns:1fr;gap:12px;height:auto;min-height:100vh;padding:10px 16px 26px}
+  html[data-mode="devices"] .device{grid-area:auto;order:1}
+  html[data-mode="devices"] .watch-stage{grid-area:auto;order:2;margin:0}
+}
+</style>
+</head>
+<body>
+<div class="bg"></div>
+
+<header class="topbar">
+  <img class="logo" src="data:image/jpeg;base64,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" alt="FerryWellCo">
+</header>
+
+<main class="layout">
+  <section class="intro">
+    <h1>See what changes if a run starts later</h1>
+    <p class="lede">GOTime compares conditions for a planned run across available times. This example shows how that comparison could appear inside a wellness app.</p>
+    <p class="api-label">Illustrative API response</p>
+    <div class="api" id="api"></div>
+    <p class="note">Illustrative prototype · sample conditions and experimental score · 45-minute run, moderate pace</p>
+  </section>
+
+  <!-- SMARTWATCH (companion app — mirrors the phone flow) -->
+  <section class="watch-stage" aria-label="Companion smartwatch app">
+    <div class="watch-wrap">
+      <div class="watch" id="watch">
+        <div class="strap strap-t"></div>
+        <div class="strap strap-b"></div>
+        <div class="case">
+          <div class="crown"></div>
+          <div class="crown-btn"></div>
+          <div class="w-screen">
+            <div class="w-view is-active" data-wview="home">
+            <div class="bubbles">
+              <!-- run -->
+              <div class="bub tint" style="left:14px;top:44px;width:40px;height:40px">
+                <svg viewBox="0 0 24 24"><circle cx="13.5" cy="4.5" r="2"/><path d="M8.5 20.5l3-6-2.2-3.6 3.6-1.8 2.4 3.6 2.7 1"/><path d="M9.9 9.9L6.5 12.6"/></svg>
+              </div>
+              <!-- cycle -->
+              <div class="bub" style="left:112px;top:40px;width:38px;height:38px">
+                <svg viewBox="0 0 24 24"><circle cx="6" cy="16.5" r="3.2"/><circle cx="18" cy="16.5" r="3.2"/><path d="M6 16.5l4-6h3.2l2.8 6"/><path d="M10.4 10.5L9.2 7.4h4"/></svg>
+              </div>
+              <!-- sleep -->
+              <div class="bub" style="left:8px;top:100px;width:42px;height:42px">
+                <svg viewBox="0 0 24 24"><path d="M15.5 4.2a7.2 7.2 0 104.6 11.1A6.3 6.3 0 0115.5 4.2z"/></svg>
+              </div>
+              <!-- heart -->
+              <div class="bub warm" style="left:116px;top:100px;width:38px;height:38px">
+                <svg viewBox="0 0 24 24"><path d="M12 19.5S5 15.4 5 10.4a3.9 3.9 0 017-2.3 3.9 3.9 0 017 2.3c0 5-7 9.1-7 9.1z"/></svg>
+              </div>
+              <!-- weather -->
+              <div class="bub gold" style="left:64px;top:26px;width:32px;height:32px">
+                <svg viewBox="0 0 24 24"><circle cx="8.4" cy="8.4" r="2.5"/><path d="M8.4 3.6v1.3M3.6 8.4h1.3M4.9 4.9l.9.9"/><path d="M10.6 18h6.2a3 3 0 000-6 4.1 4.1 0 00-7.7 1.1A2.5 2.5 0 0010.6 18z"/></svg>
+              </div>
+              <!-- activity -->
+              <div class="bub tint" style="left:108px;top:6px;width:30px;height:30px">
+                <svg viewBox="0 0 24 24"><path d="M3.6 12.6h3.1l2-5.2 3 10.4 2-5.2h6.7"/></svg>
+              </div>
+              <!-- music -->
+              <div class="bub" style="left:26px;top:10px;width:28px;height:28px">
+                <svg viewBox="0 0 24 24"><path d="M9.6 17.2V7.4l7.8-1.8v9.8"/><circle cx="7.5" cy="17.6" r="2"/><circle cx="15.3" cy="15.8" r="2"/></svg>
+              </div>
+              <!-- timer -->
+              <div class="bub" style="left:10px;top:152px;width:32px;height:32px">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="13" r="7.2"/><path d="M12 9.4v3.8l2.5 1.7"/><path d="M9.7 3.6h4.6"/></svg>
+              </div>
+              <!-- breath -->
+              <div class="bub" style="left:60px;top:146px;width:34px;height:34px">
+                <svg viewBox="0 0 24 24"><path d="M4 9.2h8.6a2.5 2.5 0 10-2.5-2.5"/><path d="M4 14.4h11.2a2.5 2.5 0 11-2.5 2.5"/></svg>
+              </div>
+              <!-- alarm -->
+              <div class="bub" style="left:118px;top:150px;width:30px;height:30px">
+                <svg viewBox="0 0 24 24"><path d="M12 4.4a5.3 5.3 0 015.3 5.3c0 4 1.4 5.3 1.4 5.3H5.3s1.4-1.3 1.4-5.3A5.3 5.3 0 0112 4.4z"/><path d="M10.2 18.4a2 2 0 003.6 0"/></svg>
+              </div>
+              <!-- GOTime -->
+              <div class="bub gotime" id="gotimeBub" role="button" tabindex="0" aria-label="Open GOTime" style="left:52px;top:69px;width:58px;height:58px">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.2" stroke-dasharray="3.4 3.1"/><path d="M12 7.6V12l3 1.9"/></svg>
+              </div>
+              <div class="bub-label">GOTime</div>
+            </div>
+            </div><!-- /watch home -->
+
+            <!-- OPTIONS -->
+            <div class="w-view" data-wview="prompt">
+              <p class="w-q">When to run?</p>
+              <div class="w-opts">
+                <button class="w-opt" data-slot="now">
+                  <span class="w-ok">1</span><span class="w-ol">Now</span>
+                </button>
+                <button class="w-opt" data-slot="soon">
+                  <span class="w-ok">2</span><span class="w-ol">Next 2 h</span>
+                </button>
+                <button class="w-opt" data-slot="later">
+                  <span class="w-ok">3</span><span class="w-ol">2–6 h</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- THINKING -->
+            <div class="w-view" data-wview="thinking">
+              <div class="w-place" id="wPlace">Paris</div>
+              <div class="w-bands">
+                <div class="w-band"><i class="wash"></i><span class="w-bname">Heat</span><span class="w-bval">—</span></div>
+                <div class="w-band"><i class="wash"></i><span class="w-bname">Air</span><span class="w-bval">—</span></div>
+                <div class="w-band"><i class="wash"></i><span class="w-bname">Wind</span><span class="w-bval">—</span></div>
+                <div class="w-arrow" id="wArrow"></div>
+              </div>
+              <div class="w-cap" id="wCap">Scanning 3 layers</div>
+            </div>
+
+            <!-- RESULT -->
+            <div class="w-view" data-wview="result" id="wResult"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="device">
+    <div class="phone-wrap">
+    <div class="phone" id="phone">
+      <div class="screen">
+        <div class="island"></div>
+        <div class="statusbar">
+          <span id="sbTime">15:20</span>
+          <span class="sb-right">
+            <span class="sb-dots"><i></i><i></i><i></i></span>
+            <span class="sb-bar"></span>
+          </span>
+        </div>
+
+        <!-- HOME -->
+        <div class="view is-active" data-view="home">
+          <div class="hi">
+            <div class="hi-top" id="homeDay">Today</div>
+            <div class="hi-big">Fitness App</div>
+            <div class="hi-sub" id="homeSub">User location · 34 °C · 16 km/h wind</div>
+          </div>
+          <div class="tiles" id="tiles">
+            <div class="tile" data-mock="Run">
+              <div class="tile-ico"><svg viewBox="0 0 24 24"><circle cx="13.5" cy="4.5" r="2"/><path d="M8.5 20.5l3-6-2.2-3.6 3.6-1.8 2.4 3.6 2.7 1"/><path d="M9.9 9.9L6.5 12.6"/></svg></div>
+              <div class="tile-lbl">Run</div>
+              <div class="tile-sub">5.2 km last week</div>
+            </div>
+            <div class="tile" data-mock="Cycle">
+              <div class="tile-ico"><svg viewBox="0 0 24 24"><circle cx="6" cy="16.5" r="3.2"/><circle cx="18" cy="16.5" r="3.2"/><path d="M6 16.5l4-6h3.2l2.8 6"/><path d="M10.4 10.5L9.2 7.4h4"/></svg></div>
+              <div class="tile-lbl">Cycle</div>
+              <div class="tile-sub">0 rides this week</div>
+            </div>
+            <div class="tile" data-mock="Strength">
+              <div class="tile-ico"><svg viewBox="0 0 24 24"><path d="M4 9.5v5M7 7v10M17 7v10M20 9.5v5M7 12h10"/></svg></div>
+              <div class="tile-lbl">Strength</div>
+              <div class="tile-sub">2 sessions</div>
+            </div>
+            <div class="tile gotime" id="gotimeTile">
+              <div class="tile-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.2" stroke-dasharray="3.4 3.1"/><path d="M12 7.6V12l3 1.9"/></svg></div>
+              <div class="tile-lbl">GOTime</div>
+              <div class="tile-sub">Best time to go</div>
+            </div>
+            <div class="tile" data-mock="Sleep">
+              <div class="tile-ico"><svg viewBox="0 0 24 24"><path d="M15.5 4.2a7.2 7.2 0 104.6 11.1A6.3 6.3 0 0115.5 4.2z"/></svg></div>
+              <div class="tile-lbl">Sleep</div>
+              <div class="tile-sub">7 h 12 m</div>
+            </div>
+            <div class="tile profile" id="profileTile">
+              <div class="tile-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="8.2" r="3.3"/><path d="M5.8 19.4c.9-3 3.2-4.6 6.2-4.6s5.3 1.6 6.2 4.6"/></svg></div>
+              <div class="tile-lbl">Profile</div>
+              <div class="tile-sub" id="profileSub">Example profile · BMI 22.0</div>
+            </div>
+          </div>
+          <div class="tap-hint">Tap GOTime</div>
+          <div class="homenav"><i></i><i></i><i></i><i></i></div>
+        </div>
+
+        <!-- PROMPT -->
+        <div class="view" data-view="prompt">
+          <div class="vhead">
+            <button class="back" id="promptBack" aria-label="Back">‹</button>
+            <div class="vtitle">GOTime</div>
+          </div>
+          <h2 class="prompt-q">When do you want<br>to go for a run?</h2>
+          <p class="prompt-sub" id="promptSub">45 min · moderate pace · Paris, France</p>
+          <div class="opts" id="opts">
+            <button class="opt" data-slot="now">
+              <span class="opt-k">1</span>
+              <span class="opt-body">
+                <span class="opt-main">Now</span>
+                <span class="opt-sub" id="optNowSub">Right now</span>
+              </span>
+              <span class="opt-go">›</span>
+            </button>
+            <button class="opt" data-slot="soon">
+              <span class="opt-k">2</span>
+              <span class="opt-body">
+                <span class="opt-main">In the next 2 hours</span>
+                <span class="opt-sub" id="optSoonSub">Is it worth waiting?</span>
+              </span>
+              <span class="opt-go">›</span>
+            </button>
+            <button class="opt" data-slot="later">
+              <span class="opt-k">3</span>
+              <span class="opt-body">
+                <span class="opt-main">Sometime in 2–6 hours</span>
+                <span class="opt-sub" id="optLaterSub">Find my window</span>
+              </span>
+              <span class="opt-go">›</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- THINKING -->
+        <div class="view think" data-view="thinking" id="thinkView">
+          <div class="pierce-head">
+            <div class="ph-place" id="locPlace">Paris, France</div>
+          </div>
+          <div class="pierce">
+            <div class="pane" data-layer="heat">
+              <i class="wash"></i>
+              <span class="pane-name">Heat</span>
+              <span class="pane-val">—</span>
+            </div>
+            <div class="pane" data-layer="air">
+              <i class="wash"></i>
+              <span class="pane-name">Air</span>
+              <span class="pane-val">—</span>
+            </div>
+            <div class="pane" data-layer="wind">
+              <i class="wash"></i>
+              <span class="pane-name">Wind</span>
+              <span class="pane-val">—</span>
+            </div>
+            <div class="arrow" id="pierceArrow"></div>
+          </div>
+          <div class="think-cap" id="thinkCap">Scanning 3 data layers…</div>
+          <div class="progress"><i id="progressBar"></i></div>
+        </div>
+
+        <!-- RESULT -->
+        <div class="view res" data-view="result" id="resView"></div>
+
+        <!-- PROFILE — the only screen that changes the model -->
+        <div class="view" data-view="profile">
+          <div class="vhead">
+            <button class="back" id="profileBack" aria-label="Back">‹</button>
+            <div class="vtitle">Profile</div>
+          </div>
+          <h2 class="prompt-q">See how the<br>example changes</h2>
+          <p class="prompt-sub">Change the example profile to see how the score responds. The outdoor conditions stay the same.</p>
+
+          <div class="pf-label">Sex</div>
+          <div class="seg" id="sexSeg">
+            <button class="seg-b is-on" data-sex="female">Female</button>
+            <button class="seg-b" data-sex="male">Male</button>
+          </div>
+
+          <div class="pf-row">
+            <span class="pf-label">BMI</span>
+            <span class="pf-val" id="bmiVal">22.0</span>
+          </div>
+          <div class="pf-bmi">
+            <button class="pf-step" id="bmiDown" aria-label="Lower BMI">−</button>
+            <input class="pf-range" id="bmiRange" type="range" min="16" max="35" step="0.5" value="22" aria-label="BMI">
+            <button class="pf-step" id="bmiUp" aria-label="Raise BMI">+</button>
+          </div>
+          <div class="pf-preview" aria-live="polite">
+            <div class="pf-preview-line"><span>Starting example</span><strong id="profileBaseScore">—</strong></div>
+            <div class="pf-preview-line"><span>This example profile</span><strong id="profileScore">—</strong></div>
+            <small>Same conditions · 45-minute run · experimental score</small>
+          </div>
+          <div class="pf-actions"><button class="btn primary" id="profileDone">Compare times</button></div>
+        </div>
+
+        <div class="toast" id="toast"></div>
+      </div>
+    </div>
+    </div>
+  </section>
+</main>
+
+<script>
+(function(){
+'use strict';
+
+var Q = new URLSearchParams(location.search);
+var FAST = Q.has('fast');
+var TUNE = Q.has('tune');
+var THINK_MS = FAST ? 280 : 2000;
+
+/* ============================================================
+   1. helpers
+   ============================================================ */
+function clamp(v,a,b){ return Math.min(b,Math.max(a,v)); }
+function pad(n){ return n<10 ? '0'+n : ''+n; }
+function fmtTime(min){
+  min = Math.round(min);
+  var h = Math.floor(min/60)%24, m = min%60;
+  return pad(h)+':'+pad(m);
+}
+function fmtNum(v,d){ return v.toFixed(d===undefined?1:d); }
+
+// shrink a heading until it fits its container, so any place name stays on one line
+function fitText(el, maxPx, minPx){
+  if (!el) return;
+  var max = maxPx || 19, min = minPx || 11.5, size = max;
+  var box = el.parentElement || el;
+  el.style.fontSize = size+'px';
+  while (size > min && el.scrollWidth > box.clientWidth - 8){
+    size -= 0.5;
+    el.style.fontSize = size+'px';
+  }
+}
+function num(v){ return String(Math.round(v)); }
+
+// blend a hex colour toward white — used for the panel washes
+function tint(hex, a){
+  var r = parseInt(hex.substr(1,2),16), g = parseInt(hex.substr(3,2),16), b = parseInt(hex.substr(5,2),16);
+  function m(v){ return Math.round(v*a + 255*(1-a)); }
+  return 'rgb('+m(r)+','+m(g)+','+m(b)+')';
+}
+
+/* ============================================================
+   2. scenario  (single source of truth for every number on screen)
+   ============================================================ */
+var SCENARIO = {
+  nowMinutes: 15*60+20,        // frozen "now" = 15:20
+  place: '4th arrondissement, Paris',
+  durationMin: 45,
+  // hourly control points, 06:00 .. 22:00
+  temp:[21.6,23.0,25.0,27.0,29.0,30.6,32.0,33.2,33.8,34.0,33.0,30.2,27.0,24.4,22.8,21.8,21.2],
+  rh:  [78,75,71,66,60,55,50,46,43,41,42,46,51,57,63,69,74],
+  wind:[7,8,9,10,11,12,13,14,15,16,16.5,20,22,23,21,18,15],
+  air: [52,58,54,44,38,36,40,46,54,58,56,48,40,33,29,35,40]
+};
+
+var START = 6*60, END = 22*60, STEP = 15;
+var NPT = SCENARIO.temp.length;
+
+function seriesAt(arr, minutes){
+  var h = (minutes - START)/60;
+  var i = Math.floor(h);
+  i = clamp(i, 0, NPT-2);
+  var f = clamp(h - i, 0, 1);
+  return arr[i] + (arr[i+1]-arr[i])*f;
+}
+
+// Steadman-style apparent temperature: wind genuinely cools a hot afternoon
+function apparent(t, rh, windKmh){
+  var es = 6.105 * Math.exp(17.27*t/(237.7+t));   // vapour pressure, hPa
+  var e  = (rh/100) * es;
+  var ws = windKmh/3.6;                            // m/s
+  return t + 0.33*e - 0.70*ws - 4.0;
+}
+
+// Illustrative profile controls, deliberately not persisted.
+var PROFILE = { sex:'female', bmi:22 };
+
+// Experimental multipliers for demonstrating a changing output, not validated
+// estimates of individual risk or a clinical interpretation of BMI or sex.
+function profileFactors(p){
+  p = p || PROFILE;
+  var female = p.sex !== 'male';
+  var bmi = (p.bmi === undefined ? 22 : p.bmi);
+  var off = Math.max(0, Math.abs(bmi - 22) - 2);   // 0 anywhere in 20–24, then 1:1 either way
+  return {
+    heat: (female ? 1.15 : 1.00) * clamp(1 + 0.030*off, 1, 1.70),
+    air:  (female ? 1.08 : 1.00) * clamp(1 + 0.018*off, 1, 1.40)
+  };
+}
+
+function sampleAt(m, P){
+  var temp = seriesAt(SCENARIO.temp, m);
+  var rh   = seriesAt(SCENARIO.rh,   m);
+  var wind = seriesAt(SCENARIO.wind, m);
+  var air  = seriesAt(SCENARIO.air,  m);           // composite air-quality stress, 0 = clean
+  var at   = apparent(temp, rh, wind);
+  var pf   = profileFactors(P);
+
+  var heatRaw = clamp((at-24)/9, 0, 1);
+  var relief  = clamp(wind/28, 0, 1) * 0.12;       // breeze helps when it is hot
+  var heatBase= clamp(heatRaw - relief, 0, 1);
+  var airBase = clamp((air-18)/62, 0, 1);
+  var windP   = clamp((wind-24)/30, 0, 1);         // gusts start to cost you
+
+  // The profile scales the example score and heat estimate; ambient air stays fixed.
+  var heatP   = clamp(heatBase * pf.heat, 0, 1);
+  var airP    = clamp(airBase  * pf.air,  0, 1);
+  var heatEff = Math.min(heatBase * pf.heat, 1.4);
+  var airEff  = Math.min(air * pf.air, 140);
+
+  var score = Math.round(clamp(100 - (0.50*heatP + 0.35*airP + 0.15*windP)*100, 8, 96));
+  return {m:m, temp:temp, rh:rh, wind:wind, air:air, at:at,
+          heatRaw:heatRaw, heatEff:heatEff, airEff:airEff,
+          heatP:heatP, airP:airP, windP:windP, score:score};
+}
+
+// Compare complete 45-minute runs at each candidate start time.
+function runAt(m, P){
+  var start = sampleAt(m, P), sum = 0, n = 0;
+  for (var t=m; t<=m+SCENARIO.durationMin && t<=END; t+=STEP){
+    sum += sampleAt(t, P).score; n++;
+  }
+  start.runScoreRaw = sum/n;
+  start.score = Math.round(start.runScoreRaw);
+  return start;
+}
+
+var SAMPLES = [], NOW = null;
+function rebuildModel(){
+  SAMPLES = [];
+  for (var mm = START; mm+SCENARIO.durationMin <= END; mm += STEP) SAMPLES.push(runAt(mm));
+  NOW = runAt(SCENARIO.nowMinutes);
+}
+rebuildModel();
+
+/* ============================================================
+   3. bands, colours, factor cards
+   ============================================================ */
+var C = { good:'#0F7D74', mid:'#A87A10', warn:'#B65F16', bad:'#C04740' };
+
+function scoreColor(s){ return s>=70 ? C.good : (s>=45 ? C.mid : C.bad); }
+function toneOf(s){ return s>=70 ? 'good' : (s>=45 ? 'mid' : 'bad'); }
+function verdictWord(s){ return s>=70 ? 'GO' : (s>=45 ? 'COMPARE' : 'WAIT'); }
+// the screen shows a 0–10 score; everything internal stays 0–100
+function fmtScore(s){ return (s/10).toFixed(1); }
+
+// `level` is the ordinal severity of the band, so two readings can be compared
+// Heat labels use the experimental profile estimate; air and wind labels
+// describe the unchanged outdoor conditions at the start of the run.
+function heatFactor(s){
+  var raw=s.heatEff, band, col, lvl;
+  if(raw < 0.2){ band='Low';        col=C.good; lvl=0; }
+  else if(raw < 0.4){ band='Moderate'; col=C.good; lvl=1; }
+  else if(raw < 0.6){ band='High';    col=C.mid;  lvl=2; }
+  else if(raw < 0.82){ band='Very high'; col=C.warn; lvl=3; }
+  else { band='Serious';             col=C.bad;  lvl=4; }
+  return { name:'Heat stress', band:band, color:col, level:lvl };
+}
+
+function airFactor(s){
+  var raw = s.air;                                    // illustrative ambient air signal
+  var band, col, lvl;
+  if(raw < 22){ band='Good';          col=C.good; lvl=0; }
+  else if(raw < 40){ band='Fair'; col=C.good; lvl=1; }
+  else if(raw < 54){ band='Poor';     col=C.mid;  lvl=2; }
+  else if(raw < 68){ band='Very poor'; col=C.warn; lvl=3; }
+  else { band='Extremely poor';             col=C.bad;  lvl=4; }
+  return { name:'Air quality', band:band, color:col, level:lvl };
+}
+
+function windFactor(s){
+  var w=s.wind, band, col, lvl;
+  if(w <= 12){ band='Light';            col=C.good; lvl=0; }
+  else if(w <= 20){ band='Gentle breeze'; col=C.good; lvl=1; }
+  else if(w <= 28){ band='Moderate breeze'; col=C.good; lvl=2; }
+  else { band='Gusty';                  col=C.warn; lvl=3; }
+  return { name:'Wind', band:band, color:col, level:lvl };
+}
+
+function factorsOf(s){ return [heatFactor(s), airFactor(s), windFactor(s)]; }
+
+// pair the current reading with the reading at a future moment, so the UI can
+// show "High → Moderate" and know whether that is an improvement or a worsening
+function withChange(nowList, nextList){
+  return nextList.map(function(f, i){
+    var n = nowList[i], dir = 0;
+    if (f.level < n.level) dir = -1;        // cooler / cleaner / calmer
+    else if (f.level > n.level) dir = 1;    // getting worse
+    return { name:f.name, band:f.band, color:f.color, level:f.level,
+             from:n.band, fromColor:n.color, dir:dir };
+  });
+}
+
+/* ============================================================
+   4. window searches
+   ============================================================ */
+function bestInRange(from, to){
+  var best = null;
+  from = START + Math.ceil((from-START)/STEP)*STEP;
+  for (var m=from; m<=to && m+SCENARIO.durationMin<=END; m+=STEP){
+    var s = runAt(m);
+    if (!best || s.runScoreRaw > best.runScoreRaw) best = s;
+  }
+  return best || runAt(from);
+}
+
+function bestWindow(from, until){
+  var dur = SCENARIO.durationMin, best = null;
+  // snap to the 15-minute grid so every option reports the same window
+  from = START + Math.ceil((from-START)/STEP)*STEP;
+  for (var m=from; m+dur<=END && (until === undefined || m<=until); m+=STEP){
+    var mean = runAt(m).runScoreRaw;
+    if (!best || mean > best.mean + 0.01) best = { mean:mean, start:m, end:m+dur };
+  }
+  if (!best){ best = { mean:runAt(from).runScoreRaw, start:from, end:from+dur }; }
+  best.score = Math.round(best.mean);
+  best.startScore = best.score;
+  return best;
+}
+
+/* ============================================================
+   5. answers — one per option
+   ============================================================ */
+function buildAnswer(slot){
+  var nowM = SCENARIO.nowMinutes;
+  var hf = heatFactor(NOW), qf = airFactor(NOW), wf = windFactor(NOW);
+  var bestToday = bestWindow(nowM);
+
+  if (slot === 'now'){
+    var sc = NOW.score;
+    var v;
+    if (sc >= 70){
+      v = '<strong>Now looks like a good option.</strong> The example score for this 45-minute run is close to the best remaining window today.';
+    } else if (sc >= 45){
+      v = '<strong>Another time may be better.</strong> Compare this 45-minute run with a later window before making a plan.';
+    } else {
+      v = '<strong>A later window looks better for this run.</strong> The current example has high heat stress and '+qf.band.toLowerCase()+' air quality. Compare another time below.';
+    }
+    return {
+      slot:'now', chipText:verdictWord(sc), chipTone:toneOf(sc), chipSub:'Right now · '+fmtTime(nowM),
+      hero:{type:'gauge', score:sc},
+      verdict:v,
+      factors:[hf, qf, wf],
+      foot:'Best window today '+fmtTime(bestToday.start)+'–'+fmtTime(bestToday.end)
+        + ' · example score '+fmtScore(bestToday.score)+'/10'
+    };
+  }
+
+  if (slot === 'soon'){
+    var to = nowM + 120;
+    var b = bestInRange(nowM, to);
+    var gain = b.score - NOW.score;
+    var chip = gain >= 15 ? 'WORTH WAITING' : (gain >= 5 ? 'SLIGHT GAIN' : 'NOT WORTH IT');
+    var tone = gain >= 15 ? 'good' : (gain >= 5 ? 'mid' : 'bad');
+    var v2;
+    if (gain >= 5){
+      v2 = '<strong>'+fmtTime(b.m)+' looks better for this run.</strong> Across the same 45-minute run, the example score rises from '
+        + fmtScore(NOW.score)+' to '+fmtScore(b.score)+'. The conditions at the start of that run are shown below.';
+    } else {
+      v2 = '<strong>The next two hours make little difference in this example.</strong> The 45-minute run score moves from '
+        + fmtScore(NOW.score)+' to '+fmtScore(b.score)+'.';
+    }
+    return {
+      slot:'soon', chipText:chip, chipTone:tone, chipSub:'Next 2 hours',
+      hero:{type:'delta', from:NOW.score, to:b.score, gain:gain, target:b.m},
+      window:{from:nowM, to:to, opt:b.m},
+      verdict:v2,
+      factors:withChange([hf,qf,wf], factorsOf(b)),
+      foot:'Best of today '+fmtTime(bestToday.start)+'–'+fmtTime(bestToday.end)
+        + ' · example score '+fmtScore(bestToday.score)+'/10'
+    };
+  }
+
+  /* later */
+  var win = bestWindow(nowM + 120, nowM + 360);
+  var s0 = runAt(win.start);
+  var h2 = heatFactor(s0), q2 = airFactor(s0);
+  return {
+    slot:'later', chipText:'BEST WINDOW', chipTone:'good', chipSub:'In 2–6 hours',
+    hero:{type:'window', start:win.start, end:win.end, score:win.startScore},
+    window:{from:nowM + 120, to:nowM + 360, opt:win.start},
+    verdict:'<strong>'+fmtTime(win.start)+'–'+fmtTime(win.end)+' looks better for this run.</strong> The example has '
+      + h2.band.toLowerCase()+' heat stress and '+q2.band.toLowerCase()+' air quality at the start of that window.',
+    factors:withChange([hf,qf,wf], factorsOf(s0)),
+    foot:'45-minute run score · now '+fmtScore(NOW.score)+'/10 · later '+fmtScore(win.score)+'/10'
+  };
+}
+
+/* ============================================================
+   6. rendering
+   ============================================================ */
+var phone    = document.getElementById('phone');
+var resView  = document.getElementById('resView');
+var toastEl  = document.getElementById('toast');
+
+/* the watch is a second surface for the same state — no separate data or logic */
+var watch    = document.getElementById('watch');
+var wScreen  = document.querySelector('.w-screen');
+var wResult  = document.getElementById('wResult');
+// a watch should not shout a full postal address; the city is enough at 8px
+var SHORT_PLACE = SCENARIO.place.split(',').pop().trim();
+
+var state = { view:'home', slot:null, ans:null };
+
+function setView(name){
+  var views = document.querySelectorAll('.view');
+  for (var i=0;i<views.length;i++){
+    views[i].classList.toggle('is-active', views[i].getAttribute('data-view') === name);
+  }
+  // the watch mirrors the phone, but it has no profile editor — it waits on its home screen
+  var wName = (name === 'profile') ? 'home' : name;
+  wScreen.classList.toggle('away', wName !== 'home');
+  var wviews = wScreen.querySelectorAll('.w-view');
+  for (var k=0;k<wviews.length;k++){
+    wviews[k].classList.toggle('is-active', wviews[k].getAttribute('data-wview') === wName);
+  }
+  state.view = name;
+  toastEl.classList.remove('on');
+  if (name !== 'result') document.body.classList.remove('is-result');
+}
+
+/* ---------- gauge (0–10 on screen) ---------- */
+function gaugeHTML(score, uid, cls){
+  var r = 62, c = 2*Math.PI*r;
+  uid = uid || '';
+  return '<svg class="'+(cls || 'gauge')+'" viewBox="0 0 160 160" role="img" aria-label="GOTime score '+fmtScore(score)+' out of 10">'
+    + '<circle class="g-track" cx="80" cy="80" r="'+r+'"/>'
+    + '<circle class="g-arc" id="gArc'+uid+'" cx="80" cy="80" r="'+r+'" stroke="'+scoreColor(score)
+    + '" style="stroke-dasharray:'+c.toFixed(1)+';stroke-dashoffset:'+c.toFixed(1)+'"/>'
+    + '<text class="g-num" x="80" y="84" id="gNum'+uid+'">0.0</text>'
+    + '<text class="g-sub" x="80" y="105">out of 10</text>'
+    + '</svg>';
+}
+
+function animGauge(score, uid){
+  var arc = document.getElementById('gArc'+(uid||''));
+  var numEl = document.getElementById('gNum'+(uid||''));
+  if (!arc || !numEl) return;
+  var c = 2*Math.PI*62, dur = 1050;
+  function settle(){
+    arc.style.strokeDashoffset = (c*(1-score/100)).toFixed(1);
+    numEl.textContent = (score/10).toFixed(1);
+  }
+  requestAnimationFrame(function(){
+    requestAnimationFrame(function(){ arc.style.strokeDashoffset = (c*(1-score/100)).toFixed(1); });
+  });
+  var t0 = performance.now();
+  (function step(t){
+    var k = clamp((t-t0)/dur,0,1), e = 1-Math.pow(1-k,3);
+    numEl.textContent = (score*e/10).toFixed(1);
+    if (k<1) requestAnimationFrame(step);
+  })(t0);
+  // rAF pauses in a background tab, so make sure the number still lands
+  setTimeout(settle, dur + 80);
+}
+
+/* ---------- hero variants ---------- */
+function heroHTML(ans){
+  var h = ans.hero;
+  if (h.type === 'gauge') return gaugeHTML(h.score);
+  if (h.type === 'delta'){
+    var col = h.gain >= 15 ? C.good : (h.gain >= 5 ? C.mid : C.bad);
+    var g = (h.gain/10).toFixed(1);
+    return '<div class="hero-delta">'
+      + '<div class="hd-num" style="color:'+col+'">'+(h.gain>0?'+':'')+g+'</div>'
+      + '<div class="hd-tail">points by<br><strong style="color:var(--text)">'+fmtTime(h.target)+'</strong></div>'
+      + '</div>'
+      + '<div class="hd-from">'+fmtScore(h.from)+' now <span class="arrow-r">→</span> '
+      + fmtScore(h.to)+' at '+fmtTime(h.target)+'</div>';
+  }
+  return '<div class="hero-window">'
+    + '<div class="hw-time">'+fmtTime(h.start)+'–'+fmtTime(h.end)+'</div>'
+    + '<div class="hw-meta">'+fmtScore(h.score)+'/10 for the 45-minute run · best in this range</div>'
+    + '</div>';
+}
+
+/* ---------- qualitative rows ---------- */
+function qrowsHTML(list){
+  return '<div class="qlist">' + list.map(function(f){
+    var right;
+    if (f.from === undefined){
+      // single reading (the "now" answer)
+      right = '<span class="qband" style="color:'+f.color+'">'+f.band+'</span>';
+    } else if (f.dir === 0){
+      // no band change — showing "High → High" would be noise
+      right = '<span class="qband"><span class="qto" style="color:'+f.color+'">'+f.band+'</span></span>';
+    } else {
+      // the arrow only shows direction; the target band keeps the colour
+      var glyph = f.dir < 0 ? '↘' : '↗';
+      right = '<span class="qband">'
+        +   '<span class="qfrom">'+f.from+'</span>'
+        +   '<span class="qarr">'+glyph+'</span>'
+        +   '<span class="qto" style="color:'+f.color+'">'+f.band+'</span>'
+        + '</span>';
+    }
+    return '<div class="qrow"><span class="qname">'+f.name+'</span>'+right+'</div>';
+  }).join('') + '</div>';
+}
+
+/* ---------- time series (deliberately minimal, shown faded) ---------- */
+var CW=290, CH=118, PL=20, PR=6, PT=8, PB=18;
+function cxp(m){ return PL + (m-START)/(END-START)*(CW-PL-PR); }
+function cyp(s){ return PT + (1-s/100)*(CH-PT-PB); }
+
+function smoothPath(pts){
+  if (pts.length < 2) return '';
+  var d = 'M '+pts[0][0].toFixed(1)+' '+pts[0][1].toFixed(1);
+  for (var i=0;i<pts.length-1;i++){
+    var p0 = pts[i-1] || pts[i], p1 = pts[i], p2 = pts[i+1], p3 = pts[i+2] || p2;
+    var c1x = p1[0] + (p2[0]-p0[0])/6, c1y = p1[1] + (p2[1]-p0[1])/6;
+    var c2x = p2[0] - (p3[0]-p1[0])/6, c2y = p2[1] - (p3[1]-p1[1])/6;
+    d += ' C '+c1x.toFixed(1)+' '+c1y.toFixed(1)+', '+c2x.toFixed(1)+' '+c2y.toFixed(1)
+       + ', '+p2[0].toFixed(1)+' '+p2[1].toFixed(1);
+  }
+  return d;
+}
+
+/* a vertical guide: dashed for "you are here", solid for "this is the answer".
+   The label sits on whichever side of the plot the curve is not occupying. */
+function labelYFor(score){ return cyp(score) < (PT+CH-PB)/2 ? CH-PB-3 : PT+7.5; }
+
+function markerHTML(x, color, label, side, dashed, y){
+  if (y === undefined) y = PT+7.5;
+  var dx = side === 'right' ? 4 : -4;
+  return '<line x1="'+x.toFixed(1)+'" y1="'+PT+'" x2="'+x.toFixed(1)+'" y2="'+(CH-PB)+'" '
+      + 'stroke="'+color+'" stroke-width="'+(dashed ? 1 : 1.3)+'"'
+      + (dashed ? ' stroke-dasharray="2.5 2.5"' : '')
+      + ' stroke-linecap="round"/>'
+    + '<text x="'+(x+dx).toFixed(1)+'" y="'+y.toFixed(1)+'" fill="'+color+'" font-size="7" '
+      + 'font-weight="700" text-anchor="'+(side === 'right' ? 'start' : 'end')+'" '
+      + 'stroke="#FBFEFE" stroke-width="2.4" paint-order="stroke" stroke-linejoin="round">'+label+'</text>';
+}
+
+function chartMarkup(ans){
+  var h = ans.hero, dotM, dotS;
+  if (h.type === 'delta'){ dotM = h.target; dotS = h.to; }
+  else if (h.type === 'window'){ dotM = h.start; dotS = h.score; }
+  else { dotM = SCENARIO.nowMinutes; dotS = h.score; }
+
+  var out = [];
+  out.push('<defs>'
+    + '<linearGradient id="chArea" x1="0" y1="0" x2="0" y2="1">'
+    +   '<stop offset="0%" stop-color="#2EC4B6" stop-opacity=".22"/>'
+    +   '<stop offset="100%" stop-color="#2EC4B6" stop-opacity="0"/>'
+    + '</linearGradient>'
+    + '<linearGradient id="chLine" gradientUnits="userSpaceOnUse" x1="0" y1="'+cyp(100)+'" x2="0" y2="'+cyp(0)+'">'
+    +   '<stop offset="0%" stop-color="'+C.good+'"/>'
+    +   '<stop offset="29%" stop-color="'+C.good+'"/>'
+    +   '<stop offset="33%" stop-color="'+C.mid+'"/>'
+    +   '<stop offset="52%" stop-color="'+C.mid+'"/>'
+    +   '<stop offset="56%" stop-color="'+C.bad+'"/>'
+    +   '<stop offset="100%" stop-color="'+C.bad+'"/>'
+    + '</linearGradient>'
+    + '</defs>');
+
+  // y axis: 0–10 only
+  [100,50,0].forEach(function(v){
+    out.push('<text x="'+(PL-5)+'" y="'+(cyp(v)+2.5).toFixed(1)+'" fill="rgba(12,36,42,.55)" '
+      + 'font-size="7.5" text-anchor="end">'+(v/10)+'</text>');
+  });
+  [6,12,18].forEach(function(hh){
+    out.push('<text x="'+cxp(hh*60).toFixed(1)+'" y="'+(CH-5)+'" fill="rgba(12,36,42,.55)" '
+      + 'font-size="7.5" text-anchor="middle">'+pad(hh)+':00</text>');
+  });
+
+  var pts = SAMPLES.map(function(s){ return [cxp(s.m), cyp(s.score)]; });
+  var lineD = smoothPath(pts);
+  var areaD = lineD + ' L '+pts[pts.length-1][0].toFixed(1)+' '+(CH-PB)
+            + ' L '+pts[0][0].toFixed(1)+' '+(CH-PB)+' Z';
+  out.push('<path d="'+areaD+'" fill="url(#chArea)"/>');
+
+  // shade the window that was searched, so the span reads as "this is the answer"
+  if (ans.window){
+    var wx0 = cxp(ans.window.from), wx1 = cxp(ans.window.to);
+    out.push('<rect x="'+wx0.toFixed(1)+'" y="'+PT+'" width="'+Math.max(1,wx1-wx0).toFixed(1)+'" '
+      + 'height="'+(CH-PT-PB)+'" rx="2" fill="rgba(46,196,182,.14)"/>');
+  }
+
+  out.push('<path d="'+lineD+'" fill="none" stroke="url(#chLine)" stroke-width="2.2" '
+    + 'stroke-linecap="round" stroke-linejoin="round"/>');
+
+  // verticals: where we are now, and the optimal moment in the searched window
+  if (ans.window){
+    out.push(markerHTML(cxp(SCENARIO.nowMinutes), 'rgba(12,36,42,.42)', 'now', 'left', true, labelYFor(NOW.score)));
+    out.push(markerHTML(cxp(ans.window.opt), scoreColor(dotS), fmtTime(ans.window.opt), 'right', false, labelYFor(dotS)));
+  }
+
+  out.push('<circle cx="'+cxp(dotM).toFixed(1)+'" cy="'+cyp(dotS).toFixed(1)+'" r="2.8" '
+    + 'fill="'+scoreColor(dotS)+'" stroke="#FFFFFF" stroke-width="1.6"/>');
+  return out.join('');
+}
+
+/* ---------- result screen (lives entirely inside the phone) ---------- */
+function renderResult(ans){
+  resView.innerHTML =
+      '<div class="res-head">'
+    +   '<div class="res-place">'+SCENARIO.place+'</div>'
+    +   '<div class="res-meta"><i style="background:'+(C[ans.chipTone]||C.mid)+'"></i>'
+    +     ans.chipText+' · '+ans.chipSub+'</div>'
+    + '</div>'
+    + '<div class="res-body">'
+    +   heroHTML(ans)
+    +   '<p class="verdict">'+ans.verdict+'</p>'
+    +   qrowsHTML(ans.factors)
+    +   '<svg class="rp-chart" viewBox="0 0 '+CW+' '+CH+'" aria-hidden="true">'+chartMarkup(ans)+'</svg>'
+    + '</div>'
+    + '<div class="rp-note">'+ans.foot+'</div>'
+    + '<div class="rp-actions">'
+    +   '<button class="btn primary" id="rpAgain">Try another time</button>'
+    +   '<button class="btn" id="rpHome">Start over</button>'
+    + '</div>';
+
+  if (ans.hero.type === 'gauge') animGauge(ans.hero.score);
+  fitText(resView.querySelector('.res-place'), 19, 11.5);
+  resView.scrollTop = 0;
+
+  var again = document.getElementById('rpAgain');
+  var home  = document.getElementById('rpHome');
+  if (again) again.addEventListener('click', function(){ dispatch('AGAIN'); });
+  if (home)  home.addEventListener('click', function(){ dispatch('HOME'); });
+}
+
+/* ============================================================
+   6b. watch result — a ring of the score now, and a second ring for the suggested time
+   ============================================================ */
+// the watch shows the same answer as the phone, reduced to the essential pair:
+// where you are now, and where you would be if you took the suggestion
+function answerOf(ans){
+  var h = ans.hero, nowS = NOW.score;
+  if (h.type === 'delta')
+    return { score:h.to,    when:'by '+fmtTime(h.target),           gain:h.gain };
+  if (h.type === 'window')
+    return { score:h.score, when:fmtTime(h.start)+'–'+fmtTime(h.end), gain:h.score - nowS };
+  return { score:h.score, when:'Now · '+fmtTime(SCENARIO.nowMinutes),  gain:null };
+}
+
+// one ring segment, drawn in the gauge's 160-unit box and measured 0–100 like the model
+function watchArc(score, r, sw, color, opacity){
+  var c = 2*Math.PI*r;
+  return '<circle class="arc" cx="80" cy="80" r="'+r+'" stroke="'+color+'"'
+    + (opacity ? ' stroke-opacity="'+opacity+'"' : '')
+    + ' style="stroke-width:'+sw+';stroke-dasharray:'+c.toFixed(1)
+    + ';stroke-dashoffset:'+c.toFixed(1)+'" data-to="'+(c*(1-score/100)).toFixed(1)+'"/>';
+}
+
+function watchGaugeHTML(ans, a){
+  var dual = ans.hero.type !== 'gauge', nowS = NOW.score;
+  // dual: outer hairline = where you are now, inner bold = the suggested time
+  var ri = dual ? 52 : 62, ro = 68;
+  var svg = '<svg class="w-gauge" viewBox="0 0 160 160" role="img" aria-label="GOTime score '
+    + fmtScore(a.score)+' out of 10">';
+  if (dual){
+    svg += '<circle cx="80" cy="80" r="'+ro+'" fill="none" stroke="rgba(12,36,42,.08)" style="stroke-width:6"/>'
+        +  '<circle cx="80" cy="80" r="'+ri+'" fill="none" stroke="rgba(12,36,42,.08)" style="stroke-width:11"/>'
+        +  watchArc(nowS, ro, 6, scoreColor(nowS), .55)
+        +  watchArc(a.score, ri, 11, scoreColor(a.score));
+  } else {
+    svg += '<circle cx="80" cy="80" r="'+ri+'" fill="none" stroke="rgba(12,36,42,.09)" style="stroke-width:11"/>'
+        +  watchArc(a.score, ri, 11, scoreColor(a.score));
+  }
+  svg += '<text class="num'+(dual?' dual':'')+'" x="80" y="'+(dual?92:94)+'" id="wNum">0.0</text>'
+      +  '<text class="sub" x="80" y="'+(dual?106:112)+'">'
+      +  (dual ? 'now '+fmtScore(nowS) : 'out of 10')+'</text></svg>';
+  return svg;
+}
+
+function renderWatchResult(ans){
+  var a = answerOf(ans);
+
+  wResult.innerHTML =
+      '<div class="w-res-head">'
+    +   '<span class="w-res-place">'+SHORT_PLACE+'</span>'
+    +   '<span class="w-word '+toneOf(a.score)+'">'+verdictWord(a.score)+'</span>'
+    + '</div>'
+    + '<div class="w-res-body">'
+    +   watchGaugeHTML(ans, a)
+    +   '<div class="w-when">'+a.when
+    +     (a.gain > 0 ? '<span class="w-delta">+'+(a.gain/10).toFixed(1)+'</span>' : '')
+    +   '</div>'
+    + '</div>'
+    + '<div class="w-acts">'
+    +   '<button class="w-btn primary" data-act="AGAIN">Again</button>'
+    +   '<button class="w-btn" data-act="HOME">Home</button>'
+    + '</div>';
+
+  // the outer ring (now) draws first, the suggested-score ring sweeps in behind it
+  var arcs = wResult.querySelectorAll('.arc');
+  void wResult.offsetWidth;                       // commit the rings at zero, then animate
+  for (var i=0;i<arcs.length;i++){
+    arcs[i].style.transitionDelay = (i ? 200 : 0)+'ms';
+    arcs[i].style.strokeDashoffset = arcs[i].getAttribute('data-to');
+  }
+
+  // the number counts from where you are now to where you would be
+  var from  = ans.hero.type === 'gauge' ? 0 : NOW.score;
+  var numEl = document.getElementById('wNum');
+  var t0 = performance.now(), dur = 950;
+  (function step(t){
+    var k = clamp((t-t0)/dur, 0, 1), e = 1-Math.pow(1-k,3);
+    if (numEl) numEl.textContent = ((from + (a.score-from)*e)/10).toFixed(1);
+    if (k < 1) requestAnimationFrame(step);
+  })(t0);
+  // rAF pauses in a background tab — make sure both the number and the arcs land
+  setTimeout(function(){
+    if (numEl) numEl.textContent = fmtScore(a.score);
+    for (var i=0;i<arcs.length;i++) arcs[i].style.strokeDashoffset = arcs[i].getAttribute('data-to');
+  }, dur + 80);
+}
+
+/* ============================================================
+   7. flow
+   ============================================================ */
+var thinkTimers = [];          // one timeline, two devices
+function clearThinking(){
+  thinkTimers.forEach(clearTimeout);
+  thinkTimers = [];
+}
+var TOAST_T = null;
+
+function showToast(msg){
+  toastEl.textContent = msg;
+  toastEl.classList.add('on');
+  clearTimeout(TOAST_T);
+  TOAST_T = setTimeout(function(){ toastEl.classList.remove('on'); }, 1900);
+}
+
+/* every control on either device dispatches into this one reducer */
+function dispatch(action, arg){
+  switch (action){
+    case 'OPEN':  phone.classList.remove('attract'); watch.classList.remove('attract'); setView('prompt'); kickIdle(); break;
+    case 'PICK':  startThinking(arg); break;
+    case 'DONE':  finishThinking(); break;
+    case 'AGAIN': backToPrompt(); break;
+    case 'HOME':  goHome(); break;
+    case 'PROFILE':      setView('profile'); kickIdle(); break;
+    case 'SET_PROFILE':  setProfile(arg); break;
+  }
+}
+
+function startThinking(slot){
+  clearThinking();
+  document.body.classList.remove('is-result');
+  state.slot = slot;
+  state.ans  = buildAnswer(slot);   // built once — both devices render this object
+  setView('thinking');
+  runThinking(state.ans);
+}
+
+function runThinking(ans){
+  var cap    = document.getElementById('thinkCap');
+  var wCap   = document.getElementById('wCap');
+  var arrow  = document.getElementById('pierceArrow');
+  var wArrow = document.getElementById('wArrow');
+  var bar    = document.getElementById('progressBar');
+  var pierce = document.querySelector('.pierce');
+  var panes  = document.querySelectorAll('.pane');
+  var bands  = document.querySelectorAll('.w-band');
+
+  // reset both animation surfaces, so neither is ever a stale picture of an older run
+  for (var p=0;p<panes.length;p++){
+    panes[p].classList.remove('hit');
+    panes[p].classList.remove('wash');
+    var v = panes[p].querySelector('.pane-val');
+    if (v) v.textContent = '—';
+  }
+  for (var b=0;b<bands.length;b++){
+    bands[b].classList.remove('hit');
+    bands[b].classList.remove('wash');
+    var wv = bands[b].querySelector('.w-bval');
+    if (wv) wv.textContent = '—';
+  }
+
+  // timeline: arrow sweep → "Personal optimisation" (2 s beat) → pause → band colours wash across
+  var K         = THINK_MS / 2000;                       // fast mode scales every beat
+  var PO_MS     = Math.round(2000 * K);                  // the caption→result beat is 2 s
+  var washAt    = Math.round(THINK_MS * 0.85);           // arrow has cleared the third pane
+  var washDelay = Math.round((100 + Math.random()*100) * K);
+  var tail      = Math.round(30 * K);
+  // the colour fade scales with the beat: it fills the rest of the 2 s and lands just before the result
+  var washMs    = Math.max(Math.round(600*K), PO_MS - washDelay - tail);
+  var total     = washAt + washDelay + washMs + tail;
+  pierce.style.setProperty('--washms', washMs+'ms');
+
+  function setCap(txt, brief){
+    cap.style.opacity = '0';
+    thinkTimers.push(setTimeout(function(){
+      cap.textContent = txt;
+      cap.style.opacity = '1';
+    }, 70));
+    wCap.textContent = brief || txt;   // the watch has no room for the full sentence
+  }
+
+  // progress hairline spans the whole sequence
+  bar.style.transition = 'none';
+  bar.style.width = '0%';
+  arrow.style.transition = 'none';
+  arrow.style.left = '-134px';
+  wArrow.style.transition = 'none';
+  wArrow.style.top = '-19px';
+  wArrow.style.opacity = '1';
+
+  // rAF is paused when the tab is not visible, so commit the reset values with a
+  // forced reflow and start both sweeps in the same task — the transition is guaranteed to run
+  void pierce.offsetWidth;
+  bar.style.transition = 'width '+total+'ms linear';
+  bar.style.width = '100%';
+  arrow.style.transition = 'left '+THINK_MS+'ms linear';
+  arrow.style.left = '290px';
+  // the same run, rotated: band centres sit at 14 / 47 / 80, so the beam
+  // travels -19 → 113 and crosses all three at 25 / 50 / 75 %, like the phone
+  wArrow.style.transition = 'top '+THINK_MS+'ms linear';
+  wArrow.style.top = '113px';
+
+  // the arrow crosses the three pane centres at 25 / 50 / 75 % of the run
+  var f = ans.factors;
+  var caps = [
+    'Scanning 3 data layers…',
+    'Reading heat stress…',
+    'Reading air quality…',
+    'Reading wind…'
+  ];
+  var seg = THINK_MS/4;
+
+  cap.style.opacity = '1';
+  cap.textContent = caps[0];
+  wCap.textContent = 'Scanning 3 layers';
+
+  // one timer per phase, applied to both surfaces at the same moment
+  caps.forEach(function(txt, idx){
+    if (idx === 0) return;
+    thinkTimers.push(setTimeout(function(){
+      setCap(txt);
+      var pane = panes[idx-1];
+      if (pane){
+        var v = pane.querySelector('.pane-val');
+        if (v) v.textContent = f[idx-1].band;
+        pane.classList.add('hit');
+      }
+      var band = bands[idx-1];
+      if (band){
+        var bv = band.querySelector('.w-bval');
+        if (bv) bv.textContent = f[idx-1].band;
+        band.classList.add('hit');
+      }
+    }, idx*seg));
+  });
+
+  // all three layers pierced: switch the caption, pause briefly, then wash each pane in its own band colour
+  thinkTimers.push(setTimeout(function(){ setCap('Personal optimisation','Personalising'); }, washAt));
+  thinkTimers.push(setTimeout(function(){
+    for (var g=0; g<panes.length; g++){
+      var col = (f[g] && f[g].color) || C.mid;
+      panes[g].style.setProperty('--bandc', tint(col, .55));
+      panes[g].style.setProperty('--bandb', col);
+      panes[g].classList.add('wash');
+    }
+    // the watch washes from the top down, following the beam
+    for (var w=0; w<bands.length; w++){
+      var wcol = (f[w] && f[w].color) || C.mid;
+      bands[w].style.setProperty('--wd', (w*110)+'ms');
+      bands[w].style.setProperty('--bandc', tint(wcol, .55));
+      bands[w].style.setProperty('--bandb', wcol);
+      bands[w].classList.add('wash');
+    }
+  }, washAt + washDelay));
+
+  thinkTimers.push(setTimeout(function(){ wArrow.style.opacity = '0'; }, Math.round(THINK_MS*0.82)));
+  thinkTimers.push(setTimeout(function(){ dispatch('DONE'); }, total));
+}
+
+function finishThinking(){
+  var ans = state.ans;
+  renderResult(ans);        // phone: the full readout
+  renderWatchResult(ans);   // watch: the rings
+  setView('result');        // one transition, applied to both screens
+}
+
+/* ---------- profile (phone only — the watch never shows it) ---------- */
+function profileLine(){
+  return (PROFILE.sex === 'male' ? 'Male' : 'Female') + ' · BMI ' + PROFILE.bmi.toFixed(1);
+}
+
+function renderProfile(){
+  var segs = document.querySelectorAll('.seg-b');
+  for (var i=0;i<segs.length;i++){
+    segs[i].classList.toggle('is-on', segs[i].getAttribute('data-sex') === PROFILE.sex);
+  }
+  var range = document.getElementById('bmiRange');
+  if (range) range.value = PROFILE.bmi;
+  document.getElementById('bmiVal').textContent   = PROFILE.bmi.toFixed(1);
+  document.getElementById('profileSub').textContent = profileLine();
+  document.getElementById('profileBaseScore').textContent = fmtScore(runAt(SCENARIO.nowMinutes, {sex:'female',bmi:22}).score)+'/10';
+  document.getElementById('profileScore').textContent = fmtScore(NOW.score)+'/10';
+}
+
+function setProfile(patch){
+  if (patch.sex) PROFILE.sex = (patch.sex === 'male' ? 'male' : 'female');
+  if (patch.bmi !== undefined) PROFILE.bmi = clamp(patch.bmi, 16, 35);
+  rebuildModel();
+  renderProfile();
+  renderApi();
+  // a result must never keep numbers from an older body
+  if (state.view === 'result' && state.ans){
+    state.ans = buildAnswer(state.slot);
+    renderResult(state.ans);
+    renderWatchResult(state.ans);
+  }
+}
+
+/* the integration block on the page mirrors the same numbers the phone shows */
+function renderApi(){
+  var apiEl = document.getElementById('api');
+  if (!apiEl) return;
+  var bt = bestWindow(SCENARIO.nowMinutes);
+  apiEl.innerHTML =
+      '<div><span class="v">GET</span> /v1/gotime</div>'
+    + '<div class="d">lat 48.8556 · lon 2.3622 · at '+fmtTime(SCENARIO.nowMinutes)+'</div>'
+    + '<div class="d">activity run · duration 45 min</div>'
+    + '<div class="d">profile '+PROFILE.sex+' · bmi '+PROFILE.bmi.toFixed(1)+'</div>'
+    + '<div>&nbsp;</div>'
+    + '<div>200 <span class="d">score</span> <b style="color:'+scoreColor(NOW.score)+'">'
+    +   fmtScore(NOW.score)+'</b> <span class="d">/ 10</span></div>'
+    + '<div class="d">heat '+heatFactor(NOW).band.toLowerCase()
+    +   ' · air '+airFactor(NOW).band.toLowerCase()+'</div>'
+    + '<div class="d">best window '+fmtTime(bt.start)+'–'+fmtTime(bt.end)+'</div>';
+}
+
+function backToPrompt(){
+  clearThinking();
+  setView('prompt');
+  kickIdle();
+}
+
+function goHome(){
+  clearThinking();
+  setView('home');
+  kickIdle();
+}
+
+/* ---------- idle attract ---------- */
+var idleTimer = null;
+function kickIdle(){
+  clearTimeout(idleTimer);
+  phone.classList.remove('attract');
+  if (watch) watch.classList.remove('attract');
+  if (state.view === 'home'){
+    idleTimer = setTimeout(function(){
+      phone.classList.add('attract');
+      if (watch) watch.classList.add('attract');
+    }, 22000);
+  }
+}
+
+/* ============================================================
+   8. wiring
+   ============================================================ */
+document.getElementById('gotimeTile').addEventListener('click', function(){ dispatch('OPEN'); });
+
+/* ---------- profile tile + editor (phone) ---------- */
+document.getElementById('profileTile').addEventListener('click', function(){ dispatch('PROFILE'); });
+document.getElementById('profileBack').addEventListener('click', function(){ dispatch('HOME'); });
+document.getElementById('profileDone').addEventListener('click', function(){ dispatch('OPEN'); });
+
+document.getElementById('sexSeg').addEventListener('click', function(e){
+  var b = e.target.closest ? e.target.closest('[data-sex]') : null;
+  if (b) dispatch('SET_PROFILE', { sex: b.getAttribute('data-sex') });
+});
+
+var bmiRange = document.getElementById('bmiRange');
+bmiRange.addEventListener('input', function(){
+  dispatch('SET_PROFILE', { bmi: parseFloat(bmiRange.value) });
+});
+document.getElementById('bmiDown').addEventListener('click', function(){
+  dispatch('SET_PROFILE', { bmi: PROFILE.bmi - 0.5 });
+});
+document.getElementById('bmiUp').addEventListener('click', function(){
+  dispatch('SET_PROFILE', { bmi: PROFILE.bmi + 0.5 });
+});
+
+var mocks = document.querySelectorAll('.tile[data-mock]');
+for (var i=0;i<mocks.length;i++){
+  (function(el){
+    el.addEventListener('click', function(){
+      showToast(el.getAttribute('data-mock') + ' — not part of this demo');
+    });
+  })(mocks[i]);
+}
+
+var opts = document.querySelectorAll('.opt');
+for (var j=0;j<opts.length;j++){
+  (function(el){
+    el.addEventListener('click', function(){ dispatch('PICK', el.getAttribute('data-slot')); });
+  })(opts[j]);
+}
+
+document.getElementById('promptBack').addEventListener('click', function(){ dispatch('HOME'); });
+
+/* ---------- watch: the same actions, from the other wrist ---------- */
+/* ---------- watch: the same actions, from the other wrist ---------- */
+var gotimeBub = document.getElementById('gotimeBub');
+gotimeBub.addEventListener('click', function(){ dispatch('OPEN'); });
+gotimeBub.addEventListener('keydown', function(e){
+  if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); dispatch('OPEN'); }
+});
+
+var wopts = document.querySelectorAll('.w-opt');
+for (var k=0;k<wopts.length;k++){
+  (function(el){
+    el.addEventListener('click', function(){ dispatch('PICK', el.getAttribute('data-slot')); });
+  })(wopts[k]);
+}
+
+// controls the watch renders on the fly (result actions) use the same reducer
+watch.addEventListener('click', function(e){
+  var el = e.target.closest ? e.target.closest('[data-act]') : null;
+  if (el) dispatch(el.getAttribute('data-act'));
+});
+watch.addEventListener('pointerdown', function(){ kickIdle(); });
+
+phone.addEventListener('pointerdown', function(){
+  phone.classList.remove('attract');
+  kickIdle();
+});
+
+document.addEventListener('keydown', function(e){
+  if (e.key === 'Escape'){
+    if (state.view === 'result') dispatch('AGAIN');
+    else if (state.view !== 'home') dispatch('HOME');
+    return;
+  }
+  if (e.key === 'r' || e.key === 'R'){ dispatch('HOME'); return; }
+  if (state.view === 'prompt' && (e.key === '1' || e.key === '2' || e.key === '3')){
+    dispatch('PICK', ['now','soon','later'][Number(e.key)-1]);
+  }
+});
+
+/* ============================================================
+   9. boot
+   ============================================================ */
+(function boot(){
+  // size the device to the frame: it bleeds off the bottom edge on wide layouts
+  var wrap = document.querySelector('.phone-wrap');
+  var watchWrap = document.querySelector('.watch-wrap');
+  function sizePhone(){
+    var s = 1, w = 1;
+    if (window.innerWidth > 1000){
+      var stage = window.innerHeight - 92;      // height left under the topbar
+      s = Math.max(0.6, Math.min(1.25, (stage - 18) / 700));
+      w = Math.max(0.78, Math.min(1.25, s * 1.08));
+    } else if (window.innerWidth <= 520){
+      w = 0.84;
+    }
+    wrap.style.setProperty('--s', s.toFixed(3));
+    if (watchWrap) watchWrap.style.setProperty('--w', w.toFixed(3));
+  }
+  sizePhone();
+  window.addEventListener('resize', sizePhone);
+  document.getElementById('sbTime').textContent = fmtTime(SCENARIO.nowMinutes);
+  document.getElementById('homeDay').textContent = 'Today · ' + fmtTime(SCENARIO.nowMinutes);
+  document.getElementById('homeSub').textContent =
+    SCENARIO.place + ' · ' + Math.round(NOW.temp) + ' °C · ' + Math.round(NOW.wind) + ' km/h wind';
+  document.getElementById('locPlace').textContent = SCENARIO.place;
+  fitText(document.getElementById('locPlace'), 18, 11);
+  document.getElementById('promptSub').textContent = '45 min · moderate pace · ' + SCENARIO.place;
+
+  // the watch runs the same flow, one size down
+  document.getElementById('wPlace').textContent = SHORT_PLACE;
+
+  renderProfile();
+  renderApi();
+
+  document.getElementById('optNowSub').textContent =
+    fmtTime(SCENARIO.nowMinutes) + ' · conditions right now';
+  document.getElementById('optSoonSub').textContent =
+    fmtTime(SCENARIO.nowMinutes) + '–' + fmtTime(SCENARIO.nowMinutes+120) + ' · worth waiting?';
+  document.getElementById('optLaterSub').textContent =
+    fmtTime(SCENARIO.nowMinutes+120) + '–' + fmtTime(SCENARIO.nowMinutes+360) + ' · find my window';
+
+  kickIdle();
+
+  if (TUNE){
+    var box = document.createElement('div');
+    box.className = 'tune';
+    var rows = '<h4>tune · now ' + fmtTime(SCENARIO.nowMinutes) + ' · ' + NOW.score + '/100</h4>';
+    SAMPLES.forEach(function(s, idx){
+      if (idx % 2) return;
+      rows += '<div>'+fmtTime(s.m)+'  T'+fmtNum(s.temp,1)+'  RH'+fmtNum(s.rh,0)
+        + '  W'+fmtNum(s.wind,0)+'  AQ'+fmtNum(s.air,0)+'  AT'+fmtNum(s.at,1)
+        + '  h'+fmtNum(s.heatP,2)+' a'+fmtNum(s.airP,2)+' w'+fmtNum(s.windP,2)
+        + '  <b>'+s.score+'</b></div>';
+    });
+    box.innerHTML = rows;
+    document.body.appendChild(box);
+  }
+})();
+
+})();
+</script>
+</body>
+</html>

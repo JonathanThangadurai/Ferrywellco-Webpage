@@ -198,3 +198,12 @@
 }
 @media (max-width: 370px) { .demo-frame { height: 710px; } }
 @media (max-width: 340px) { .demo-frame { height: 650px; } }
+
+/* Phone and watch prototype, shown together in the GOTime story. */
+.product-hero-grid { grid-template-columns: 1fr; gap: 40px; }
+.product-hero-copy { max-width: 900px; padding-top: 0; }
+.demo-frame.demo-frame-wide { max-width: none; height: 790px; margin-inline: 0; background: #e7eeee; }
+.demo-frame-wide + .demo-caption { max-width: 760px; }
+@media (max-width: 650px) {
+  .demo-frame.demo-frame-wide { height: 1030px; }
+}
