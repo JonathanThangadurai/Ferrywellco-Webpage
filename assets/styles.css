@@ -47,6 +47,50 @@ section[id] { scroll-margin-top: 90px; }
 .nav-cta:hover, .button:hover { background: #174c57; color: #fff; transform: translateY(-2px); }
 .menu-button { display: none; color: var(--ink); border: 1px solid var(--rule); background: transparent; padding: 9px 12px; border-radius: 5px; cursor: pointer; font-size: 15px; font-weight: 700; }
 
+/* Give the product a distinct place in the navigation without competing with Contact. */
+.site-header .main-nav a.nav-gotime {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 9px 14px;
+  border: 1px solid #ddb49e;
+  border-radius: 4px;
+  background: #f5e6da;
+  color: #803e2c;
+  line-height: 1.25;
+  white-space: nowrap;
+  transition: background .18s ease, border-color .18s ease;
+}
+.site-header .main-nav a.nav-gotime:hover,
+.site-header .main-nav a.nav-gotime[aria-current="page"] {
+  border-color: #b65a3e;
+  background: #efd5c4;
+  color: #663021;
+}
+.product-prompt { border-bottom: 1px solid #dacabb; background: #f1e8db; }
+.product-prompt-link {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  min-height: 49px;
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.35;
+  text-decoration: none;
+}
+.product-prompt-link:hover { color: var(--teal); }
+.product-prompt-label { color: #89462f; font-weight: 700; white-space: nowrap; }
+.product-prompt-arrow { margin-left: auto; color: #89462f; font-size: 18px; }
+@media (max-width: 760px) {
+  .site-header .main-nav a.nav-gotime { justify-content: space-between; margin-bottom: 8px; padding: 13px 14px; }
+}
+@media (max-width: 520px) {
+  .product-prompt-link { flex-wrap: wrap; gap: 1px 8px; padding-block: 8px; font-size: 13px; }
+  .product-prompt-label { width: calc(100% - 22px); }
+  .product-prompt-arrow { order: 1; align-self: center; margin-left: auto; }
+}
+
 .eyebrow { color: var(--teal); font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: .145em; line-height: 1.4; }
 .eyebrow::before { content: ""; display: block; width: 38px; height: 4px; margin-bottom: 15px; background: var(--aqua); }
 h1, h2, h3, p { margin-top: 0; }
