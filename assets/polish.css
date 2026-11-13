@@ -7,6 +7,7 @@
   font-display: swap;
 }
 html, body, button, input, select, textarea, svg text { font-family: "Mozilla Headline", Arial, sans-serif; }
+html { font-size-adjust: from-font; }
 body {
   font-size: 17px;
   line-height: 1.55;
