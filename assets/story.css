@@ -44,6 +44,10 @@
 .story-approach .story-split > div:last-child { padding-top: 10px; }
 .story-approach-detail .story-photo { margin-top: 30px; }
 .story-approach-detail .story-photo img { height: clamp(250px, 24vw, 340px); }
+.story-logic { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin: 28px 0 8px; }
+.story-logic > div { min-width: 0; padding: 16px 14px 18px; border-top: 3px solid var(--teal); background: #fffaf2; }
+.story-logic strong { display: block; color: var(--ink); font-size: 16px; line-height: 1.2; }
+.story-logic span { display: block; margin-top: 9px; color: #476267; font-size: 13px; line-height: 1.45; }
 .story-list { margin-top: 38px; border-top: 1px solid var(--rule); }
 .story-list p { display: grid; grid-template-columns: minmax(130px, .34fr) 1fr; gap: 28px; padding: 18px 0; border-bottom: 1px solid var(--rule); font-size: 16px; }
 .story-list strong { color: var(--ink); font-weight: 600; }
@@ -184,6 +188,8 @@
   .product-preview { max-width: 500px; }
   .story-approach .story-split > div:last-child { padding-top: 0; font-size: 17px; }
   .story-first-product p:not(.eyebrow) { font-size: 16px; }
+  .story-logic { grid-template-columns: 1fr; gap: 0; }
+  .story-logic > div { padding-inline: 0; border-top-width: 1px; background: transparent; }
   .notes-meme { transform: none; box-shadow: 9px 9px 0 #b9cfc5; }
   .notes-meme > div { min-height: 220px; padding: 16px; }
   .notes-meme strong { font-size: 1.25rem; }

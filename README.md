@@ -1,10 +1,10 @@
 # FerryWellCo website mockup
 
-This repository contains a static review version of the FerryWellCo website.
+This repository contains the static FerryWellCo website served at [ferrywellco.com](https://ferrywellco.com/).
 
 Open `index.html` locally or publish the repository root with GitHub Pages. The site uses plain HTML, CSS and JavaScript, so it has no build step.
 
-The embedded GOTime phone example is adapted from Tilman's first demo. Its values and time comparison are illustrative; it does not use live forecasts. The original file is not changed by this site.
+The GOTime page uses two screen exports from the [GOTime engine prototype](https://github.com/JonathanThangadurai/gotime-engine) and links to its interactive demo. Its example conditions are stored and illustrative, not a live forecast. The older phone example remains in `demo/` for reference.
 
 The site uses a locally hosted Mozilla Headline variable font throughout. Its SIL Open Font License is in `assets/fonts/MOZILLA-HEADLINE-OFL.txt`.
 
