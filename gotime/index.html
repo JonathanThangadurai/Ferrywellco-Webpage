@@ -4,20 +4,20 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#fbf8f2">
-  <meta name="description" content="See how GOTime helps an outdoor activity app turn a planned run, heat and air-quality conditions into a suggested next step and the reasons behind it.">
+  <meta name="description" content="Try GOTime in a fictional fitness app. Plan a 45-minute run, compare another time and see how heat and air-quality conditions inform the suggestion.">
   <link rel="canonical" href="https://ferrywellco.com/gotime/">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="FerryWellCo">
   <meta property="og:url" content="https://ferrywellco.com/gotime/">
   <meta property="og:title" content="GOTime for outdoor activity apps | FerryWellCo">
-  <meta property="og:description" content="Follow one illustrative run from a planned time to a suggested window and the reasons behind it.">
+  <meta property="og:description" content="Try an illustrative GOTime flow: plan a run, compare times and see the conditions behind the suggestion.">
   <meta property="og:image" content="https://ferrywellco.com/assets/ferrywellco-social.png">
   <meta name="twitter:card" content="summary_large_image">
   <title>GOTime for outdoor activity apps | FerryWellCo</title>
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="../assets/styles.css?v=nav1">
   <link rel="stylesheet" href="../assets/polish.css?v=mozilla2">
-  <link rel="stylesheet" href="../assets/gotime-page.css?v=journey5">
+  <link rel="stylesheet" href="../assets/gotime-page.css?v=phone6">
   <script src="../assets/site.js" defer></script>
 </head>
 <body class="gotime-page">
@@ -29,65 +29,44 @@
   <a class="nav-cta" href="../index.html#contact">Contact <span aria-hidden="true">↗</span></a></div>
 </div></header>
 <main id="main">
-  <section class="gt-hero" id="demo" aria-labelledby="gt-title"><div class="container gt-hero-grid">
+  <section class="gt-hero" aria-labelledby="gt-title"><div class="container gt-hero-grid">
     <div class="gt-hero-copy">
-      <p class="gt-kicker">GOTime · Our first working prototype</p>
-      <h1 id="gt-title">Sanne has an evening run in mind. Her app suggests going before noon.</h1>
-      <p class="gt-lead">GOTime considers the heat and air-quality conditions around Sanne's planned run. Her activity app gives her a next step and lets her check the reasons.</p>
-      <div class="gt-actions"><a class="button" href="#journey">Follow her day <span aria-hidden="true">↘</span></a><a class="gt-text-link" href="https://jonathanthangadurai.github.io/gotime-engine/?layout=phone&amp;city=ams&amp;scenario=heat&amp;persona=sanne&amp;moment=4&amp;time=06%3A45" target="_blank" rel="noopener noreferrer">Try the interactive demo ↗</a></div>
-      <p class="gt-note">Sanne and Stride are fictional. The demo uses stored conditions, not a live forecast.</p>
+      <p class="gt-kicker">GOTime · An interactive example</p>
+      <h1 id="gt-title">You have a run in mind. Is now the time to go?</h1>
+      <p class="gt-lead">A forecast can tell you the temperature and air quality. GOTime explores the next question: how do those conditions compare with another time for the run you have planned?</p>
+      <p class="gt-lead gt-sample-setup">Try a 45-minute run in Paris at 15:20. Tap GOTime in the fictional fitness app, choose when you want to go, and see what changes.</p>
+      <div class="gt-actions"><a class="button" href="#phone-demo">Try the phone <span aria-hidden="true">↘</span></a><a class="gt-text-link" href="#how-it-works">How it works ↘</a></div>
+      <p class="gt-note">This is an illustrative prototype with sample conditions, not a live forecast.</p>
     </div>
-    <figure class="gt-screen-figure gt-hero-screen">
-      <div class="gt-phone-shell"><img src="../assets/gotime-today.png" alt="GOTime inside the fictional Stride app suggests: Run before 12:00. A day strip highlights the available window and a link opens Why this advice." width="780" height="1688" fetchpriority="high"></div>
-      <figcaption>Inside Stride · Illustrative GOTime screen</figcaption>
+    <figure class="gt-demo-figure" id="phone-demo">
+      <iframe class="gt-demo-frame" src="../demo/phone.html?v=phone6" title="Interactive GOTime example inside a fictional fitness app" loading="eager"></iframe>
+      <figcaption>Tap the GOTime tile in the phone to begin</figcaption>
     </figure>
   </div></section>
 
-  <section class="gt-section gt-journey" id="journey" aria-labelledby="gt-journey-title"><div class="container gt-story-grid">
-    <div>
-      <p class="gt-kicker">One person · One day</p>
-      <h2 id="gt-journey-title">The suggestion fits the plan she actually made</h2>
-      <p class="gt-section-intro">Sanne usually runs at 18:00. On this example day, the app suggests running before 12:00. She sees the answer first, then decides whether to change her plan.</p>
-      <div class="gt-moment-list">
-        <div><span>01</span><p><strong>She has a plan</strong> Her 45-minute run is planned in Stride, a fictional activity app.</p></div>
-        <div><span>02</span><p><strong>She sees a window</strong> The recommendation points to a period that fits the whole run, rather than a single favourable hour.</p></div>
-        <div><span>03</span><p><strong>She can ask why</strong> The app explains the suggestion. Sanne chooses what to do.</p></div>
-      </div>
+  <section class="gt-section gt-journey" id="how-it-works" aria-labelledby="gt-journey-title"><div class="container">
+    <p class="gt-kicker">What happens in the example</p>
+    <h2 id="gt-journey-title">One run, three simple steps</h2>
+    <div class="gt-steps">
+      <article><span>01</span><h3>Start with a plan</h3><p>The example is a 45-minute run in Paris. You choose whether to go now, soon or later.</p></article>
+      <article><span>02</span><h3>Compare conditions</h3><p>The phone briefly shows the heat, air pollution and wind information behind the comparison.</p></article>
+      <article><span>03</span><h3>See another window</h3><p>The result puts the suggested time beside 15:20, then shows which conditions changed. You decide what to do.</p></article>
     </div>
-    <div class="gt-day-panel" aria-label="Illustrative comparison of the day in Sanne's example">
-      <p class="gt-panel-label">A day view for this example</p>
-      <div class="gt-go-line"><span class="gt-go-dot" aria-hidden="true"></span><strong>GO</strong><span>Before 12:00</span></div>
-      <p class="gt-panel-copy">The highlighted period fits her planned run. Her usual 18:00 slot is the comparison point.</p>
-      <div class="gt-day-track" role="img" aria-label="From 06:45 until 12:00 is highlighted as the suggested window; Sanne's usual time is 18:00"><span class="gt-track-go"></span><span class="gt-track-usual"></span></div>
-      <div class="gt-day-times"><span>06:45</span><span>12:00</span><span>18:00 usual</span><span>22:00</span></div>
-      <p class="gt-day-detail">GO appears only when a suitable window exists. Another example may suggest easing off or changing the plan.</p>
-      <small>Stored conditions · Not a live GO alert</small>
-    </div>
-  </div></section>
-
-  <section class="gt-section gt-why" aria-labelledby="gt-why-title"><div class="container gt-why-grid">
-    <figure class="gt-screen-figure gt-why-screen"><div class="gt-phone-shell"><img src="../assets/gotime-why.png" alt="The GOTime Why this advice view explains the heat, air-quality and wind conditions behind Sanne's example recommendation." width="780" height="1688" loading="lazy"></div><figcaption>Why this advice · Illustrative GOTime screen</figcaption></figure>
-    <div class="gt-why-copy"><p class="gt-kicker">The reason behind the answer</p><h2 id="gt-why-title">She can see what changed</h2><p class="gt-section-intro">In this stored example, the explanation compares heat stress at her usual evening time with the earlier window. It also shows the air-quality and wind information used for the suggestion.</p><p>This is where a partner app can do more than display readings. It can show an answer first, then let someone inspect the conditions behind it.</p><a class="gt-text-link" href="https://jonathanthangadurai.github.io/gotime-engine/?layout=phone&amp;city=ams&amp;scenario=heat&amp;persona=sanne&amp;moment=5&amp;time=06%3A45" target="_blank" rel="noopener noreferrer">Explore Why this advice ↗</a></div>
-  </div></section>
-
-  <section class="gt-section gt-people" aria-labelledby="gt-people-title"><div class="container gt-people-grid">
-    <div><p class="gt-kicker">Illustrative case · Chennai</p><h2 id="gt-people-title">The same morning need not lead to the same advice</h2><p class="gt-section-intro">The prototype can suggest different next steps for two people planning a run in the same outdoor conditions.</p></div>
-    <div class="gt-person-list"><p><span>Arjun · used to the heat</span><strong>Go before 7:00. Go easy.</strong></p><p><span>Sanne · visiting runner</span><strong>Train indoors today.</strong></p><small>Stored examples for discussion, not live recommendations or individual health assessments</small></div>
   </div></section>
 
   <section class="gt-section gt-partners" id="partners" aria-labelledby="gt-partners-title"><div class="container">
     <p class="gt-kicker">For wellness platforms</p><h2 id="gt-partners-title">The answer belongs inside your product</h2>
-    <p class="gt-section-intro">The prototype recommendation engine has a documented API contract. The partner decides where a planning answer fits and how to present it in the voice of their app.</p>
+    <p class="gt-section-intro">The fictional fitness app shows one possible place for GOTime: next to a plan someone has already made. A partner could decide where that question fits and how the answer should appear in its own product.</p>
     <div class="gt-partner-flow" aria-label="How the prototype would fit into a partner app"><div><span>From your app</span><strong>Activity, place and time</strong><p>The plan the person is making</p></div><div><span>From GOTime</span><strong>Next step, window and reasons</strong><p>Heat and air-quality context</p></div><div><span>Back in your app</span><strong>An answer people can use</strong><p>Shown at the moment of choice</p></div></div>
-    <p class="gt-prototype-status">The API works locally as a prototype. Hosting, partner access and wider testing are in development.</p>
+    <p class="gt-prototype-status">This is a product concept, not a live partner integration. A local prototype API exists; hosting and partner access are still in development.</p>
     <div class="gt-actions"><a class="button" href="../index.html?scope=gotime-pilot#contact">Discuss a pilot <span aria-hidden="true">↗</span></a><a class="gt-text-link" href="https://github.com/JonathanThangadurai/gotime-engine/blob/main/api/README.md" target="_blank" rel="noopener noreferrer">Read the prototype API ↗</a></div>
   </div></section>
 
-  <section class="gt-section gt-science" aria-labelledby="gt-science-title"><div class="container gt-science-grid"><div><p class="gt-kicker">Science and transparency</p><h2 id="gt-science-title">What the answer draws on</h2></div><div><p>GOTime draws on air-quality and heat research, then considers the activity and its setting. The prototype also accepts inputs such as pollen. Forecast-based guidance and experimental body estimates are treated separately in the development work.</p><a class="gt-text-link" href="../science/">Read about the science ↗</a><p class="gt-fine-print">GOTime provides general information for planning outdoor activity. It is not medical advice or an assessment of individual health risk.</p></div></div></section>
+  <section class="gt-section gt-science" aria-labelledby="gt-science-title"><div class="container gt-science-grid"><div><p class="gt-kicker">Science and transparency</p><h2 id="gt-science-title">The conditions behind the suggestion</h2></div><div><p>The phone uses illustrative values to show how a planning answer could combine heat and air-quality context with a particular activity. Wind appears in this example too. It does not use live conditions or assess the person using it.</p><a class="gt-text-link" href="../science/">Read about the science ↗</a><p class="gt-fine-print">GOTime provides general information for planning outdoor activity. It is not medical advice or an assessment of individual health risk.</p></div></div></section>
 </main>
 <footer class="site-footer"><div class="container"><div class="footer-grid">
   <div><a class="brand" href="../index.html">Ferry<span>Well</span>Co</a><p>Air quality, heat and spatial intelligence</p></div>
   <nav class="footer-links" aria-label="Footer navigation"><a href="../index.html">FerryWellCo</a><a href="../gotime/">GOTime</a><a href="../science/">Science</a><a href="../about/">About</a></nav>
   <div class="footer-links"><a href="mailto:research@ferrywellco.com">research@ferrywellco.com</a><a href="https://www.linkedin.com/company/ferrywellco/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a><a href="../privacy/">Privacy</a></div>
-</div><div class="footer-bottom"><span>© 2026 FerryWellCo · Amsterdam</span><span>Example data: Open-Meteo / ERA5 (CC BY 4.0) · Map © OpenStreetMap contributors</span></div></div></footer>
+</div><div class="footer-bottom"><span>© 2026 FerryWellCo · Amsterdam</span><span>Interactive demo uses illustrative conditions</span></div></div></footer>
 </body></html>

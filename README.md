@@ -4,7 +4,7 @@ This repository contains the static FerryWellCo website served at [ferrywellco.c
 
 Open `index.html` locally or publish the repository root with GitHub Pages. The site uses plain HTML, CSS and JavaScript, so it has no build step.
 
-The GOTime page uses two screen exports from the [GOTime engine prototype](https://github.com/JonathanThangadurai/gotime-engine) and links to its interactive demo. Its example conditions are stored and illustrative, not a live forecast. The older phone example remains in `demo/` for reference.
+The GOTime page embeds an adapted version of Tilman's original phone example from `demo/phone.html`. Its conditions are illustrative, not a live forecast. The later engine prototype remains available in the separate [GOTime engine repository](https://github.com/JonathanThangadurai/gotime-engine), but is not the public page's primary demo.
 
 The site uses a locally hosted Mozilla Headline variable font throughout. Its SIL Open Font License is in `assets/fonts/MOZILLA-HEADLINE-OFL.txt`.
 
